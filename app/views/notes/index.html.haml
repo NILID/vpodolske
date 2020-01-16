@@ -1,0 +1,10 @@
+.row
+  .col-xs-12
+    .tr-section
+      .section-title.title-before
+        %h1= t 'note.title'
+
+      - unless @notes.empty?
+        = render @notes
+      - else
+        %p= t 'shared.empty'

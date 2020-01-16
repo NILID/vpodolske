@@ -1,0 +1,30 @@
+%footer#footer
+  .footer-menu
+  .footer-widgets
+    .container
+      .row
+        .col-sm-2
+          .widget
+            %ul
+              %li= link_to t('articles.title'), articles_path
+              %li= link_to t('events.title'), events_path
+              %li= link_to t('helper'), categories_path
+              %li= link_to t('users.title'), users_path
+              %li= link_to t('live.title'), places_path
+        .col-sm-3.col-sm-offset-7
+          .widget
+            %ul
+              %li= link_to t(:about), static_page_path(:about)
+              %li= link_to t(:sponsor), static_page_path(:sponsor)
+        .col-sm-12
+          .text-center= link_to t('note.add'),new_note_path, class: 'btn btn-default btn-xs btn-primary'
+
+  .footer-bottom.text-center
+    .container
+      .footer-bottom-content
+        .footer-logo
+          2018-2019 &copy; vPodolske
+          %p.text-muted= t :helplicense
+
+          - if Rails.env.production?
+            = render 'layouts/vk_feedback'

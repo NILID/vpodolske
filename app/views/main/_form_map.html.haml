@@ -1,0 +1,71 @@
+- content_for :js do
+  - zoom_int = 14
+  - center_lat = '55.4305'
+  - center_lng = '37.5412'
+
+  %script(src='https://api-maps.yandex.ru/2.1/?lang=ru_RU' type='text/javascript')
+  :javascript
+    ymaps.ready(init);
+
+    function init() {
+        var myPlacemark,
+            myMap = new ymaps.Map('map', {
+                center: [#{center_lat}, #{center_lng}],
+                zoom: #{zoom_int}
+            }, {
+                searchControlProvider: 'yandex#search'
+            }),
+            myPlacemark = new ymaps.Placemark([#{object.latitude}, #{object.longitude}], {
+                balloonContentBody: "#{object.address}",
+                hintContent: "#{object.address}"
+            });
+
+        myMap.geoObjects.add(myPlacemark);
+
+        myMap.events.add('click', function (e) {
+            var coords = e.get('coords');
+
+            if (myPlacemark) {
+                myPlacemark.geometry.setCoordinates(coords);
+            }
+            else {
+                myPlacemark = createPlacemark(coords);
+                myMap.geoObjects.add(myPlacemark);
+                myPlacemark.events.add('dragend', function () {
+                    getAddress(myPlacemark.geometry.getCoordinates());
+                });
+            }
+            getAddress(coords);
+            document.getElementById('form_lat').value = coords[0].toPrecision(8);
+            document.getElementById('form_long').value = coords[1].toPrecision(8);
+        });
+
+        function createPlacemark(coords) {
+            return new ymaps.Placemark(coords, {
+                iconCaption: 'поиск...'
+            }, {
+                preset: 'islands#violetDotIconWithCaption',
+                draggable: true
+            });
+        }
+
+        function getAddress(coords) {
+            myPlacemark.properties.set('iconCaption', 'поиск...');
+            ymaps.geocode(coords).then(function (res) {
+
+                var firstGeoObject = res.geoObjects.get(0);
+
+                myPlacemark.properties
+                    .set({
+                        iconCaption: [
+                            firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),
+                            firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
+                        ].filter(Boolean).join(', '),
+                        balloonContent: firstGeoObject.getAddressLine()
+                     });
+                document.getElementById('form_address').value = firstGeoObject.getAddressLine();
+             });
+         }
+     }
+
+#map

@@ -1,0 +1,24 @@
+.tr-section
+  .tr-post
+    .row
+    .entry-header
+      .col-md-3.col-xs-6
+        .entry-header
+          .entry-thumbnail
+            = link_to big_place do
+              = image_tag big_place.photos.first.slide(:thumb), class: 'img-responsive' unless big_place.photos.pluck(:id).empty?
+      .col-md-9.col-xs-6
+        .post-content
+          .entry-meta
+            %ul
+              %li= plural big_place.photos.pluck(:id).size, 'photo'
+              - if params[:sort] == 'bad'
+                %li
+                  = plural big_place.cached_votes_down.to_i, 'to_user'
+                  = t 'users.not_like'
+              - if params[:sort] == 'best'
+                %li
+                  = plural big_place.cached_votes_up.to_i, 'to_user'
+                  = t 'users.like'
+          %h2.entry-title= link_to big_place.title, big_place
+          %p= big_place.content

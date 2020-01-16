@@ -1,0 +1,60 @@
+- set_meta_tags title: t('seo.helper.organizations'),
+  description: t('baseseo.orgs.desc'),
+  keywords: t('baseseo.orgs.words'),
+  index: true
+
+.row
+  .col-sm-12
+    .tr-section
+      - if current_user
+        .section-title.title-before
+          %h4= t 'organizations.own'
+        .well= t 'organizations.add_you_can_html'
+      - else
+        .well
+          = t 'organizations.add_you_can_html'
+          = t 'organizations.add_unreg_html', url: link_to(t('signuping').downcase, new_user_registration_path)
+      .post-content
+        = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary'
+        - if current_user
+          - orgs = current_user.organizations
+          - if orgs
+            %table.table.table-condensed
+              - orgs.each do |org|
+                %tr
+                  %td
+                    = link_to org.title, org
+                    - if org.status? 'hidden'
+                      %span.label.label-warning= t 'organizations.check_short'
+
+.row
+  .col-sm-12
+    .tr-section
+      .row
+        .col-xs-12.col-sm-6
+          .section-title.title-before.clearfix
+            %h1= t 'categories.title'
+        .col-xs-12.col-sm-6= render 'organizations/search_form'
+
+  = render 'admin_panel' if can? :manage, Category
+
+.row.masonry(data-columns='1')
+  - @categories.each do |category|
+    %div
+      .tr-widget
+        .tr-section
+          .section-title.title-before
+            %h4
+              = link_to category.title, category_path(category)
+              - if can? :manage, category
+                .btn-group.pull-right
+                  %button.btn.btn-xs.btn-default.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                    %span.fa.fa-cog
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li= link_to t('categories.new'), new_category_path(parent_id: category.id)
+                    %li= link_to t('actions.edit'), edit_category_path(category)
+                    %li= link_to t('actions.del'), category, method: :delete, data: { confirm: t('actions.sure') }
+          %table.table.table-condensed
+            = render partial: 'categories/descendant', collection: category.descendants.order(:title)
+= render 'main/toplink'

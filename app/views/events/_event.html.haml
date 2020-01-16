@@ -1,0 +1,19 @@
+%div{ class: event_class }
+  .tr-post.post-content-absolute.tr-post-padding-2
+    .entry-header
+      .entry-thumbnail
+        = link_to event do
+          - if lazy
+            = image_tag asset_url('grey.gif'), class: 'img-responsive b-lazy', data: { src: event.src(:thumb), src_small: event.src(:thumb)}, alt: event.title
+          - else
+            = image_tag event.src(:thumb), class: 'img-responsive', alt: event.title
+
+    .post-content
+      %span.catagory{ data: { animation: 'animated fadeInUp' } }
+        - if event.eventdate?
+          = link_to '#' do
+            = rusdate(event.eventdate)
+            - if event.finishdate?
+              \ -
+              = rusdate(event.finishdate)
+      %h2.entry-title= link_to event.title, event

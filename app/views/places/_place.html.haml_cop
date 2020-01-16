@@ -1,0 +1,8 @@
+%article
+  %figure
+    = image_tag place.photos.first.slide(:thumb)
+    %td= link_to place.title, place
+  %td
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_place_path(place), :class => 'btn btn-default btn-xs'
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), place, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+

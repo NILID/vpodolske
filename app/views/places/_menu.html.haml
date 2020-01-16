@@ -1,0 +1,8 @@
+.tr-section
+  %ul.nav.nav-pills
+    %li{ class: (params[:sort].nil? && params[:action] == 'gallery') ? 'active' : nil }= link_to t('places.newest'), gallery_places_path
+    %li{ class: params[:sort] == 'oldest' ? 'active' : nil }= link_to t('places.oldest'), gallery_places_path(sort: :oldest)
+    %li{ class: params[:sort] == 'best' ? 'active' : nil }= link_to t('places.best'), gallery_places_path(sort: :best)
+    %li{ class: params[:sort] == 'bad' ? 'active' : nil }= link_to t('places.bad'), gallery_places_path(sort: :bad)
+    %li{ class: params[:sort] == 'random' ? 'active' : nil }= link_to t('places.random'), gallery_places_path(sort: :random)
+    %li{ class: params[:action] == 'map' ? 'active' : nil }= link_to t('places.by_map'), map_places_path

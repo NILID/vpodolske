@@ -1,0 +1,42 @@
+- set_meta_tags title: t('videos.seo.video_of', title: @video.title),
+  description: t('videos.seo.video_of', title: @video.title),
+  keywords: t('videos.seo.video_of', title: @video.title)
+
+.row
+  .col-lg-9.col-xs-12
+    - video = VideoInfo.new(@video.url)
+    .embed-responsive.embed-responsive-16by9= raw video.embed_code(iframe_attributes: { class: 'embed-responsive-item' })
+
+    .page-header
+      %h1
+        = @video.title
+        %small
+          - @video.keyword_list.each do |tag|
+            = link_to tag, videos_path(by_tag: tag), class: 'label label-info'
+          - if can? :edit, @video
+            = link_to t('actions.edit'), edit_video_path(@video), class: 'btn btn-default'
+          - if can? :destroy, @video
+            = link_to t('actions.del'), video_path(@video), method: :delete, data: { confirm: t('actions.confirm') }, class: 'btn btn-danger'
+
+    = bootstrap_form_for [@video, Comment.new], url: video_comments_path(@video), remote: true, html: { method: :post } do |f|
+      .form-errors
+      = f.text_area :content, hide_label: true
+      = f.primary
+
+    .row
+      .col-xs-12#comments
+        = render partial: 'comments/comment', collection: @comments, locals: {commentable: @video}
+
+  .col-lg-3.col-xs-12
+    .well
+      .row
+        .col-lg-12.stat-icons
+          = link_to like_video_path(@video), class: 'btn btn-primary btn-like btn-block', remote: true, method: :put do
+            = fa_icon 'heart'
+            %span.likers-count= @video.likers_count
+
+      - if @video.user
+        .row
+          .col-lg-12
+            %hr
+            %h4= link_to @video.user.login, @video.user

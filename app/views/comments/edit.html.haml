@@ -1,0 +1,12 @@
+= bootstrap_form_for [@commentable, @comment], html: { class: 'contact-form' } do |f|
+  .section-title
+    %h1= t('comments.editing')
+
+  = f.text_area :content
+
+  - if current_user&.role? :admin
+    = f.check_box :hidden
+
+  = f.form_group do
+    = f.primary
+    = link_to t('actions.cancel'), @commentable, class: 'btn btn-default'

@@ -1,0 +1,21 @@
+- if @page
+
+  - @page.css('.news-itm').take(2).each do |link|
+    .row.well
+      .col-xs-9
+        - source = 'http://inpodolsk.ru' + link.at_css('.news-itm__title a').attr('href')
+        - p = Nokogiri::HTML(open(source.to_s))
+
+        %h5= link.at_css('.news-itm__title').text
+        = image_tag('http://inpodolsk.ru' + p.at_css('.b-page__image img').attr('src'))
+        %p
+          =# link.at_css('.news-itm__date').text
+          - date = link.at_css('.news-itm__date').text
+          = d= Date.parse(date)
+          = /\d{2}:\d{2}/.match(date)
+        - source = 'http://inpodolsk.ru' + link.at_css('.news-itm__title a').attr('href')
+        - p = Nokogiri::HTML(open(source.to_s))
+        = raw p.at_css('.b-page__content')
+
+- else
+  No events

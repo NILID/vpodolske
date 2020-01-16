@@ -1,0 +1,27 @@
+.page-header
+  %h1=t 'live.gallery'
+
+- if can? :new, Photo
+  = link_to t('actions.new'), new_place_photo_path(@place), class: 'btn btn-primary'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= Photo.human_attribute_name(:slide)
+      %th= Photo.human_attribute_name(:user)
+      %th= Photo.human_attribute_name(:year)
+      %th= Photo.human_attribute_name(:content)
+      %th
+  %tbody
+    - @photos.each do |photo|
+      %tr
+        %td= image_tag photo.slide.url(:thumb)
+        %td= link_to photo.user.login, photo.user if photo.user
+        %td= photo.year
+        %td= photo.content
+        %td
+          - if can? :edit, photo
+            = link_to t('actions.edit'), edit_place_photo_path(@place, photo), class: 'btn btn-default btn-xs'
+          - if can? :destroy, photo
+            = link_to t('actions.del'), [@place, photo], :method => :delete, data: { confirm: t('actions.sure') }, class: 'btn btn-xs btn-danger'
+

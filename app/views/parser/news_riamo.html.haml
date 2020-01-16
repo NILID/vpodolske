@@ -1,0 +1,12 @@
+- if @page
+  - @page.css('.content-container .news-item').each do |link|
+    .row.well
+      .col-xs-9
+        %h5= link.at_css('h2').text.squish
+        %p
+          -  date = link.at_css('time').text.squish
+          = DateTime.strptime(russian_to_english_date(date),'%d %b %Y, %H:%M')
+        %p= 'https://podolskriamo.ru' + link.at_css('a').attr('href')
+        %p= link.at_css('p').text
+- else
+  No events

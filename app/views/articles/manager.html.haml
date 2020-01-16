@@ -1,0 +1,38 @@
+- check_articles_empty = @articles.empty?
+
+- set_meta_tags title: t('articles.title'),
+  description: t('articles.intro'),
+  keywords: t('baseseo.articles.words', add: nil),
+  index: true
+
+.row
+  .col-xs-12.col-sm-5.col-md-4.tr-sticky
+    .tr-section
+      .section-title.title-before
+        %h1= t 'articles.title'
+      .section-body.text-muted
+        = t 'articles.intro'
+        - if can? :manage, Article
+          %br/
+          = link_to t('actions.add'), new_article_path, class: 'btn btn-primary'
+          = link_to t('actions.parse'), parse_articles_path, class: 'btn btn-primary'
+
+  .col-xs-12.col-sm-7.col-md-8
+    .tr-section.news
+      .row
+        .col-xs-12.col-md-5
+          = render 'articles/search_form'
+        - unless check_articles_empty
+          .col-xs-12.col-md-7
+            .pull-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
+      - unless check_articles_empty
+        %table.table.table-hover.table-striped
+          = render partial: 'article_admin', collection: @articles
+      - else
+        %strong= t 'search.no_results'
+
+      - unless check_articles_empty
+        .pull-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
+
+- unless check_articles_empty
+  = render 'main/toplink'

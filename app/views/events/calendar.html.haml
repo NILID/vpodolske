@@ -1,0 +1,24 @@
+- set_meta_tags title: t('event.calendar', date: Russian::strftime(@date, "%B %Y")),
+  description: t('baseseo.events.desc', add: Russian::strftime(@date, "%B %Y")),
+  keywords: t('baseseo.events.words', add: Russian::strftime(@date, "%B %Y")),
+  index: true
+
+= render 'tabs'
+
+#calendar
+  %h2#month
+    = link_to(calendar_events_path(month: (@date.beginning_of_month-1).strftime("%Y-%m-01")), class: 'btn btn-default') do
+      = fa_icon 'chevron-left'
+    = Russian::strftime(@date, "%B %Y")
+    = link_to(calendar_events_path(month: (@date.end_of_month+1).strftime("%Y-%m-01")), class: 'btn btn-default') do
+      = fa_icon 'chevron-right'
+  = calendar_for @events, year: @date.year, month: @date.month, first_day_of_week: 1 do |calendar|
+    = calendar.head(t('daynames.mon'),t('daynames.tue'),t('daynames.wed'),t('daynames.thu'),t('daynames.fri'),t('daynames.sat'),t('daynames.sun'))
+    - calendar.day(day_method: :eventdate) do |date, events|
+      = date.day
+      %ul
+        #slideshow
+          - for event in events
+            %li= link_to raw(event.title), [event.user, event]
+            =# link_to image_tag(event.src.url(:thumb)), [event.user, event] if event.src?
+

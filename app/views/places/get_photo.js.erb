@@ -1,0 +1,7 @@
+$('#diff-container').html("<%= j(render partial: 'diff', locals: { before: @before_photo, after: @after_photo }) %>");
+$('#photo-info-0').html("<%= j(render 'photo_info', photo: @before_photo) %>");
+$('#photo-info-1').html("<%= j(render 'photo_info', photo: @after_photo) %>");
+$('#diff-container').twentytwenty({
+  before_label: 'До',
+  after_label: 'После'
+});

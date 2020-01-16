@@ -1,0 +1,4 @@
+<script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+<script src="//yastatic.net/share2/share.js" async="async"></script>
+<%= t 'actions.share' %>
+<div class="ya-share2" data-url:vkontakte="<%= event_url(@event.id)%>" data-image="<%= asset_url @event.src.url(:original)%>" data-description="<%= @event.content %>" data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,whatsapp,telegram" data-counter="" data-access-token:facebook="EAAICsFfKHdYBAGYZAPisqAOH6jpAvJkLE2AM2j6P4vNkGDuJxWBZCjwqVQOEuwyEUx6ZAdIlvgu7iVNBI3wsGodMUhBqQenEzEuiKZCCmo9h9ihQEyDIZC0XrQBn0B9vAAaQzlAxbGrG5nb9D7TTIWfE4CD0rElkMHZAT6yi9Wc7tr9cfHM0N5O84JeEyCIEwZD"></div>

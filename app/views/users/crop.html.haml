@@ -1,0 +1,11 @@
+.tr-section
+  = bootstrap_form_for @user, html: { class: 'contact-form' } do |f|
+    = f.fields_for :profile do |p|
+      .col-xs-9
+        = p.cropbox :avatar, width: 700
+      .col-xs-3
+        .jcrop= p.crop_preview :avatar, width: 200
+        %br
+        %br
+        = f.primary t('save')
+

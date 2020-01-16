@@ -1,0 +1,44 @@
+- set_meta_tags title: @place.title,
+  description: @place.title,
+  keywords: @place.title,
+  index: true
+
+.row
+  - if @photos.size > 0
+    .col-md-8.col-lg-6
+      .tr-section
+        .row
+          - if @photos.size > 1
+            .col-xs-12
+              #diff-container= render 'diff', before: @photos.first, after: @photos.last
+
+            .col-xs-10.col-xs-offset-1
+              %br/
+              #slider-range{ data: {photos: @photos.pluck(:id), years: @photos.pluck(:year) } }
+                #custom-handle-before.ui-slider-handle.custom-handle
+                #custom-handle-after.ui-slider-handle.custom-handle
+              %br/
+
+            - [@photos.first, @photos.last].each_with_index do |photo, i|
+              .col-xs-5{class: i == 1 ? 'text-right col-xs-offset-2' : ''}
+                %div{ id: "photo-info-#{i}" }= render 'photo_info', photo: photo
+            .col-xs-12= render 'like_buttons', place: @place
+          - else
+            .col-xs-12= image_tag @photos.first.slide, width: '100%'
+            .col-xs-12= render 'photo_info', photo: @photos.first
+
+  .col-md-4.col-lg-6
+    .tr-section
+      %h1.entry-title= @place.title
+
+      %p= @place.content
+
+      %p
+        - if can? :create, Photo
+          = link_to t('photos.new'), new_place_photo_path(@place), class: 'btn btn-primary'
+        - if can? :edit, @place
+          = link_to t('actions.edit'), edit_place_path(@place), class: 'btn btn-default'
+        - if can? :destroy, @place
+          = link_to t('actions.del'), @place, method: 'delete', data: { confirm: t('actions.sure') }, class: 'btn btn-danger'
+    .tr-section
+      .map-container= render('main/multi_map', list: [@place], center: true, zoom_int: 15, title: @place.title, hide_info: true)

@@ -1,0 +1,9 @@
+.col-sm-6
+  .tr-post.medium-post.post-content-absolute{ class: place_counter == 0 ? 'tr-before' : nil }
+    .entry-header
+      .entry-thumbnail
+        = link_to place do
+          = image_tag place.photos.first.slide(:thumb), class: 'img-responsive' unless place.photos.pluck(:id).empty?
+    .post-content
+      = link_to place, class: 'entry-title' do
+        %h4= place.title

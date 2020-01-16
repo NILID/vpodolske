@@ -1,0 +1,5 @@
+= bootstrap_form_for(@article, class: 'contact-form') do |f|
+  = f.text_field :title
+  = f.text_area :desc
+  = f.select :provider, Article::PROVIDERS.each { |p| p }, {include_blank: '...'}
+  = f.submit

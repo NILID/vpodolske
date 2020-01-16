@@ -1,0 +1,12 @@
+<% if @bug.errors.any? %>
+  $('#bug_errors').html('');
+  $('<%= escape_javascript(render 'error', bug: @bug)%>').appendTo('#bug_errors');
+  $('#bug_errors').slideDown();
+<%else%>
+  $('#errors').html('');
+  $('.modal').modal('hide');
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $('form#new_bug')[0].reset();
+  $('.bugs-alert').html('<%= content_tag(:div, I18n.t('bugs.thanks'), class: 'alert alert-success')%>');
+<%end%>

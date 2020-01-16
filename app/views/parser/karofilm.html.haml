@@ -1,0 +1,10 @@
+- if @page.at_css('.cinema-page-item__schedule__row--no-sessions')
+  No films
+- else
+  - @page.css('.cinema-page-item__schedule__row').each do |link|
+    - img = link.at_css('img')
+    - unless img.nil?
+      = image_tag link.at_css('img').attr('src'), class: 'thumbnail'
+    %h5= link.at_css('h3').text
+    %p= raw link.at_css('.cinema-page-item__schedule__row__board-row__left').text
+    %p= raw link.at_css('.sessionButton').text

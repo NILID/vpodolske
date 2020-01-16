@@ -1,0 +1,24 @@
+- set_meta_tags title: "#{@plustag}",
+  description: t('baseseo.events.desc_full', add: nil),
+  keywords: t('baseseo.events.words', add: nil),
+  index: true
+
+= render 'tabs'
+
+.row
+  .col-sm-9.col-sm-push-3#events.tr-padding-0
+    = render partial: 'events/event', collection: @events, locals: { event_class: 'col-lg-3 col-md-4 col-sm-6', lazy: true }
+
+  .col-sm-3.col-sm-pull-9.tr-sticky
+    .tr-section
+      .tr-post
+        .post-content
+        .text-muted= t 'events.about_html'
+        .text-center.tr-section-padding-top
+          = link_to(new_event_path, class: 'btn btn-primary') do
+            = fa_icon 'plus'
+            = t :new
+    .tr-section
+      = render 'main/yandex/events_vertical'
+
+= render 'main/toplink'

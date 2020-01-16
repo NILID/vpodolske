@@ -1,0 +1,17 @@
+= form_for @bug do |f|
+  #bug_errors
+
+  .field
+    = f.label :content
+    = f.text_area :content
+  .field
+    = f.label :buggable
+    = f.text_field :buggable
+  .field
+    = f.label :url
+    = f.text_area :url
+  .field
+    = f.label :status
+    = f.number_field :status
+  .actions
+    = f.submit 'Save'

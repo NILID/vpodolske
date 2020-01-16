@@ -1,0 +1,7 @@
+%li
+  - if organization.site? && user_signed_in? && (current_user.role? :admin)
+    - if organization.email?
+      = fa_icon 'check-circle', style: 'color: green'
+    - else
+      = fa_icon 'check-circle', style: 'color: red'
+  = link_to organization.title, organization

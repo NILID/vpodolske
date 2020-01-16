@@ -1,0 +1,14 @@
+= bootstrap_form_for [@place, @photo], html: { class: 'contact-form', multipart: true } do |f|
+  .section-title
+    %h1= formtitle
+
+  = f.number_field :year, required: true
+  = f.file_field :slide
+  = f.text_area :content
+  = f.text_field :author, placeholder: (user_signed_in? ? t('photos.not_author') : nil)
+
+  - unless user_signed_in?
+    = f.form_group do
+      = recaptcha_tags hl: 'ru'
+
+  = f.submit

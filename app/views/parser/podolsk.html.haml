@@ -1,0 +1,10 @@
+- @page.css('.container_left .row-spaced .media').each do |link|
+  .row.well
+    .col-xs-9
+      %h3= link.at_css('h4').text
+      .well
+        - url = link.at_css('h4 a').attr('href')
+        - category = Nokogiri::HTML(open(url))
+        %ul
+          - category.css('.container_left .media .media-heading').each do |l|
+            %li= l.text

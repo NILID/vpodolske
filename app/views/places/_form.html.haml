@@ -1,0 +1,30 @@
+= bootstrap_form_for @place, html: { class: 'contact-form' } do |f|
+  .section-title
+    %h1= formtitle
+
+  = f.text_field :title, required: true
+  = f.text_area :content
+
+  .row
+    .col-xs-6
+      = f.text_field :address, id: 'form_address'
+      - if current_user&.role? :admin
+        = f.text_field :latitude, id: 'form_lat'
+        = f.text_field :longitude, id: 'form_long'
+      - else
+        = f.hidden_field :latitude, id: 'form_lat'
+        = f.hidden_field :longitude, id: 'form_long'
+
+    .col-xs-6= render partial: 'main/form_map', locals: {object: @place}
+
+  - if params[:action] == 'new' || (user_signed_in? && (current_user.role? :admin))
+    = f.fields_for :photos do |photo|
+      = render 'photo_fields', f: photo
+    = f.form_group do
+      = link_to_add_association t('photos.add'), f, :photos, class: 'btn btn-default'
+
+  - unless user_signed_in?
+    = f.form_group do
+      = recaptcha_tags hl: 'ru'
+
+  = f.submit

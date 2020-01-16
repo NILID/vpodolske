@@ -1,0 +1,22 @@
+.row
+  .col-xs-12
+    .tr-section
+      .section-title.title-before
+        %h1= t 'bugs.title_all'
+
+      - unless @bugs.empty?
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= Bug.human_attribute_name(:content)
+              %th= Bug.human_attribute_name(:url)
+              %th
+              %th
+
+          %tbody
+            = content_tag_for(:tr, @bugs) do |bug|
+              %td= bug.content
+              %td= link_to bug.url, bug.url, target: '_blank'
+              %td= link_to t('actions.del'), bug, method: :delete, remote: true
+      - else
+        %p= t 'shared.empty'

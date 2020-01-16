@@ -1,0 +1,51 @@
+.tr-home-slider.slider-style-two
+  #home-carousel.carousel.slide{ data: { ride: 'carousel' } }
+    %ol.carousel-indicators
+      %li.active{ data: { target: '#oneslide', slide_to: '0' } }
+        %span.catagory One
+        %span.indicators-title One text
+      %li{ data: { target: '#twoslide', slide_to: '1' } }
+        %span.catagory Two
+        %span.indicators-title Two text
+      %li{ data: { target: '#threeslide', slide_to: '2' } }
+        %span.catagory Three
+        %span.indicators-title Three text
+      %li{ data: { slide_to: '3', target: '#fourslide' } }
+        %span.catagory Four
+        %span.indicators-title Four text
+
+    .carousel-inner(role="listbox")
+      .item.active
+        .item-content
+          .item-image-content{ data: { animation: 'animated slideInLeft' } }
+          .post-content{ data: { animation: 'animated fadeInDown' } }
+            %h1=t :welcome1
+            %p=t :welcome
+
+            - unless user_signed_in?
+              %p><
+                = link_to(new_user_registration_path, class: "btn btn-primary btn-lg") do
+                  = fa_icon 'plus'
+                  = fa_icon 'user'
+                  = t(:signup)
+                &nbsp;
+                =link_to t(:signin), new_user_session_path, class: "btn btn-primary btn-lg"
+              %span.twit
+                = link_to(omniauth_authorize_path(User, :vkontakte)) do
+                  .col-xs-1.vk
+
+      .item
+        .item-content
+          .post-content{ data: { animation: 'animated fadeInDown' } }
+            %h1=t :welcome1
+            %p=t :welcome
+
+      .item
+        .item-content
+          %h1=t :welcome1
+          %p=t :welcome
+
+      .item
+        .item-content
+          %h1=t :welcome1
+          %p=t :welcome

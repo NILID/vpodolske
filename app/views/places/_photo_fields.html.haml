@@ -1,0 +1,10 @@
+.nested-fields.well
+  .row
+    .col-xs-12.col-md-6
+      = f.number_field :year, min: 1900, max: DateTime.now.year
+      = f.file_field :slide
+    .col-xs-12.col-md-6
+      = f.text_area :content
+      = f.text_field :author, placeholder: (user_signed_in? ? t('photos.not_author') : nil)
+
+  = link_to_remove_association t('photos.delete'), f, data: { confirm: t('actions.sure') }

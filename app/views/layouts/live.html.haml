@@ -1,0 +1,50 @@
+!!! 5
+%html(lang='ru')
+  = render 'layouts/header'
+  %body.homepage-3
+    = render 'layouts/metrika' if Rails.env.production?
+    - unless flash.empty?
+      .container-fluid#flash
+        .row
+          .col-sm-12
+            .flash-content.text-center
+              - flash.each do |name, msg|
+                = content_tag :div, msg
+
+    .main-wrapper
+      .tr-pixed-top
+        .container-fluid
+          .tr-topbar.clearfix.margin-bottom-0
+            .row
+              .col-sm-3.tr-sidebar.tr-sticky
+                = link_to root_url, class: 'navbar-brand' do
+                  = image_tag 'logo-small.png', class: 'img-responsive'
+              .col-sm-8.col-sm-offset-1.nnews
+                .topbar-left= render 'layouts/news'
+                .topbar-right= render 'users/userbar'
+          .tr-menu.menu-responsive.menu-style-two
+            %nav.navbar.navbar-default
+              .navbar-header
+                %button.navbar-toggle.collapsed{ type: 'button', data: { toggle: 'collapse', target: '#navbar-collapse' } }
+                  %span.sr-only Toggle Navigation
+                  %span.icon-bar
+                  %span.icon-bar
+                  %span.icon-bar
+              #navbar-collapse.collapse.navbar-left.navbar-collapse
+                %ul.nav.navbar-nav= render 'main/menu'
+                %ul.feed.pull-right
+      .slider-style-three
+        #home-carousel.carousel.slide{ data: { ride: 'carousel' } }
+          .carousel-inner(role='listbox')
+            .item.carousel-item.active
+              .slider-overlay
+                .container
+                  .post-content
+                    %h1.entry-title.animated.fadeInUp= link_to t('live.title'), '#'
+                    %span.catagory.animated.fadeInUp
+                      %a= t('live.title_short')
+
+      = yield
+      = render 'layouts/bottom'
+    = javascript_include_tag :application
+    = yield :js

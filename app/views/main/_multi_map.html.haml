@@ -1,0 +1,42 @@
+- zoom_int ||= (list.size > 2 ? 15 : 8)
+- center_lat = center ? list.first.latitude  : '55.4305'
+- center_lng = center ? list.first.longitude : '37.5412'
+
+- title ||= false
+- hide_info ||= false
+
+- if params[:controller] == 'places'
+  - list_addresses ||= (list.map { |a| map_info(a) }).to_json.html_safe
+- else
+  - list_addresses ||= (list.map { |a| [(title ? title : a.title), a.address, (hide_info ? '' : truncate(clear_tags(a.desc), length: 120, separator: ' ', omission: '...')), (hide_info ? '' : link_to(a.title, (a.class.name == 'Address' ? a.organization : a ) ))] }).to_json.html_safe
+
+- content_for :js do
+  %script(src='https://api-maps.yandex.ru/2.1/?lang=ru_RU' type='text/javascript')
+  :javascript
+    ymaps.ready(init);
+    var myMap;
+
+    function init(){
+      myMap = new ymaps.Map("map", {
+          center: [#{center_lat}, #{center_lng}],
+          zoom: #{zoom_int}
+        }),
+        placeCollection = new ymaps.GeoObjectCollection(),
+        placeCoords = #{ list.map { |a| [a.latitude, a.longitude] } };
+        placeTitles = #{ list_addresses };
+
+      for (var i = 0, l = placeCoords.length; i < l; i++) {
+        placeCollection.add(new ymaps.Placemark(
+          placeCoords[i],
+          {
+            balloonContentHeader: placeTitles[i][3],
+            balloonContentBody: placeTitles[i][2],
+            balloonContentFooter: placeTitles[i][1],
+            hintContent: placeTitles[i][0]
+          }
+        ));
+      }
+      myMap.geoObjects.add(placeCollection);
+    }
+
+#map

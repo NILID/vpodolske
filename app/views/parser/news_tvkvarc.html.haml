@@ -1,0 +1,13 @@
+- if @page
+  - @page.search('.main, .last').remove
+  - @page.css('.page-our-people .article').each do |link|
+    .row.well
+      .col-xs-9
+        %h5= link.at_css('.title').text
+        %p
+          -  date = link.at_css('.date').text.squish
+          = DateTime.strptime(russian_to_english_date(date),'%d %b %Y')
+        %p= 'http://tvpodolsk.ru' + link.at_css('a').attr('href')
+        %p= link.at_css('.description').text
+- else
+  No events

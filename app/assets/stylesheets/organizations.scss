@@ -1,0 +1,10 @@
+.input-group-btn .btn {padding: 9px 12px }
+
+.table-addresses {
+  address {
+    margin-bottom: 0;
+    font-size: 9pt;
+    .well {margin-top: 10px;}
+    table tr:first-child td {border-top: 0}
+  }
+}

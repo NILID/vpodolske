@@ -1,0 +1,72 @@
+$primary-bg-color: #f0f3f5;
+
+@mixin radial-gradient {
+  background-image: -webkit-radial-gradient(50% 50%,ellipse cover,#4c8fa5 0%,#3c859d 15%,#001921 58%,#000 73%);
+  background-image: -moz-radial-gradient(50% 50%,ellipse cover,#4c8fa5 0%,#3c859d 15%,#001921 58%,#000 73%);
+  background-image: -ms-radial-gradient(50% 50%,ellipse cover,#4c8fa5 0%,#3c859d 15%,#001921 58%,#000 73%);
+  background-image: -o-radial-gradient(50% 50%,ellipse cover,#4c8fa5 0%,#3c859d 15%,#001921 58%,#000 73%);
+  background-image: radial-gradient(50% 50%,ellipse farthest-corner,#4c8fa5 0%,#3c859d 15%,#001921 58%,#000 73%);}
+
+@mixin linear-gradient($startColor, $endColor, $position, $linearPosition) {
+  filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr='$startColor',endColorstr='$endColor',GradientType=0)";
+  -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr='$startColor',endColorstr='$endColor',GradientType=0)";
+  background: -webkit-gradient(linear, left top, $position, color-stop(0, $startColor), color-stop(1, $endColor));
+  background: -webkit-linear-gradient($linearPosition, $startColor 0%, $endColor 100%);
+  background: -moz-linear-gradient($linearPosition, $startColor 0%, $endColor 100%);
+  background: -o-linear-gradient($linearPosition, $startColor 0%, $endColor 100%);
+  background: -ms-linear-gradient($linearPosition, $startColor 0%, $endColor 100%);
+  background: linear-gradient($linearPosition, $startColor 0%, $endColor 100%);}
+
+/**********************************
+@include box-shadow(inset 1px 0 #fff,1px 1px rgba(26,18,0,.3));
+**********************************/
+
+@mixin box-shadow($val...) {
+     -moz-box-shadow: $val;
+  -webkit-box-shadow: $val;
+          box-shadow: $val;
+}
+
+/**********************************
+@include border-radius(12px);
+**********************************/
+@mixin border-radius($val) {
+     -moz-border-radius: $val;
+  -webkit-border-radius: $val;
+          border-radius: $val;
+}
+
+/**********************************
+@include transition(background .5s)
+**********************************/
+@mixin transition($val...) {
+  -webkit-transition: $val;
+     -moz-transition: $val;
+       -o-transition: $val;
+      -ms-transition: $val;
+          transition: $val;
+}
+
+@mixin rotate($val) {
+  -webkit-transform: rotate($val);
+     -moz-transform: rotate($val);
+       -o-transform: rotate($val);
+      -ms-transform: rotate($val);
+          transform: rotate($val);
+}
+
+@mixin scale($val) {
+  -webkit-transform: scale($val);
+     -moz-transform: scale($val);
+       -o-transform: scale($val);
+      -ms-transform: scale($val);
+          transform: scale($val);
+}
+
+/**********************************
+@include opacity(.3)
+**********************************/
+@mixin opacity($val) {
+  opacity: $val;
+  filter: alpha(opacity=$val);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$val)";}

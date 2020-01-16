@@ -1,0 +1,19 @@
+- content_for :like_place do
+  %span= t 'live.will_good'
+  %span.badge#votes_up= place.get_upvotes.size
+
+- content_for :unlike_place do
+  %span= t 'live.will_bad'
+  %span.badge#votes_down= place.get_downvotes.size
+
+.text-center
+  %hr/
+
+  %p= t 'live.think'
+
+  - if user_signed_in?
+    = link_to yield(:like_place), like_place_path(place), remote: true, method: :put, class: 'btn btn-success col-xs-6'
+    = link_to yield(:unlike_place), unlike_place_path(place), remote: true, method: :put, class: 'btn btn-danger col-xs-6'
+  - else
+    = link_to yield(:like_place), new_user_registration_path, class: 'btn btn-sm btn-success col-xs-6'
+    = link_to yield(:unlike_place), new_user_registration_path, class: 'btn btn-sm btn-danger col-xs-6'

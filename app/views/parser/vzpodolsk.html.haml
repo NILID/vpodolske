@@ -1,0 +1,9 @@
+- if @page
+  - @page.css('table table table tr[width="50%"]').each do |link|
+    .row.well
+      .col-xs-9
+        %h5= link.at_css('td').text
+        %p= link.at_css('td[width="180"]').text
+        %p= link.at_css('td[width="160"]').text
+- else
+  No events

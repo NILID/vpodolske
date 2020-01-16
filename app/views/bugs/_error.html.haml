@@ -1,0 +1,3 @@
+- if bug.errors.any?
+  - bug.errors.full_messages.each do |msg|
+    .alert.alert-danger= msg

@@ -1,0 +1,23 @@
+%head
+  = render 'layouts/analytics'
+  %meta(charset='utf-8')
+  %meta(http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1')
+  %meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+  = display_meta_tags site: t('podolsk'), reverse: true, separator: ''.html_safe
+  = stylesheet_link_tag 'application', media: 'all'
+  = csrf_meta_tags
+  = csp_meta_tag
+
+  - %w[57x57 60x60 72x72 76x76 114x114 120x120 144x144 152x152].each do |icon|
+    = favicon_link_tag asset_url("favicons/apple-icon-#{icon}.png"), rel: 'apple-touch-icon', sizes: icon
+  = favicon_link_tag asset_url('favicons/android-icon-192x192.png'), rel: 'icon', sizes: '192x192', type: 'image/png'
+  - %w[32x32 96x96 16x16].each do |icon|
+    = favicon_link_tag asset_url("favicons/favicon-#{icon}.png"), rel: 'icon', sizes: icon, type: 'image/png'
+  %link{ rel: 'manifest', href: asset_url('favicons/manifest.json') }
+  %meta{ name: 'msapplication-config',    content: asset_url('favicons/browserconfig.xml') }
+  %meta{ name: 'msapplication-TileColor', content: '#ffffff' }
+  %meta{ name: 'msapplication-TileImage', content: asset_url('favicons/ms-icon-144x144.png') }
+  %meta{ name: 'theme-color',             content: '#ffffff' }
+  %script(src="https://vk.com/js/api/openapi.js?160" type="text/javascript")
+
+  = yield :js_header

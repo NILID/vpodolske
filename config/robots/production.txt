@@ -1,0 +1,17 @@
+# See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
+#
+# To ban all spiders from the entire site uncomment the next two lines:
+# User-Agent: *
+# Disallow: /
+User-Agent: *
+Disallow: /users/password/new
+Disallow: /users/confirmation/new
+Disallow: /users/unlock/new
+Disallow: /spravochnik/organizations/new
+Disallow: /afisha/events/new
+Disallow: /notes/new
+Disallow: /live/new
+Disallow: /afisha/events/calendar
+Disallow: /news?page
+Host: https://vpodolske.com
+Sitemap: https://vpodolske.com/sitemap.xml.gz

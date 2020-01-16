@@ -1,0 +1,11 @@
+.row
+  .col-sm-12
+    .tr-section
+      %ol.organizations_list
+        = content_tag_for(:li, @organizations) do |o|
+          %p.o-title= o.title
+          %p.o-url= organization_url(o)
+          %p.o-email= o.email
+          %p.o-phone= o.phone
+          %p.o-site= o.site
+          %p.o-categories= (o.categories.map {|c| c.title}).join(', ')

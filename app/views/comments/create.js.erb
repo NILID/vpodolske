@@ -1,0 +1,13 @@
+form_errors = $('#new_comment .form-errors')
+$(form_errors).html('');
+<% if @comment.errors.any? %>
+  $("<%= escape_javascript(render 'comments/error', comment: @comment)%>").appendTo(form_errors);
+  $(form_errors).slideDown();
+<% else %>
+  $('#new_comment')[0].reset();
+  <% if @comment.user_id %>
+    $("#comments").prepend("<%= j render(partial: 'comments/comment', locals: { comment: @comment, commentable: @comment.commentable, show_commentable: false })%>");
+  <% else %>
+    $("#comments").prepend("<%= j render(partial: 'comments/moderate_notice')%>");
+  <% end %>
+<% end %>

@@ -1,0 +1,39 @@
+= render 'main/js_ckeditor'
+
+= bootstrap_form_for @organization, html: { multipart: true, class: 'contact-form' } do |f|
+  .section-title
+    %h1= formtitle
+
+  = f.text_field :title, placeholder: t('placeholders.org_title')
+  = f.file_field :logo
+
+  = f.cktext_area :desc, ckeditor: { toolbar: 'mini' }
+
+  = f.text_field :site,     placeholder: t('placeholders.site')
+  = f.text_field :worktime, placeholder: t('placeholders.worktime')
+  = f.text_field :phone,    placeholder: t('placeholders.phone')
+
+  = f.email_field :email
+
+  = f.select :category_tokens, @organization.categories.collect {|c| [c.title, c.id]}, { }, { class: 'select2-token', multiple: true, size: 20, data: {placeholder: t('categories.placeholder'), endpoint: search_categories_path } }
+
+  = f.fields_for :addresses do |address|
+    = render 'address_fields', f: address
+
+  = f.form_group do
+    = link_to_add_association t('address.add'), f, :addresses, class: 'btn btn-default'
+
+  - if current_user&.role? :admin
+    .well
+      %h6 Admin
+      = f.text_field :status_mask
+      = f.check_box :notify
+      = f.text_field :user_id
+
+  - unless user_signed_in?
+    = f.form_group do
+      = recaptcha_tags hl: 'ru'
+
+  = f.form_group do
+    = f.primary t('actions.save')
+    = link_to t('actions.cancel'), categories_path, class: 'btn btn-default'

@@ -1,0 +1,6 @@
+.tr-section
+  = render 'form', formtitle: t('event.edit', title: @event.title)
+
+  = link_to t(:show), @event
+  |
+  = link_to t(:back), events_path

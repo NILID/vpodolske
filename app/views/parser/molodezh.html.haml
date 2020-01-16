@@ -1,0 +1,18 @@
+- @page.css('.playbill-item').each do |link|
+  - source = link.at_css('a').attr('href')
+  - p = Nokogiri::HTML(open('http://www.dkmol.ru/' + source.to_s))
+  - date= p.at_css('time')
+
+  - if date
+    .row.well
+      .col-xs-2
+        - if p.at_css('.single-post img')
+          - attr = 'http://www.dkmol.ru/' + p.at_css('.single-post img').attr(:src)
+          = image_tag attr, class: 'img-responsive'
+
+      .col-xs-9
+        %h5= p.at_css('.single-post h1').text
+        %p.well
+          = raw p.at_css('.single-post h6').text
+        %p= date.attr(:datetime)
+        %p= /\d{2}:\d{2}/.match(date)

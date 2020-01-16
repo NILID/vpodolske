@@ -1,0 +1,140 @@
+body.email {
+  Margin: 0;
+  padding: 0;
+  min-width: 100%;
+  background-color: #fff;
+
+  .clear {
+    clear:both;
+  }
+
+  a {
+    color: #3498db;
+  }
+
+  .text-grey {
+    color: #999;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+  }
+
+  .text-lowercase {
+    text-transform: lowercase;
+  }
+  .dot{
+    font-size: 14px;
+    padding: 5px;
+    vertical-align: top;
+    color: #666;
+  }
+
+  .wrapper{
+    width: 100%;
+    table-layout: fixed;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+
+  .webkit {
+    max-width: 600px;
+  }
+
+  .outer{
+    margin: 0 auto;
+    width: 100%;
+    max-width:600px;
+  }
+  td {padding: 0;}
+  img {border: 0;}
+  table {
+    width: 100%;
+    color: #333;
+    font-family: arial, sans-serif;
+    border-spacing: 0;
+    border: 1px solid #ccc;
+
+    &.table-inside {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .text {
+      padding: 0 10px;
+      font-size: 14px;
+    }
+
+    .header {
+      padding: 20px 0 10px;
+      text-align:center;
+
+      .small-logo img{width:200px;}
+    }
+
+    .hello {text-align:center;}
+    .name {font-size: 16px;}
+
+    .title {
+      font-size: 16px;
+      margin: 10px;
+      color: #3498db;
+      text-transform: uppercase;
+      border-bottom: 1px solid #3498db;
+    }
+
+    .bottom {
+      padding: 20px 10px;
+      background-color: #eee;
+      color: #666;
+      font-size:12px;
+    }
+
+    .contact {
+      float: left;
+      .avatar {
+        float: left;
+        -moz-border-radius: 35px;
+        -webkit-border-radius: 35px;
+        border-radius: 35px;
+      }
+    }
+  }
+
+  .col-left,
+  .col-right {
+    width: 50%;
+    float: left;
+  }
+
+  a.btn {
+    background: #3dacf4;
+    -moz-border-radius: 4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    padding: 10px 15px;
+    display: block;
+    font-size:20px;
+    text-decoration:none;
+    color: #fff;
+    margin: 0 auto;
+    width: 160px;
+    text-align:center;
+  }
+
+  a.btn.btn-large {
+    width: 300px;
+  }
+
+  .goto-arrow:after {
+    content: " \2192"
+  }
+}
+
+/* Windows Phone Viewport Fix */
+@-ms-viewport {
+  width: device-width;
+}

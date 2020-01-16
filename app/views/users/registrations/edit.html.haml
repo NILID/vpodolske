@@ -1,0 +1,35 @@
+.ragister-account.text-center.tr-section.tr-section-padding
+  .account-content
+    .section-title
+      %h1= t 'user_link.edit_reg'
+
+    = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'contact-form' }) do |f|
+
+      = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'EMAIL', hide_label: true
+
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        Currently waiting confirmation for: #{ resource.unconfirmed_email }
+
+      = f.password_field :password,
+        autocomplete: 'new-password',
+        placeholder: t('user_link.new_pass'),
+        hide_label: true,
+        help: (t('devise.form.leave_blank') + ' ' + (@minimum_password_length ? t('devise.form.min', min: @minimum_password_length) : ''))
+
+      = f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: User.human_attribute_name(:password_confirmation), hide_label: true
+
+
+      - if f.object.password_required?
+        = f.password_field :current_password, autocomplete: 'current-password', hide_label: true, help: t('user_link.need_curr_pass')
+
+      = f.form_group do
+        = f.primary t(:update)
+
+      = link_to t(:back), :back
+      |
+      = link_to t('profile.show'), user_path(current_user)
+
+  .options
+    = link_to(registration_path(resource_name), data: { confirm: t('actions.sure') }, method: :delete, class: 'btn btn-primary') do
+      = fa_icon 'trash'
+      = t 'user_link.cancel_account'

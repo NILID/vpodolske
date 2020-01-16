@@ -1,0 +1,20 @@
+- set_meta_tags title: t('seo.notes.new'),
+  description: t('seo.notes.new'),
+  keywords: t('seo.notes.new'),
+  index: true
+
+.tr-section
+  = bootstrap_form_for @note, html: { class: 'contact-form' } do |f|
+    .section-title.title-before
+      %h1= t 'note.new'
+    .row
+      .col-sm-12= t 'note.newdesc_html', mail: vpodolske_mail
+    .row
+      .col-sm-12= f.text_area :content, placeholder: Note.human_attribute_name(:content), hide_label: true
+    - unless user_signed_in?
+      .row
+        .col-sm-12= f.text_field :email, placeholder: t('note.email_placeholder'), hide_label: true
+      = f.form_group do
+        = recaptcha_tags hl: 'ru'
+    = f.form_group do
+      = f.primary t(:send)

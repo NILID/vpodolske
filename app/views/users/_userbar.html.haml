@@ -1,0 +1,16 @@
+- if user_signed_in?
+  .user
+    .user-image
+      = link_to (image_tag current_user.profile.avatar(:thumb), class: 'img-responsive img-circle', width: 35), current_user
+    .dropdown.user-dropdown
+      = link_to current_user.login, '#', aria: { expanded: 'true' }
+      %ul.sub-menu.text-left
+        %li= link_to t('shared.settings'), edit_user_path(current_user)
+        %li.divider
+        %li= link_to t(:signout), destroy_user_session_path, method: :delete
+- else
+  .searchNlogin
+    %ul
+      %li= link_to t(:signup), new_user_registration_path
+      %li= link_to t(:signin), new_user_session_path
+      %li= link_to 'VK', omniauth_authorize_path(User, :vkontakte)

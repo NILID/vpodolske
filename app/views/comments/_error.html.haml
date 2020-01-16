@@ -1,0 +1,4 @@
+-if comment.errors.any?
+  .alert.alert-danger
+    - comment.errors.full_messages.each do |msg|
+      %p= raw msg

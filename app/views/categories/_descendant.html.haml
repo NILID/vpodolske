@@ -1,0 +1,6 @@
+%tr
+  %td= link_to descendant.title, descendant
+  %td.text-muted= descendant.organizations_count
+  - if can? :manage, Category
+    %td= link_to 'parse orgs', create_orgs_category_path(descendant), method: :post, class: 'btn btn-default btn-xs' unless descendant.check
+

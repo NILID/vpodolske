@@ -1,0 +1,109 @@
+- set_meta_tags title: t('events.title') + " | #{@event.title}",
+  description: t('baseseo.events.desc', add: @event.title),
+  keywords: t('baseseo.events.words', add: @event.title),
+  image_src: (@event.src? ? asset_url(@event.src.url(:original)) : nil),
+  og: { title: @event.title,
+  type: 'article',
+  published_time: @event.created_at.strftime('%Y-%m-%d %H:%M'),
+  description: @event.content,
+  url: request.original_url,
+  image: (@event.src? ? asset_url(@event.src.url(:original)) : nil) },
+  index: true
+
+.row
+  .col-sm-6.col-md-8
+    .tr-content
+      .tr-section
+        .tr-post
+          .entry-header
+            .entry-thumbnail
+              = image_tag @event.src.url(:original), class: 'img-responsive', alt: @event.title
+          .post-content
+            - if @event.user
+              .author
+                = image_tag @event.user.profile.avatar.url(:thumb), class: 'img-responsive img-circle'
+
+            .entry-meta
+              %ul
+                - if @event.user
+                  %li= link_to @event.user.login, @event.user
+                %li= plural @event.views, 'view'
+
+              .pull-right
+                - if (can? :edit, @event) || (can? :destroy, @event)
+                  = link_to('#menu1', class: 'btn btn-default btn-sm dropdown-toggle', aria: { expanded: 'false', haspopup: 'true' }, data: { toggle: 'dropdown' }) do
+                    = fa_icon 'cog'
+                  %ul.dropdown-menu
+                    %li
+                      = link_to edit_event_path(@event) do
+                        = fa_icon 'pencil'
+                        = t 'actions.edit'
+                    %li
+                      = link_to event_path(@event), confirm: t('actions.sure'), method: :delete do
+                        = fa_icon 'trash'
+                        = t 'actions.del'
+                    - if can? :coolme, @event
+                      .divider
+                      %li
+                        = link_to coolme_event_path(@event), class: 'btn btn-primary', remote: true, method: :put do
+                          = fa_icon 'star'
+                          = @event.cool
+                = render 'events/like_buttons', event: @event
+            %h1.entry-title= @event.title
+        .tr-details
+          %p= raw @event.content
+          .clearfix
+          .row.social#share_block= render 'main/share'
+
+  .col-sm-6.col-md-4.tr-sticky
+    .tr-section
+      - if @event.eventdate? && @event.eventdate < DateTime.now.to_date
+        .col-xs-12
+          .alert.alert-info(role='alert')
+            = t 'event.finish'
+
+      - if @event.url?
+        .col-xs-12
+          %h6= t 'event.links'
+          %p
+            %NOINDEX= link_to @event.url, 'http://' + @event.url, rel: 'nofollow', target: '_blank'
+      - if @event.eventdate?
+        .col-xs-12
+          %h6= t 'event.time'
+          %p= eventdatetime(@event.eventdate, @event.eventime)
+      - if @event.finishdate? || @event.timeless?
+        .col-xs-12
+          %h6= t 'event.finishtime'
+          %p= @event.timeless == true ? t('activerecord.attributes.event.timeless') : eventdatetime(@event.finishdate, @event.finishtime)
+
+      - if @event.placename?
+        .col-xs-12
+          %h6= Event.human_attribute_name(:placename)
+          %p= @event.placename
+
+      - if @event.address?
+        .col-xs-12
+          %h6= t 'event.address'
+          %p= @event.address
+          .map-container
+            = render('main/multi_map', list: [@event], center: true, zoom_int: 12, hide_info: true) if @event.longitude && @event.latitude
+
+    - unless @other_events.empty?
+      .tr-section
+        .row
+          .col-xs-12
+            %h4= link_to t('event.other_from', user: @event.user.login), events_path(by_user: @event.user)
+            %hr
+            - @other_events.each do |event|
+              %p= link_to event.title, event
+    .tr-widget
+      .row
+        .col-xs-12
+          .text-right= render 'bugs/bugs_panel'
+
+    .tr-section
+      .row
+        .col-xs-12
+          = render 'main/yandex/event_vertical'
+
+= yield :scripts

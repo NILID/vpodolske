@@ -1,0 +1,68 @@
+- set_meta_tags title: t(:main),
+  description: t('baseseo.main.desc'),
+  keywords: t('baseseo.main.words'),
+  index: true
+
+- if can? :manage, Article
+  = render 'carousel'
+
+.row.tr-content
+  .col-xs-12
+    .tr-section
+      = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary col-sm-4 col-xs-offset-1'
+      = link_to t('events.add'), new_event_path, class: 'btn btn-primary col-sm-4 col-xs-offset-2'
+
+.row.tr-content
+  - unless @articles.empty?
+    .col-sm-6.medium-post-responsive
+      .tr-section
+        .section-title.title-before
+          %h2= link_to t('articles.last'), articles_path
+        %table.table= render @articles
+
+  .col-sm-6
+    .tr-section.local-events
+      .section-title.title-before
+        %h2= link_to t('events.title'), events_path
+      %ul.nav.nav-tabs(role='tablist')
+        %li.active(role='presentation')= link_to t('event.today'), '#today', data: { toggle: 'tab' }, aria: { expanded: true }
+        %li(role='presentation')= link_to t('event.tomorrow'), '#tomorrow', data: { toggle: 'tab' }, aria: { expanded: true }
+        %li(role='presentation')= link_to t('event.soon'), '#soon', data: { toggle: 'tab' }, aria: { expanded: true }
+      .tab-content
+        #today.tab-pane.active.fade.in(role='tabpanel')
+          - unless @ev_today.empty?
+            = render partial: 'events/event', collection: @ev_today, locals: { event_class: 'col-md-6', lazy: true }
+          - else
+            %p= t 'shared.empty'
+        #tomorrow.tab-pane.fade.in(role='tabpanel')
+          - unless @ev_tomorrow.empty?
+            = render partial: 'events/event', collection: @ev_tomorrow, locals: { event_class: 'col-md-6', lazy: false }
+          - else
+            %p= t 'shared.empty'
+        #soon.tab-pane.fade.in(role='tabpanel')
+          - unless @ev_soon.empty?
+            = render partial: 'events/event', collection: @ev_soon, locals: { event_class: 'col-md-6', lazy: false }
+          - else
+            %p= t 'shared.empty'
+
+  - if @comments.size > 0
+    .col-sm-6
+      .tr-section.local-events
+        .section-title.title-before
+          %h2= t('comments.new_list')
+        %ul.post-comment.post-comment-mini
+          = render @comments, show_commentable: true
+
+  .col-sm-3.tr-sidebar
+    - unless @users.empty?
+      .tr-widget.meta-widget
+        .widget-title.title-before
+          %span= t :newusers
+        .tab-content
+          %ul.authors-post
+            - @users.each do |user|
+              %li
+                .entry-meta
+                  .author-image= link_to image_tag(user.profile.avatar(:thumb), class: 'img-responsive'), user
+                  .author-info
+                    %h2= link_to user.login, user

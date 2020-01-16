@@ -1,0 +1,13 @@
+%table.table-inside
+  %tr
+    %td
+      - if @user
+        %p Приветствуем Вас, <b>#{@user.login}</b>!
+      - else
+        %p Приветствуем Вас!
+      %p Ваша организация <b>#{link_to @organization.title, @organization, target: '_blank', rel: 'nofollow'}</b> была добавлена в каталог портала vPodolske.
+      - if @user
+        %p Организация также доступна на странице вашего профиля #{link_to 'вашего профиля', @user, target: '_blank', rel: 'nofollow'}.
+        %p Вы можете в любое время дополнить/обновить информацию о Вашей организации, поддерживая её в актуальном состоянии.
+
+      %p Спасибо!

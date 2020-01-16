@@ -1,0 +1,10 @@
+= render 'tabs'
+
+.row
+  .col-xs-12
+    .tr-section
+      = link_to t(:unconfirmed), admin_events_path, class: "btn btn-#{ !params[:by] ? 'primary' : 'default'}"
+      = link_to t('shared.excluded'), admin_events_path(by: :excluded), class: "btn btn-#{ params[:by] == 'excluded' ? 'primary' : 'default'}"
+
+.col-sm-12#events
+  .row= render partial: 'events/event', collection: @events_hid, locals: { event_class: 'col-md-3 col-sm-4', lazy: true }

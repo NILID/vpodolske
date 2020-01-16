@@ -1,0 +1,61 @@
+#flash {
+  z-index:1000;
+  background: rgba(0, 0, 0, .7);
+  color:#fff;
+  position: absolute;
+  width: 100%;
+  .flash-content { margin: 10px; }
+}
+
+.ui-widget {z-index: 100 !important}
+
+.twitter-typeahead {
+  display: block !important;
+  .tt-dropdown-menu {
+    background-color: #fff;
+    .tt-dataset-0 {padding: 10px;}
+  }
+}
+
+.nnews {
+  border-left: 1px solid #eee;
+}
+
+.big-map #map {
+  height: 700px;
+}
+
+.tr-section.den-goroda {
+  background: #1e012f image_url('fireworks.jpg') no-repeat;
+  background-size: 100%;
+  color: #fff;
+}
+
+.den-goroda {
+
+  .event-block-title {
+    background: rgba(45, 92, 168, .8);
+  }
+
+  .event-block {
+    background: rgba(45, 92, 168, .8);
+    margin: 10px;
+  }
+
+  .event-block-primary {
+    background: rgba(245, 154, 22, .8);
+    margin: 10px;
+  }
+
+  .event-data {
+    margin: 20px 0;
+  }
+
+  .lead {
+    margin: 20px 0;
+  }
+}
+
+.unpadding {
+  padding: 0;
+}

@@ -1,0 +1,47 @@
+- set_meta_tags title: @category.title,
+  description: @category.title,
+  keywords: @category.title,
+  index: true
+
+.row
+  .col-sm-12
+    .tr-section
+      %ol.breadcrumb
+        %li= link_to t('categories.title'), categories_path
+        - @category.ancestors.each do |a|
+          %li= link_to a.title, a
+        %li.active= @category.title
+
+      .row
+        .col-xs-12
+          .section-title.title-before
+            %h1= @category.title
+
+        .col-xs-12.col-sm-5
+
+          %p
+            = link_to t('organizations.add'), new_organization_path(category: (@category.root? ? nil: @category.id) ), class: 'btn btn-primary'
+            - if can? :manage, @category
+              = link_to t('actions.edit'), edit_category_path(@category), class: 'btn btn-default'
+              = link_to t('actions.del'), category_path(@category), method: :delete, data: { confirm: t('actions.sure') }, class: 'btn btn-danger'
+              = link_to 'create orgs', create_orgs_category_path(@category), method: :post, class: 'btn btn-default'
+
+          - if @category.desc?
+            .well= @category.desc
+          %table.table.table-condensed
+            = render partial: 'categories/descendant', collection: @category.descendants.order(:title)
+
+          .tr-post
+            .post-content
+              - unless @organizations.empty?
+                %ol= render(@organizations)
+                - if current_user&.role? :admin
+                  %hr
+                  %ol= render @category.organizations.hidden
+              - else
+                .text-muted.well= t 'organizations.empty'
+
+        .col-xs-12.col-sm-7.category-events.tr-sticky
+          = render 'organizations/search_form'
+          = render('main/multi_map', list: @addresses, center: false, zoom_int: 12) if @addresses.size > 0
+

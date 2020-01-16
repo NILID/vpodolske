@@ -1,0 +1,15 @@
+- content_for :like_event do
+  = fa_icon 'arrow-up'
+  %span#votes_up= event.get_upvotes.size
+
+- content_for :unlike_event do
+  = fa_icon 'arrow-down'
+  %span#votes_down= event.get_downvotes.size
+
+.btn-group(role='group' aria-label='')
+  - if user_signed_in?
+    = link_to yield(:like_event), like_event_path(event), remote: true, method: :put, class: 'btn btn-sm btn-success'
+    = link_to yield(:unlike_event), unlike_event_path(event), remote: true, method: :put, class: 'btn btn-sm btn-danger'
+  - else
+    = link_to yield(:like_event), new_user_registration_path, class: 'btn btn-sm btn-success'
+    = link_to yield(:unlike_event), new_user_registration_path, class: 'btn btn-sm btn-danger'

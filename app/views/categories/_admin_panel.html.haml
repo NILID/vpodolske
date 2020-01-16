@@ -1,0 +1,12 @@
+.col-xs-12
+  .tr-section
+    %ul.list-inline
+      - if @hidden_orgs > 0
+        %li
+          = link_to(hidden_organizations_path, class: 'btn btn-primary')do
+            = t('organizations.hidden')
+            %span.badge.badge-default= @hidden_orgs
+      %li= link_to t('organizations.blocked'), blocked_organizations_path, class: 'btn btn-primary'
+      %li= link_to '+ category', new_category_path, class: 'btn btn-primary'
+      %li= link_to '+ parse categories', create_list_categories_path, class: 'btn btn-primary', method: :post
+      %li= link_to 'search', organizations_path(to_search_nil: 'site'), class: 'btn btn-default'

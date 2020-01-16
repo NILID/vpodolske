@@ -1,0 +1,4 @@
+%td.bottom
+  .contact
+    %p= t 'mailer.feedback_me_html'
+    %p= t 'mailer.contact_me_html', url: link_to(t('mailer.by_feedback'), new_note_url, target: '_blank'), email: mail_to('info@vpodolske.com')

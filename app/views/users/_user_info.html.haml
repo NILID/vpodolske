@@ -1,0 +1,25 @@
+%tr{ class: user_info.confirmed? ? nil : 'danger' }
+  %td
+    = link_to(user_path(user_info)) do
+      = image_tag user_info.profile.avatar.url(:thumb), class: 'thumbnail'
+  %td
+    %p><
+      %span.label.label-primary= user_info.id
+    %p><
+      = user_info.login
+    %p.text-muted><
+      = user_info.email
+    %p><
+      %span.label.label-primary= user_info.provider
+  %td><
+    = rusdate user_info.created_at
+  %td
+    %p><
+      = user_info.sign_in_count
+    - if user_info.last_sign_in_at?
+      %p.text-muted><
+        = rusdate user_info.last_sign_in_at
+  %td
+    = link_to(user_info, data: { confirm: t('actions.sure') }, method: :delete, class: 'btn btn-primary btn-sm') do
+      = fa_icon 'trash'
+      = t 'actions.del'

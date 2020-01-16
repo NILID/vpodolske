@@ -1,0 +1,10 @@
+.nested-fields.well
+  .row
+    .col-xs-12.col-md-6= f.text_field :address
+    .col-xs-12.col-md-6= f.text_field :phone, placeholder: t('addresses.if_foreign')
+    .col-xs-12.col-md-6= f.text_field :worktime, placeholder: t('placeholders.worktime')
+  - if current_user&.role? :admin
+    .row
+      .col-xs-6= f.text_field :latitude
+      .col-xs-6= f.text_field :longitude
+  = link_to_remove_association t('address.delete'), f

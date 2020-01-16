@@ -1,0 +1,43 @@
+- content_for :js do
+  %link(href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css")
+
+
+= form_for([@event.user, @event], html: { class: 'form-horizontal' }) do |f|
+
+  %fieldset
+    %legend=formtitle
+
+    .form-group
+      = f.label :title, class:'control-label'
+      = f.text_field :title
+
+    .form-group
+      = f.label :src, class:"control-label"
+      = f.file_field :src
+
+    .form-group
+      = f.label :content, class:"control-label"
+      = f.cktext_area :content, rows: 3
+
+    .form-group
+      = f.label :eventdate, class:"control-label"
+      = f.text_field :eventdate
+
+    .form-group
+      = f.label :eventime, class:"control-label"
+      = f.text_field :eventime
+    .form-group
+      = f.label :url, class:"control-label"
+      .input-group><
+        %span.input-group-addon http://
+        = f.text_field :url
+    .form-group
+      =f.label :address, class: 'control-label'
+      = f.text_field :address
+
+    - if current_user.role? :admin
+      .form-group
+        =f.label :hidden, class: 'control-label'
+        = f.check_box :hidden
+
+    .form-group= f.submit class: 'btn btn-primary'

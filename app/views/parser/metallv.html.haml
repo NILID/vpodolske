@@ -1,0 +1,19 @@
+- @page.css('.articletitle_text a', Encoding::UTF_8.to_s).each do |link|
+  - source = link.attr('href')
+  - p = Nokogiri::HTML(open(source.to_s), Encoding::UTF_8.to_s)
+
+  .row.well
+    .col-xs-9
+      %h5= p.at_css('.article h1', Encoding::UTF_8.to_s).text
+      %p.well
+        - text = p.css('.article p').text
+        -# text.search('a').remove
+        =# raw text
+        =# text.encode('utf-8')
+        =# text.force_encoding('iso-8859-1')
+        =# text.encode('utf-8')
+
+      %p
+        - if p.at_css('.article img')
+          = image_tag p.at_css('.article img').attr(:src)
+      %p= raw p.at_css('p strong strong').text

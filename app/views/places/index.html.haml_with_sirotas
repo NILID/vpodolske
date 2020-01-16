@@ -1,0 +1,61 @@
+.tr-services.tr-padding-0
+  .container
+    .row
+      .col-xs-12.col-md-4
+        .service
+          .col-xs-4.col-md-12
+            .col-md-8.col-md-offset-2
+              .service-icon= image_tag asset_url('live-podolsk-about.png'), class: 'img-responsive'
+          .col-xs-8.col-md-12
+            %h3 О проекте
+            %p Сотни улиц и домов Подольска меняют свой облик на наших глазах. Мы ведем летопись этих изменений.
+            %p= link_to t('about'), about_places_path, class: 'btn btn-primary'
+      .col-xs-12.col-md-4
+        .service
+          .col-xs-4.col-md-12
+            .col-md-8.col-md-offset-2
+              .service-icon= image_tag asset_url('live-podolsk-diff.png'), class: 'img-responsive'
+          .col-xs-8.col-md-12
+            %h3 Сравнивайте
+            %p Отражение изменений в фотографиях «до» и «после» объектов нашего города.
+            %p= link_to t('live.gallery'), gallery_places_path, class: 'btn btn-primary'
+      .col-xs-12.col-md-4
+        .service
+          .col-xs-4.col-md-12
+            .col-md-8.col-md-offset-2
+              .service-icon= image_tag asset_url('live-podolsk-promo.png'), class: 'img-responsive'
+          .col-xs-8.col-md-12
+            %h3 Предлагайте свои объекты
+            %p Заметили изменения в городе?
+            %p Добавляете фото, как место выглядело раньше
+            %p= link_to t('new'), new_place_path, class: 'btn btn-primary'
+
+
+.tr-latest-news.tr-padding-0
+  .container
+    .latest-news
+      .row
+        .col-sm-6
+          .section-title
+            %h1= t('live.newest')
+          .latest-news
+            = render @new_places
+
+        .col-sm-6
+          .section-title
+            %h1= t('live.best')
+          .latest-news
+            = render @best_places
+
+.tr-team-section.tr-section.text-center.tr-padding-0
+  .container
+    .section-title
+      %h4 Sirotas
+      %p sdflkjsdlfkjs  sdfljk sdlfkjsdflkjsd f sdlfkj 
+    %ul.team-members= render partial: 'mini_place', collection: @sirot_places
+
+.tr-team-section.tr-section.text-center.tr-padding-0
+  .container
+    .section-title
+      %h4= t('places.in_map')
+    .map-container= render('main/multi_map', list: @places_with_address, center: true, zoom_int: 13, hide_info: true)

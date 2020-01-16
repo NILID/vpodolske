@@ -1,0 +1,9 @@
+- set_meta_tags title: t('seo.events.new'),
+  description: t('seo.events.new'),
+  keywords: t('seo.events.new'),
+  index: true
+
+.tr-section
+  = render 'form', formtitle: t('event.add')
+
+  = link_to t(:back), events_path

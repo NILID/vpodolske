@@ -1,0 +1,126 @@
+- set_meta_tags title: @organization.title,
+  description: @organization.title,
+  keywords: @organization.title,
+  index: true
+
+.row.tr-content
+  .col-xs-12
+    .tr-section
+      %ul.nav.nav-pills
+        - @categories.each do |c|
+          %li= link_to c.title, c
+
+.row.tr-content
+  .col-xs-12.col-sm-6.col-md-4.col-lg-3.tr-sticky
+    .tr-section
+      .section-title.title-before
+        %h1= @organization.title
+      = image_tag @organization.logo, class: 'center-block img-responsive', alt: @organization.title if @organization.logo?
+
+    - if @addresses.size > 0
+      .tr-section
+        .map-container= render('main/multi_map', list: @addresses, center: true, zoom_int: 12, title: @organization.title, hide_info: true) if @addresses.size > 0
+
+        .tr-post
+          .post-content
+            %table.table.table-condensed.table-hover.table-addresses
+              - @addresses.each do |addr|
+                %tr{ class: (addr.phone? || addr.worktime?) ? 'link-hover' : nil,
+                     data: { toggle: 'collapse', target: "#collapse_#{addr.id}" },
+                     aria: { expanded: 'false', controls: "#collapse_#{addr.id}" } }
+                  %td
+                    - if addr.phone? || addr.worktime?
+                      .pull-right= fa_icon 'info-circle'
+                    %address
+                      = addr.address
+                      - if addr.phone? || addr.worktime?
+                        .collapse{ id: "collapse_#{addr.id}" }
+                          %table.table.table-condensed
+                            - if addr.worktime?
+                              %tr
+                                %td
+                                  = fa_icon 'calendar'
+                                %td= addr.worktime
+                            - if addr.phone?
+                              %tr
+                                %td
+                                  = fa_icon 'phone'
+                                %td= addr.phone
+
+    - if @organization.worktime?
+      .tr-section
+        %span= Organization.human_attribute_name(:worktime)
+        = @organization.worktime
+    - if @organization.phone?
+      .tr-section= @organization.phone
+    - if @organization.site?
+      .tr-section
+        = link_to t('organizations.go_site'), @organization.site, target: '_blank', rel: 'nofollow'
+
+  .col-xs-12.col-sm-6.col-md-5.col-lg-6
+    - if current_user
+      - if current_user.role? :admin
+        .tr-section
+          - if @organization.status? 'hidden'
+            .alert.alert-warning
+              = t 'organizations.need_check'
+          - elsif @organization.status? 'blocked'
+            .alert.alert-danger
+              = t 'organizations.is_blocked'
+
+          - if @organization.email?
+            %p= @organization.email
+          = link_to t('actions.edit'), [:edit, @organization], class: 'btn btn-default'
+          = link_to t("actions.#{@organization.shown? ? 'deaccept' : 'accept'}"), [:accept, @organization], class: 'btn btn-default', method: :put
+          = link_to t("actions.#{@organization.blocked? ? 'deblock' : 'block'}"), [:block, @organization], class: 'btn btn-default', method: :put
+          = link_to t('actions.del'), organization_path(@organization), method: :delete, data: { confirm: t('actions.sure') }, class: 'btn btn-danger'
+      - elsif current_user == @organization.user
+        - if can? :edit, @organization
+          .tr-section
+            - if @organization.status? 'hidden'
+              .alert.alert-warning
+                = t 'organizations.check'
+            = link_to t('actions.edit'), [:edit, @organization], class: 'btn btn-default'
+
+    - if @organization.desc?
+      .tr-section
+        .entry-meta
+          %ul
+            %li= plural @organization.views, 'view'
+        %p= raw @organization.desc
+
+    .tr-widget.tr-ad
+      .text-right= render 'bugs/bugs_panel'
+
+    - unless @other_organizations.empty?
+      .tr-widget.tr-section
+        .widget-title
+          %span
+            = t 'organizations.maybe_others'
+
+        .catagory-list.other-organizations-columns(data-columns='1')
+          = render partial: 'organization_small', collection: @other_organizations
+
+    .tr-comment
+      .section-title
+        .title-strong
+          %span= t 'comments.title'
+
+      = bootstrap_form_for [@organization, Comment.new], remote: true, html: { method: :post, class: 'contact-form' } do |f|
+        .form-errors
+        = f.text_area :content, hide_label: true, placeholder: t('comments.textarea_html', title: @organization.title)
+
+        - unless user_signed_in?
+          .pull-right
+            = f.form_group do
+              = recaptcha_tags hl: 'ru'
+          .clearfix
+        .pull-right
+          = f.primary t('actions.create')
+
+      %ul.post-comment#comments
+        = render @comments, commentable: @organization, show_commentable: false
+
+  .col-xs-12.col-sm-12.col-md-3.col-lg-3
+    .tr-section
+      = Rails.env.production? ? render('main/yandex/org_vertical') : content_tag(:div, 'Здесь могла бы быть ваша реклама', class: 'well')

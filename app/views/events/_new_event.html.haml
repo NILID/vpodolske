@@ -1,0 +1,11 @@
+- event = new_event
+
+= link_to event do
+  %h6=event.title
+  %p
+    -if event.finishdate?
+      = rusdate(event.eventdate)
+      \ -
+      = rusdate(event.finishdate)
+    -else
+      = rusdate(event.eventdate)

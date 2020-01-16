@@ -1,0 +1,11 @@
+#events {
+  .tr-post-padding-2 { margin: 0 2px 2px 0;}
+}
+
+#map {
+  width: 100%;
+  height: 300px;
+  .category-events & {height: 500px;}
+}
+
+.tr-section-padding-top {padding:10px 0}

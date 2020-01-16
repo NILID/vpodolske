@@ -1,0 +1,9 @@
+%li
+  .team-member
+    .team-member-image
+      = link_to mini_place do
+        = image_tag mini_place.photos.first.slide(:thumb), class: 'img-responsive' unless mini_place.photos.pluck(:id).empty?
+      .team-social
+        %ul.social
+          %li
+            = mini_place.title

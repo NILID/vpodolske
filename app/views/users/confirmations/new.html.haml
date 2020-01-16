@@ -1,0 +1,15 @@
+.ragister-account.text-center.tr-section.tr-section-padding
+  .account-content
+    .section-title
+      %h1= t :notconfirm
+
+    = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'contact-form' }) do |f|
+      = f.email_field :email,
+        autofocus: true,
+        autocomplete: 'email',
+        value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+        placeholder: 'Email',
+        hide_label: true
+      = f.primary t(:resend)
+
+  .options= render '/users/links'

@@ -1,0 +1,27 @@
+- set_meta_tags title: t('seo.users.sign_up'),
+  description: t('seo.users.sign_up'),
+  keywords: t('seo.users.sign_up'),
+  index: false
+
+.ragister-account.text-center.tr-section.tr-section-padding
+  .account-content
+    .section-title
+      %h1= t :signup
+
+    = bootstrap_form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: {class: 'contact-form'}) do |f|
+      = f.text_field :login, placeholder: User.human_attribute_name(:login), hide_label: true
+      = f.email_field :email, autofocus: true, autocomplete: 'off', placeholder: User.human_attribute_name(:email), hide_label: true
+
+      - if f.object.password_required?
+        = f.password_field :password,
+          autocomplete: 'new-password',
+          placeholder: User.human_attribute_name(:password),
+          hide_label: true,
+          help: @minimum_password_length ? t('devise.form.min', min: @minimum_password_length) : false
+
+        = f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: User.human_attribute_name(:password_confirmation), hide_label: true
+
+      = recaptcha_tags hl: 'ru'
+      = f.primary t(:signuping)
+
+  .options= render '/users/links'

@@ -1,0 +1,4 @@
+= content_tag_for(:tr, article) do
+  %td
+    .news-providers{ class: "news-#{article.provider}", title: t("articles.provider_#{article.provider}") }
+  %td= link_to article.title, article.url, rel: 'nofollow', target: '_blank'

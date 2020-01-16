@@ -1,0 +1,20 @@
+- video_url = VideoInfo.new(video.url)
+
+.col-xs-4.grid-item.grid-sizer
+  .grid-item-content
+    .thumbnail
+      = link_to video_path(video) do
+        = image_tag video_url.thumbnail_medium
+      .caption
+        %h4= video.title
+        %hr/
+        .row.text-muted.video-stats
+          .col-xs-4
+            = fa_icon 'heart'
+            %p= video.likers_count
+          .col-xs-4
+            = fa_icon 'eye'
+            %p= video.views
+          .col-xs-4
+            = fa_icon 'comment'
+            %p= video.comments.count

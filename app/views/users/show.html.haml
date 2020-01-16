@@ -1,0 +1,39 @@
+- set_meta_tags title: "#{ t :user } #{ @user.login }", description: "#{t :user} #{@user.login}", keywords: "#{t :user} #{@user.login}", index: true
+
+.row.tr-content
+  .col-xs-12.col-sm-6.col-md-4.col-lg-3
+    .tr-section
+      = image_tag @profile.avatar.url(:medium), class: 'img-responsive center-block'
+      %h1.text-center= @user.login
+
+  - if (@user == current_user) || (current_user&.role? :admin)
+    .col-xs-12.col-sm-6.col-md-8.col-lg-9
+      .tr-section
+        %p.section-title.title-before
+          = t 'organizations.own'
+
+        - unless @organizations.empty?
+          = render partial: 'organizations/organization_user', collection: @organizations
+        - else
+          .tr-section
+            .well
+              %p.text-muted Пусто
+              %p Вы можете добавить, а позже в любое время вносить актуальную информацию о ваших организациях.
+              %p= link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary'
+
+
+  - if @profile.aboutme?
+    .col-xs-12.col-sm-6.col-md-8.col-lg-9
+      .tr-section
+        %blockquote(style="padding:20px;margin:20px;")
+          %p= @profile.aboutme
+
+  - unless @events.size == 0
+    .col-xs-12.col-md-6
+      .tr-section
+        .widget-title.title-before
+          = t 'events.title'
+          - if (can? :manage, Event) && current_user == @user
+            = link_to(new_event_path, class: 'btn btn-default btn-xs') do
+              = fa_icon 'plus'
+        = render partial: 'events/new_event', collection: @events

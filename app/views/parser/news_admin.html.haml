@@ -1,0 +1,12 @@
+- if @page
+  - @page.css('.td_module_10').each do |link|
+    .row.well
+      .col-xs-9
+        %h5= link.at_css('h3').text.squish
+        %p
+          -  date = link.at_css('time').attr('datetime')
+          = date
+        %p= link.at_css('h3 a').attr('href')
+        %p= link.at_css('.td-excerpt').text
+- else
+  No events

@@ -1,0 +1,13 @@
+= content_tag_for(:div, note, class: 'tr-section') do
+  .row
+    .col-xs-12
+      .pull-left
+        = link_to note.user.login, note.user if note.user
+        = note.email
+      .pull-right
+        = link_to note, remote: true, confirm: t('actions.sure'), method: :delete, class: 'btn btn-danger btn-xs' do
+          = fa_icon 'trash'
+    .col-xs-12
+      %hr
+      = note.content
+

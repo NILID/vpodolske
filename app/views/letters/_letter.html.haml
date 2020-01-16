@@ -1,0 +1,8 @@
+= content_tag_for(:tr, letter) do |letter|
+  %td= link_to letter.id, letter
+  %td= letter.content
+  %td= letter.email
+  %td= l letter.created_at
+  %td
+    = link_to t('actions.del'), letter, :method => :delete, remote: true, :data => { :confirm => t('actions.sure') }, :class => 'btn btn-xs btn-danger'
+

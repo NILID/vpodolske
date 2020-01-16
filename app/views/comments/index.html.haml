@@ -1,0 +1,15 @@
+.row
+  .col-xs-12
+    .tr-section
+      .section-title.title-before
+        %h1= t 'comments.title'
+      %ul.post-comment
+        - @comments.each do |comment|
+          - commentable = comment.commentable
+          = render layout: 'comment', locals: { comment: comment, commentable: commentable, show_commentable: false } do
+            - if comment.hidden
+              %span.label.label-danger= t 'actions.hidden'
+
+            = link_to t('actions.show'), polymorphic_path(commentable, anchor: "comment_#{comment.id}")
+            = link_to t('actions.edit'), edit_polymorphic_path([commentable, comment])
+            = link_to t('actions.del'), comment, method: :delete, remote: true, data: { confirm: t('actions.sure') }

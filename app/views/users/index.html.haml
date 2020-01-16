@@ -1,0 +1,31 @@
+- set_meta_tags title: t('users.title'), description: t('users.title'), keywords: t('users.title'), index: true
+
+.row.tr-content
+  .col-xs-12
+    .tr-section
+      - if current_user&.role? :admin
+        %table.table.table-striped
+          %thead
+            %th
+              = Profile.human_attribute_name(:avatar)
+            %th
+              = sort_link @q, :login,           User.human_attribute_name(:login)
+              \ /
+              = sort_link @q, :email,           User.human_attribute_name(:email)
+            %th
+              = sort_link @q, :created_at,      User.human_attribute_name(:created_at)
+            %th
+              = sort_link @q, :sign_in_count,   User.human_attribute_name(:sign_in_count)
+              \ /
+              = sort_link @q, :last_sign_in_at, User.human_attribute_name(:last_sign_in_at)
+            %th
+          %tbody
+            = render partial: 'user_info', collection: @users
+      - else
+        %ul
+          - @users.each do |user|
+            = link_to user, class: 'col-xs-4 col-sm-3 col-md-2 col-lg-1' do
+              = image_tag user.profile.avatar(:thumb), class: 'img-circle center-block'
+              .text-center
+                = user.login
+

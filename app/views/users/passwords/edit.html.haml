@@ -1,0 +1,19 @@
+.ragister-account.text-center.tr-section.tr-section-padding
+  .account-content
+    .section-title
+      %h1= t :changepass
+
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'contact-form' }) do |f|
+      =# devise_error_messages!
+      = f.hidden_field :reset_password_token
+
+      .form-group
+        = f.password_field :password, autofocus: true, class: 'form-control', autocomplete: 'new-password'
+        - if @minimum_password_length
+          %p.help-block.small-help= t 'devise.form.min', min: @minimum_password_length
+
+        = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
+
+        = f.submit t(:change), class: 'btn btn-primary'
+
+  .options= render '/users/links'

@@ -1,0 +1,15 @@
+- set_meta_tags title: t('live.gallery'),
+  description: t('live.gallery'),
+  keywords: t('live.gallery'),
+  index: true,
+  site: t('live.title')
+
+.row.tr-content
+  .col-md-3.tr-sticky
+    .tr-section
+      - if can? :new, Place
+        %p= link_to t('photos.new'), new_place_path, class: 'btn btn-primary btn-block'
+  .col-md-9
+    = render 'menu'
+    = render partial: 'big_place', collection: @places
+

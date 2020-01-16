@@ -1,0 +1,33 @@
+- set_meta_tags title: t('articles.title') + " | #{@article.title}",
+  description: t('baseseo.articles.desc', add: @article.title),
+  keywords: t('baseseo.articles.words', add: @article.title),
+  index: true
+
+%h2= @article.title
+
+.well= @article.desc
+
+= link_to t('actions.edit'), edit_article_path(@article) if can? :manage, Article
+
+%p
+  originator
+  = @article.paper_trail.originator
+
+.well
+  - @article.versions.order(created_at: :asc).each do |l|
+    %h4
+      \ #
+      = l.index
+      %small.label.label-default= l.event
+
+    = link_to 'back_item', back_item_article_path(@article, v: l.index), class: 'btn btn-primary'
+    %p
+      author
+      %strong= User.find(l.version_author).login
+    - if l.reify
+      %well
+        = render l.reify
+        current?
+        = l.reify.paper_trail.live?
+
+    %hr/

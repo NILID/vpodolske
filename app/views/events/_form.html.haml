@@ -1,0 +1,51 @@
+= render 'main/js_ckeditor'
+
+= bootstrap_form_for(@event, html: { multipart: true, class: 'contact-form' }) do |f|
+  .section-title
+    %h1= formtitle
+
+  = f.text_field :title
+  = f.file_field :src
+
+  = f.cktext_area :content, ckeditor: { toolbar: 'mini' }
+  .help-block= f.errors_on :content
+
+  .row
+    .col-xs-6.col-md-4= f.text_field :eventdate, class: 'dtm-event-startdate', value: @event.eventdate? ? @event.eventdate.strftime("%d/%m/%Y") : nil
+    .col-xs-6.col-md-4= f.text_field :eventime, class: 'dtm-event-time', value: @event.eventime? ? @event.eventime.strftime("%H:%M") : nil
+
+  .row
+    .col-xs-6.col-md-4= f.text_field :finishdate, class: 'dtm-event-finishdate', value: @event.finishdate? ? @event.finishdate.strftime("%d/%m/%Y") : nil
+    .col-xs-6.col-md-4= f.text_field :finishtime, class: 'dtm-event-time', value: @event.finishtime? ? @event.finishtime.strftime("%H:%M") : nil
+
+  = f.form_group do
+    = f.check_box :timeless
+
+  = f.text_field :url, prepend: 'http://'
+
+  - if current_user && (current_user.role? :admin)
+    = f.text_field :siteurl, prepend: 'http://'
+
+  = f.text_field :placename
+
+  .row
+    .col-xs-6
+      = f.text_field :address, id: 'form_address'
+      - if current_user&.role? :admin
+        = f.text_field :latitude, id: 'form_lat'
+        = f.text_field :longitude, id: 'form_long'
+      - else
+        = f.hidden_field :latitude, id: 'form_lat'
+        = f.hidden_field :longitude, id: 'form_long'
+
+    .col-xs-6= render partial: 'main/form_map', locals: {object: @event}
+
+  - if current_user&.role? :admin
+    = f.check_box :hidden
+    = f.check_box :excluded_flag
+
+  - unless user_signed_in?
+    = f.form_group do
+      = recaptcha_tags hl: 'ru'
+
+  = f.primary
