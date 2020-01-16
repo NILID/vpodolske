@@ -12,7 +12,7 @@
         - if @minimum_password_length
           %p.help-block.small-help= t 'devise.form.min', min: @minimum_password_length
 
-        = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
+        = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'
 
         = f.submit t(:change), class: 'btn btn-primary'
 
