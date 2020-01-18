@@ -1,2 +1,2 @@
-= image_tag before.slide.url, width: '100%', id: dom_id(before)
-= image_tag after.slide.url, width: '100%', id: dom_id(after)
+- [before, after].each do |obj|
+  = image_tag obj.slide.url, width: '100%', id: dom_id(obj)

@@ -24,7 +24,7 @@
                 %div{ id: "photo-info-#{i}" }= render 'photo_info', photo: photo
             .col-xs-12= render 'like_buttons', place: @place
           - else
-            .col-xs-12= image_tag @photos.first.slide, width: '100%'
+            .col-xs-12= image_tag @photos.first.slide.url, width: '100%'
             .col-xs-12= render 'photo_info', photo: @photos.first
 
   .col-md-4.col-lg-6
