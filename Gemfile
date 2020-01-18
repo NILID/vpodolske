@@ -44,7 +44,7 @@ gem 'sitemap_generator'
 
 gem 'paper_trail'
 
-gem 'exception_handler', '~> 0.6.5'
+gem 'exception_handler'
 
 gem 'pagy'
 
