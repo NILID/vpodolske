@@ -126,11 +126,6 @@ gem 'font-awesome-rails'
 gem 'papercrop'
 gem 'record_tag_helper', '~> 1.0'
 
-
-group :production do
-  gem 'memcache-client'
-end
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'rails-controller-testing'
