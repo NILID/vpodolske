@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  # http_basic_authenticate_with name: "da", password: "qwerty444"
-
   before_action :set_paper_trail_whodunnit
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :subtract_www_subdomain
