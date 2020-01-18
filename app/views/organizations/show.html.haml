@@ -15,7 +15,7 @@
     .tr-section
       .section-title.title-before
         %h1= @organization.title
-      = image_tag @organization.logo, class: 'center-block img-responsive', alt: @organization.title if @organization.logo?
+      = image_tag @organization.logo.url, class: 'center-block img-responsive', alt: @organization.title unless @organization.logo.nil?
 
     - if @addresses.size > 0
       .tr-section
