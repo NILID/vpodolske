@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Profile do
-  let(:profile) { build(:profile) }
+  let(:profile) { build_stubbed(:profile) }
   context('should') do
     it 'have aboutme no more 300' do
       profile.aboutme = 'About' * 61

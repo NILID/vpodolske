@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Photo, type: :model do
 
-  let(:photo) { build(:photo) }
+  let(:photo) { build_stubbed(:photo) }
 
   context 'should' do
     it 'have title' do

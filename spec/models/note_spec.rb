@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Note do
-  let(:note) { build(:note) }
+  let(:note) { build_stubbed(:note) }
 
   context 'should' do
     it 'have content' do

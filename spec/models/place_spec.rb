@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Place, type: :model do
 
-  let(:place) { build(:place) }
+  let(:place) { build_stubbed(:place) }
 
   context 'should' do
     it 'have title' do

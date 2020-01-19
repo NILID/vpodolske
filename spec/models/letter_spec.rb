@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Letter do
-  let(:letter) { build(:letter) }
+  let(:letter) { build_stubbed(:letter) }
 
   context 'should' do
     it 'have content' do

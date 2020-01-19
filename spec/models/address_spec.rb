@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Address, type: :model do
 
-  let(:address) { build(:address) }
+  let(:address) { build_stubbed(:address) }
 
   context 'should' do
     it 'have address' do

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  let(:video) { build(:video) }
+  let(:video) { build_stubbed(:video) }
 
   it 'title should be present' do
     video.title = ''

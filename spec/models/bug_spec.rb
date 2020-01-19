@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Bug, type: :model do
 
-  let(:bug) { build(:bug) }
+  let(:bug) { build_stubbed(:bug) }
 
   context 'should' do
     it 'have content' do
