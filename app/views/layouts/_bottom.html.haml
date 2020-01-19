@@ -14,8 +14,8 @@
         .col-sm-3.col-sm-offset-7
           .widget
             %ul
-              %li= link_to t(:about), static_page_path(:about)
-              %li= link_to t(:sponsor), static_page_path(:sponsor)
+              - %i[about, sponsor].each do |page_name|
+                %li= link_to t(page_name), static_page_path(page_name)
         .col-sm-12
           .text-center= link_to t('note.add'),new_note_path, class: 'btn btn-default btn-xs btn-primary'
 
@@ -23,7 +23,7 @@
     .container
       .footer-bottom-content
         .footer-logo
-          2018-2019 &copy; vPodolske
+          2018-2020 &copy; vPodolske
           %p.text-muted= t :helplicense
 
           - if Rails.env.production?
