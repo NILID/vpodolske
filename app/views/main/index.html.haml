@@ -3,14 +3,12 @@
   keywords: t('baseseo.main.words'),
   index: true
 
-- if can? :manage, Article
-  = render 'carousel'
-
 .row.tr-content
   .col-xs-12
     .tr-section
-      = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary col-sm-4 col-xs-offset-1'
-      = link_to t('events.add'), new_event_path, class: 'btn btn-primary col-sm-4 col-xs-offset-2'
+      = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary col-md-4 col-xs-12'
+      .col-md-4
+      = link_to t('events.add'), new_event_path, class: 'btn btn-primary col-md-4 col-xs-12'
 
 .row.tr-content
   - unless @articles.empty?
