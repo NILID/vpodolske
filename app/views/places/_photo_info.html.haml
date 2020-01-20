@@ -14,7 +14,7 @@
 
   - if can? :edit, photo
     = link_to edit_place_photo_path(photo.place, photo), class: 'btn btn-mini btn-default' do
-      = fa_icon 'pencil'
+      = fa_icon 'pencil-alt'
   - if can? :destroy, @place
     = link_to [photo.place, photo], method: 'delete', data: { confirm: t('actions.sure') }, class: 'btn btn-danger' do
       = fa_icon 'trash'

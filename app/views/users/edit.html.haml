@@ -33,5 +33,4 @@
       - if (can? :manage, @user) || current_user==@user
         .pull-right
           = link_to(edit_user_registration_path, class: 'btn btn-default') do
-            = fa_icon 'pencil'
-            = t 'user_link.edit_reg'
+            = fa_icon 'pencil-alt', text: t('user_link.edit_reg')

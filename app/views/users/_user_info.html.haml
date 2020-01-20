@@ -21,5 +21,4 @@
         = rusdate user_info.last_sign_in_at
   %td
     = link_to(user_info, data: { confirm: t('actions.sure') }, method: :delete, class: 'btn btn-primary btn-sm') do
-      = fa_icon 'trash'
-      = t 'actions.del'
+      = fa_icon 'trash', text: t('actions.del')

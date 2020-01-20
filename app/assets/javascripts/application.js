@@ -24,6 +24,7 @@
 //= require rails.validations
 //= require select2
 //= require select2_locale_ru
+//= require font_awesome5
 //= require_tree .
 //= require jquery.jcrop
 //= require papercrop

@@ -120,8 +120,7 @@ gem 'fancybox2-rails'
 gem 'animate-rails'
 gem 'select2-rails'
 
-gem 'font-awesome-rails'
-
+gem 'font_awesome5_rails'
 
 gem 'papercrop'
 gem 'record_tag_helper', '~> 1.0'

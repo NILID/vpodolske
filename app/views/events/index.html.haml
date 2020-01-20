@@ -16,8 +16,7 @@
         .text-muted= t 'events.about_html'
         .text-center.tr-section-padding-top
           = link_to(new_event_path, class: 'btn btn-primary') do
-            = fa_icon 'plus'
-            = t :new
+            = fa_icon 'plus', text: t(:new)
     .tr-section
       = render 'main/yandex/events_vertical'
 

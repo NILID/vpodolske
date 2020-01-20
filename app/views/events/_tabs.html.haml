@@ -5,7 +5,7 @@
         - if current_user && (current_user.role? :admin)
           %li.hidden{ class: params[:action] == 'calendar'? 'active' : nil }
             = link_to(calendar_events_path, style: 'border-bottom:0;font-size:18px;') do
-              = fa_icon 'calendar'
+              = fa_icon 'calendar-alt'
           %li{ role: 'presentation', class: params[:by] == 'created'? 'active' : nil }
             = link_to t('sort.by_created'), events_path(by: 'created')
         %li{ role: 'presentation', class: !params[:by] && !params[:by_user] && params[:action] == 'index'? 'active' : nil }

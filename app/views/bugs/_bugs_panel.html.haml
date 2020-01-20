@@ -1,7 +1,6 @@
 .bugs-alert
   %button.btn.btn-primary{ data: { toggle: 'modal', target: '#bugForm' } }
-    = fa_icon 'asterisk'
-    = t 'bugs.say'
+    = fa_icon 'asterisk', text: t('bugs.say')
 
 #bugForm.modal.fade(tabinfdex='-1' role='dialog' aria-labelledby="bugFormLabel")
   .modal-dialog(role='document')

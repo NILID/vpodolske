@@ -31,5 +31,4 @@
 
   .options
     = link_to(registration_path(resource_name), data: { confirm: t('actions.sure') }, method: :delete, class: 'btn btn-primary') do
-      = fa_icon 'trash'
-      = t 'user_link.cancel_account'
+      = fa_icon 'trash', text: t('user_link.cancel_account')

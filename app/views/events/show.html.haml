@@ -36,18 +36,15 @@
                   %ul.dropdown-menu
                     %li
                       = link_to edit_event_path(@event) do
-                        = fa_icon 'pencil'
-                        = t 'actions.edit'
+                        = fa_icon 'pencil-alt', text: t('actions.edit')
                     %li
                       = link_to event_path(@event), confirm: t('actions.sure'), method: :delete do
-                        = fa_icon 'trash'
-                        = t 'actions.del'
+                        = fa_icon 'trash', text: t('actions.del')
                     - if can? :coolme, @event
                       .divider
                       %li
                         = link_to coolme_event_path(@event), class: 'btn btn-primary', remote: true, method: :put do
-                          = fa_icon 'star'
-                          = @event.cool
+                          = fa_icon 'star', text: @event.cool
                 = render 'events/like_buttons', event: @event
             %h1.entry-title= @event.title
         .tr-details
