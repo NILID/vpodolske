@@ -11,7 +11,7 @@
   index: true
 
 .tr-section.tr-orelreshka
-  = image_tag 'orelireshka.jpg', class: 'img-responsive center-block'
+  = image_tag 'orelireshka.jpg', class: 'img-fluid center-block'
 
   - index = 0
 
@@ -66,7 +66,7 @@
       = render 'orel_share'
 
 .row
-  .col-xs-12.col-md-6
+  .col-12.col-md-6
     .tr-section.tr-orelreshka
       %p= t 'orel_reshka.intro_1'
       %p= t 'orel_reshka.intro_2'
@@ -81,7 +81,7 @@
           = t 'orel_reshka.intro_9'
 
 
-  .col-xs-12.col-md-3
+  .col-12.col-md-3
     .tr-section
       .section-title.title-before
         %h1= t 'orel_reshka.liders'
@@ -95,7 +95,7 @@
               %td
                 %strong= index
               %td= link.text
-  .col-xs-12.col-md-3
+  .col-12.col-md-3
     .tr-section
       .section-title.title-before
         %h1= t 'orel_reshka.near_cities'

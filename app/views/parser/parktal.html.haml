@@ -1,7 +1,7 @@
 - @pages.each do |page|
   - page.css('article.post').each do |link|
     .row.well
-      .col-xs-9
+      .col-9
         %h5= link.at_css('.post_text h5').text
         %p= link.at_css('.post_text .post_excerpt').text
         %p= image_tag( link.at_css('.post_image img').attr(:src)) if link.at_css('.post_image img')

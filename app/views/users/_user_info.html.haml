@@ -4,13 +4,13 @@
       = image_tag user_info.profile.avatar.url(:thumb), class: 'thumbnail'
   %td
     %p><
-      %span.label.label-primary= user_info.id
+      %span.badge.badge-primary= user_info.id
     %p><
       = user_info.login
     %p.text-muted><
       = user_info.email
     %p><
-      %span.label.label-primary= user_info.provider
+      %span.badge.badge-primary= user_info.provider
   %td><
     = rusdate user_info.created_at
   %td

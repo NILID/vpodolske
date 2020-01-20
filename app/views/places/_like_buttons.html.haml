@@ -12,8 +12,8 @@
   %p= t 'live.think'
 
   - if user_signed_in?
-    = link_to yield(:like_place), like_place_path(place), remote: true, method: :put, class: 'btn btn-success col-xs-6'
-    = link_to yield(:unlike_place), unlike_place_path(place), remote: true, method: :put, class: 'btn btn-danger col-xs-6'
+    = link_to yield(:like_place), like_place_path(place), remote: true, method: :put, class: 'btn btn-success col-6'
+    = link_to yield(:unlike_place), unlike_place_path(place), remote: true, method: :put, class: 'btn btn-danger col-6'
   - else
-    = link_to yield(:like_place), new_user_registration_path, class: 'btn btn-sm btn-success col-xs-6'
-    = link_to yield(:unlike_place), new_user_registration_path, class: 'btn btn-sm btn-danger col-xs-6'
+    = link_to yield(:like_place), new_user_registration_path, class: 'btn btn-sm btn-success col-6'
+    = link_to yield(:unlike_place), new_user_registration_path, class: 'btn btn-sm btn-danger col-6'

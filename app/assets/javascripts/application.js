@@ -18,7 +18,6 @@
 //= require moment
 //= require moment/ru
 //= require cocoon
-//= require twitter/bootstrap
 //= require bootstrap-datetimepicker
 //= require fancybox
 //= require rails.validations

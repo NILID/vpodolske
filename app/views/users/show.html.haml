@@ -1,13 +1,13 @@
 - set_meta_tags title: "#{ t :user } #{ @user.login }", description: "#{t :user} #{@user.login}", keywords: "#{t :user} #{@user.login}", index: true
 
 .row.tr-content
-  .col-xs-12.col-sm-6.col-md-4.col-lg-3
+  .col-12.col-sm-6.col-md-4.col-lg-3
     .tr-section
-      = image_tag @profile.avatar.url(:medium), class: 'img-responsive center-block'
+      = image_tag @profile.avatar.url(:medium), class: 'img-fluid center-block'
       %h1.text-center= @user.login
 
   - if (@user == current_user) || (current_user&.role? :admin)
-    .col-xs-12.col-sm-6.col-md-8.col-lg-9
+    .col-12.col-sm-6.col-md-8.col-lg-9
       .tr-section
         %p.section-title.title-before
           = t 'organizations.own'
@@ -23,17 +23,17 @@
 
 
   - if @profile.aboutme?
-    .col-xs-12.col-sm-6.col-md-8.col-lg-9
+    .col-12.col-sm-6.col-md-8.col-lg-9
       .tr-section
         %blockquote(style="padding:20px;margin:20px;")
           %p= @profile.aboutme
 
   - unless @events.size == 0
-    .col-xs-12.col-md-6
+    .col-12.col-md-6
       .tr-section
         .widget-title.title-before
           = t 'events.title'
           - if (can? :manage, Event) && current_user == @user
-            = link_to(new_event_path, class: 'btn btn-default btn-xs') do
+            = link_to(new_event_path, class: 'btn btn-secondary btn-sm') do
               = fa_icon 'plus'
         = render partial: 'events/new_event', collection: @events

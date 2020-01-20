@@ -2,7 +2,7 @@
 
   - @page.css('.news-itm').take(2).each do |link|
     .row.well
-      .col-xs-9
+      .col-9
         - source = 'http://inpodolsk.ru' + link.at_css('.news-itm__title a').attr('href')
         - p = Nokogiri::HTML(open(source.to_s))
 

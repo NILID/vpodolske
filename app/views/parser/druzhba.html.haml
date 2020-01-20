@@ -1,7 +1,7 @@
 - @pages.each do |page|
   - page.css('#icagenda .ic-event').each do |link|
     .row.well
-      .col-xs-12
+      .col-12
         %h5= link.at_css('.ic-content h2').text
         - date= link.at_css('.ic-date').text.squish
         %p= DateTime.strptime(russian_to_english_date(date),'%d %b %Y %H:%M')

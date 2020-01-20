@@ -1,11 +1,11 @@
 .row
-  .col-xs-12
-    .panel.panel-default
-      .panel-heading
+  .col-12
+    .card
+      .card-header
         = link_to organization_user.title, organization_user
         - if organization_user.status? 'hidden'
-          %span.label.label-warning= t 'organizations.check_short'
-      .panel-body
+          %span.badge.badge-warning= t 'organizations.check_short'
+      .card-body
         .entry-meta
           %ul
             %li= t('actions.was_public', date: rusdatecom(organization_user.created_at))

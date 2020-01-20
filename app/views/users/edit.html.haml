@@ -4,19 +4,19 @@
       %h1= t :editing
 
     .row
-      .col-xs-12.col-md-4= f.text_field :login, class: 'form-control'
+      .col-12.col-md-4= f.text_field :login, class: 'form-control'
 
     .row
       = f.fields_for :profile do |p|
-        .col-xs-4= p.select :gender, Profile::GENDERS, class: 'form-control'
+        .col-4= p.select :gender, Profile::GENDERS, class: 'form-control'
 
-        .col-xs-4
+        .col-4
           = p.form_group :avatar do
             = p.file_field :avatar, class: 'input-file'
             %div(style="padding:10px 10px 0 0")= image_tag @profile.avatar.url(:thumb), class: 'thumbnail'
 
       - if current_user.role? :admin
-        .col-xs-4
+        .col-4
           = f.form_group "user[roles][]" do
             - for role in User::ROLES
               = check_box_tag "user[roles][]", role, @profile.user.roles.include?(role)
@@ -26,11 +26,11 @@
       = p.text_area :aboutme, rows: 3, class: 'form-control'
 
     .form-group
-      .pull-left
+      .float-left
         = f.primary
-        = link_to t('profile.show'), @user, class: 'btn btn-default'
+        = link_to t('profile.show'), @user, class: 'btn btn-secondary'
 
       - if (can? :manage, @user) || current_user==@user
-        .pull-right
-          = link_to(edit_user_registration_path, class: 'btn btn-default') do
+        .float-right
+          = link_to(edit_user_registration_path, class: 'btn btn-secondary') do
             = fa_icon 'pencil-alt', text: t('user_link.edit_reg')

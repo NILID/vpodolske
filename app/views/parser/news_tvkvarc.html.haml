@@ -2,7 +2,7 @@
   - @page.search('.main, .last').remove
   - @page.css('.page-our-people .article').each do |link|
     .row.well
-      .col-xs-9
+      .col-9
         %h5= link.at_css('.title').text
         %p
           -  date = link.at_css('.date').text.squish

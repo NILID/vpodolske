@@ -3,12 +3,12 @@
   - p = Nokogiri::HTML(open(source.to_s))
 
   .row.well
-    .col-xs-2
+    .col-2
       - if p.at_css('.article p span img')
         - attr = 'http://www.metallurg-dk.ru/' + p.at_css('.article p span img').attr(:src)
-        = image_tag attr, class: 'img-responsive'
+        = image_tag attr, class: 'img-fluid'
 
-    .col-xs-9
+    .col-9
       %h5= p.at_css('.article h1').text
       %p.well
         = raw p.at_css('.article p').text

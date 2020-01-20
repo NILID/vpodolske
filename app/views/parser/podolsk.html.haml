@@ -1,6 +1,6 @@
 - @page.css('.container_left .row-spaced .media').each do |link|
   .row.well
-    .col-xs-9
+    .col-9
       %h3= link.at_css('h4').text
       .well
         - url = link.at_css('h4 a').attr('href')

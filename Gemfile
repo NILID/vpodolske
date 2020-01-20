@@ -110,11 +110,9 @@ gem 'watu_table_builder', require: 'table_builder'
 
 gem 'truncate_html'
 
-gem 'twitter-bootstrap-rails'
 gem 'twitter-typeahead-rails',         '0.10.5'
 gem 'momentjs-rails',                  '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
-gem 'less-rails'
 gem 'jquery-ui-rails'
 gem 'fancybox2-rails'
 gem 'animate-rails'

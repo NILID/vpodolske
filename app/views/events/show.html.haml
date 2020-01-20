@@ -17,11 +17,11 @@
         .tr-post
           .entry-header
             .entry-thumbnail
-              = image_tag @event.src.url(:original), class: 'img-responsive', alt: @event.title
+              = image_tag @event.src.url(:original), class: 'img-fluid', alt: @event.title
           .post-content
             - if @event.user
               .author
-                = image_tag @event.user.profile.avatar.url(:thumb), class: 'img-responsive img-circle'
+                = image_tag @event.user.profile.avatar.url(:thumb), class: 'img-fluid rounded-circle'
 
             .entry-meta
               %ul
@@ -29,9 +29,9 @@
                   %li= link_to @event.user.login, @event.user
                 %li= plural @event.views, 'view'
 
-              .pull-right
+              .float-right
                 - if (can? :edit, @event) || (can? :destroy, @event)
-                  = link_to('#menu1', class: 'btn btn-default btn-sm dropdown-toggle', aria: { expanded: 'false', haspopup: 'true' }, data: { toggle: 'dropdown' }) do
+                  = link_to('#menu1', class: 'btn btn-secondary btn-sm dropdown-toggle', aria: { expanded: 'false', haspopup: 'true' }, data: { toggle: 'dropdown' }) do
                     = fa_icon 'cog'
                   %ul.dropdown-menu
                     %li
@@ -41,7 +41,7 @@
                       = link_to event_path(@event), confirm: t('actions.sure'), method: :delete do
                         = fa_icon 'trash', text: t('actions.del')
                     - if can? :coolme, @event
-                      .divider
+                      %li.dropdown-divider
                       %li
                         = link_to coolme_event_path(@event), class: 'btn btn-primary', remote: true, method: :put do
                           = fa_icon 'star', text: @event.cool
@@ -55,31 +55,31 @@
   .col-sm-6.col-md-4.tr-sticky
     .tr-section
       - if @event.eventdate? && @event.eventdate < DateTime.now.to_date
-        .col-xs-12
+        .col-12
           .alert.alert-info(role='alert')
             = t 'event.finish'
 
       - if @event.url?
-        .col-xs-12
+        .col-12
           %h6= t 'event.links'
           %p
             %NOINDEX= link_to @event.url, 'http://' + @event.url, rel: 'nofollow', target: '_blank'
       - if @event.eventdate?
-        .col-xs-12
+        .col-12
           %h6= t 'event.time'
           %p= eventdatetime(@event.eventdate, @event.eventime)
       - if @event.finishdate? || @event.timeless?
-        .col-xs-12
+        .col-12
           %h6= t 'event.finishtime'
           %p= @event.timeless == true ? t('activerecord.attributes.event.timeless') : eventdatetime(@event.finishdate, @event.finishtime)
 
       - if @event.placename?
-        .col-xs-12
+        .col-12
           %h6= Event.human_attribute_name(:placename)
           %p= @event.placename
 
       - if @event.address?
-        .col-xs-12
+        .col-12
           %h6= t 'event.address'
           %p= @event.address
           .map-container
@@ -88,19 +88,19 @@
     - unless @other_events.empty?
       .tr-section
         .row
-          .col-xs-12
+          .col-12
             %h4= link_to t('event.other_from', user: @event.user.login), events_path(by_user: @event.user)
             %hr
             - @other_events.each do |event|
               %p= link_to event.title, event
     .tr-widget
       .row
-        .col-xs-12
+        .col-12
           .text-right= render 'bugs/bugs_panel'
 
     .tr-section
       .row
-        .col-xs-12
+        .col-12
           = render 'main/yandex/event_vertical'
 
 = yield :scripts

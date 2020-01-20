@@ -1,7 +1,7 @@
 - @pages.each do |page|
   - page.css('.event').each do |link|
     .row.well
-      .col-xs-9
+      .col-9
         %h5= link.at_css('.title-header h2').text
         %p= link.at_css('.title-cat').text
         %p= link.at_css('.ic-features-container img').attr(:title)

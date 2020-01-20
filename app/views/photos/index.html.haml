@@ -1,4 +1,4 @@
-.page-header
+.page-header-old
   %h1=t 'live.gallery'
 
 - if can? :new, Photo
@@ -21,7 +21,7 @@
         %td= photo.content
         %td
           - if can? :edit, photo
-            = link_to t('actions.edit'), edit_place_photo_path(@place, photo), class: 'btn btn-default btn-xs'
+            = link_to t('actions.edit'), edit_place_photo_path(@place, photo), class: 'btn btn-secondary btn-sm'
           - if can? :destroy, photo
-            = link_to t('actions.del'), [@place, photo], :method => :delete, data: { confirm: t('actions.sure') }, class: 'btn btn-xs btn-danger'
+            = link_to t('actions.del'), [@place, photo], :method => :delete, data: { confirm: t('actions.sure') }, class: 'btn btn-sm btn-danger'
 

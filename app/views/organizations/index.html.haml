@@ -4,15 +4,15 @@
 .row
   .col-sm-12
     .tr-section
-      .col-xs-12.col-sm-6
+      .col-12.col-sm-6
         .section-title.title-before
           %h1= t 'search.result'
-      .col-xs-12.col-sm-6= render 'organizations/search_form'
+      .col-12.col-sm-6= render 'organizations/search_form'
 
   - unless check_categories
     .col-sm-12
       .tr-section
-        .col-xs-12
+        .col-12
           .section-title
             %strong= t('search.find', item: plural(@categories.count, 'category'))
         = render partial: 'categories/category_result', collection: @categories
@@ -20,7 +20,7 @@
   - unless check_orgs
     .col-sm-12
       .tr-section
-        .col-xs-12.col-sm-12
+        .col-12.col-sm-12
           .section-title
             %strong= t('search.find', item: plural(@organizations.count, 'organization'))
         %ol= render @organizations
@@ -28,6 +28,6 @@
   - if check_categories && check_orgs
     .col-sm-12
       .tr-section
-        .col-xs-12.col-sm-12
+        .col-12.col-sm-12
           .section-title
             %strong= t 'search.no_results'

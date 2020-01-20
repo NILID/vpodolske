@@ -17,21 +17,16 @@
           .row
             .col-sm-3.tr-sidebar.tr-sticky
               = link_to root_url, class: 'navbar-brand' do
-                = image_tag 'logo-small.png', class: 'img-responsive'
-            .col-sm-8.col-sm-offset-1.nnews
+                = image_tag 'logo-small.png', class: 'img-fluid'
+            .col-sm-8.offset-sm-1.nnews
               .topbar-left= render 'layouts/news'
               .topbar-right= render 'users/userbar'
         .tr-menu.menu-responsive
-          %nav.navbar.navbar-default
-            .navbar-header
-              %button.navbar-toggle.collapsed{ type: 'button', data: { toggle: 'collapse', target: '#navbar-collapse' } }
-                %span.sr-only Toggle Navigation
-                %span.icon-bar
-                %span.icon-bar
-                %span.icon-bar
+          %nav.navbar.navbar-light.navbar-expand-lg
+            %button.navbar-toggler.collapsed{ type: 'button', data: { toggle: 'collapse', target: '#navbar-collapse' }, aria: {controls:"navbar-collapse", expanded: "false", label: "Toggle navigation" } }
+              %span.navbar-toggler-icon
             #navbar-collapse.collapse.navbar-left.navbar-collapse
               %ul.nav.navbar-nav= render 'main/menu'
-              %ul.feed.pull-right
 
         = yield
       = render 'layouts/bottom'

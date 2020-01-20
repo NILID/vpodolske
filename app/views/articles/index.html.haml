@@ -6,7 +6,7 @@
   index: true
 
 .row
-  .col-xs-12.col-sm-4.col-md-3.tr-sticky
+  .col-12.col-sm-4.col-md-3.tr-sticky
     .tr-section
       .section-title.title-before
         %h1= t 'articles.title'
@@ -16,14 +16,14 @@
     .tr-section
       = render 'main/yandex/articles_vertical'
 
-  .col-xs-12.col-sm-8.col-md-9
+  .col-12.col-sm-8.col-md-9
     .tr-section.news
       .row
-        .col-xs-12.col-md-5
+        .col-12.col-md-5
           = render 'articles/search_form'
         - unless check_articles_empty
-          .col-xs-12.col-md-7
-            .pull-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
+          .col-12.col-md-7
+            .float-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
       - unless check_articles_empty
         %table.table.table-hover.table-striped
           = render @articles
@@ -31,7 +31,7 @@
         %strong= t 'search.no_results'
 
       - unless check_articles_empty
-        .pull-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
+        .float-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
 
 - unless check_articles_empty
   = render 'main/toplink'

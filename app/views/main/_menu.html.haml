@@ -1,24 +1,29 @@
 - if %w[photos places].include? params[:controller]
-  %li{ class: (params[:controller] == 'places' && params[:action] == 'index') ? 'active' : nil }= link_to t('live.title'), places_path
-  %li{ class: ((%w[places photos].include? params[:controller]) && params[:action] != 'index') ? 'active' : nil }= link_to t('live.gallery'), gallery_places_path
+  %li.nav-item{ class: (params[:controller] == 'places' && params[:action] == 'index') ? 'active' : nil }
+    = link_to t('live.title'), places_path, class: 'nav-link'
+  %li.nav-item{ class: ((%w[places photos].include? params[:controller]) && params[:action] != 'index') ? 'active' : nil }
+    = link_to t('live.gallery'), gallery_places_path, class: 'nav-link'
 - else
-  %li{ class: params[:controller] == 'articles'?   'active' : nil }= link_to t('articles.title'), articles_path
-  %li{ class: params[:controller] == 'events'?     'active' : nil }= link_to t('events.title'),   events_path
-  %li{ class: params[:controller] == 'categories'? 'active' : nil }= link_to t('helper'),         categories_path
-  %li{ class: params[:controller] == 'users'?      'active' : nil }= link_to t('users.title'),    users_path
-  %li= link_to t('live.title'), places_path
+  %li.nav-item{ class: params[:controller] == 'articles'?   'active' : nil }
+    = link_to t('articles.title'), articles_path, class: 'nav-link'
+  %li.nav-item{ class: params[:controller] == 'events'?     'active' : nil }
+    = link_to t('events.title'), events_path, class: 'nav-link'
+  %li.nav-item{ class: params[:controller] == 'categories'? 'active' : nil }
+    = link_to t('helper'), categories_path, class: 'nav-link'
+  %li.nav-item{ class: params[:controller] == 'users'?      'active' : nil }
+    = link_to t('users.title'), users_path, class: 'nav-link'
+  %li.nav-item
+    = link_to t('live.title'), places_path, class: 'nav-link'
 
   - if can? :manage, :all
-    %li.dropdown
-      = link_to('#', 'data-toggle' => 'dropdown') do
-        = t 'shared.admin'
-        %b.caret
+    %li.nav-item.dropdown
+      = link_to t('shared.admin'), '#', 'data-toggle' => 'dropdown', class: 'nav-link dropdown-toggle', role: "button", aria: { haspopup: 'true', expanded: 'false'}
       %ul.dropdown-menu
-        %li= link_to t('articles.title'), manager_articles_path
-        %li= link_to t('comments.title'), comments_path
-        %li= link_to t('bugs.title'),     bugs_path
-        %li= link_to t('note.title'),     notes_path
-        %li= link_to t('admin.letters'),  letters_path
+        = link_to t('articles.title'), manager_articles_path, class: 'dropdown-item'
+        = link_to t('comments.title'), comments_path, class: 'dropdown-item'
+        = link_to t('bugs.title'),     bugs_path, class: 'dropdown-item'
+        = link_to t('note.title'),     notes_path, class: 'dropdown-item'
+        = link_to t('admin.letters'),  letters_path, class: 'dropdown-item'
         - if Rails.env.development?
-          %li.divider(role='separator')
-          %li= link_to t('admin.preview_emails'), rails_mailers_path
+          .dropdown-divider
+          = link_to t('admin.preview_emails'), rails_mailers_path, class: 'dropdown-item'

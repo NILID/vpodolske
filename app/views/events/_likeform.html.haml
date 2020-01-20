@@ -1,15 +1,15 @@
 .row
-  .col-xs-1
+  .col-1
     = form_tag "/events/like", remote: true do
       = hidden_field_tag "id", @event.id
       = hidden_field_tag "voteuser", current_user.id
-      = button_tag(class: "btn btn-xs btn-success") do
+      = button_tag(class: "btn btn-sm btn-success") do
         = fa_icon 'arrow-up'
         %span.votes_up=@event.get_upvotes.size
-  .col-xs-1
+  .col-1
     = form_tag "/events/unlike", remote: true do
       = hidden_field_tag "id", @event.id
       = hidden_field_tag "voteuser", current_user.id
-      = button_tag(class: "btn btn-xs btn-danger") do
+      = button_tag(class: "btn btn-sm btn-danger") do
         = fa_icon 'arrow-down'
         %span.votes_down=@event.get_downvotes.size

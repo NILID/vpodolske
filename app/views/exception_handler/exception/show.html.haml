@@ -3,7 +3,7 @@
     .error-page-content
       .logo.text-center
         = link_to root_url, class: 'navbar-brand' do
-          = image_tag 'logo-small.png', class: 'img-responsive'
+          = image_tag 'logo-small.png', class: 'img-fluid'
 
       .not-found
         = content_tag :div, class: "exception", data: { status: @exception.status, response: @exception.response.to_s.humanize, rails: Rails.version }, onclick: "location.href=\"#{root_url}\";" do

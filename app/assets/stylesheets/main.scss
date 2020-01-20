@@ -30,6 +30,10 @@
  	Global
  ========================================================================== */
 
+html {
+  font-size: 14px;
+}
+
 html,
 body {
 	font-family: 'Roboto', sans-serif;
@@ -431,13 +435,13 @@ input:focus, textarea:focus, select:focus,
  	Tr Memu
  ========================================================================== */
 
-.tr-menu.sidebar-menu .navbar-default {
+.tr-menu.sidebar-menu .navbar-light {
 	background-color: #fff;
 	border-radius: 5px;
 	padding: 25px 10px;
 }
 
-.homepage-1 .sidebar-menu .navbar-default {
+.homepage-1 .sidebar-menu .navbar-light {
 	padding-top: 15px;
 }
 
@@ -446,7 +450,7 @@ input:focus, textarea:focus, select:focus,
 	margin-bottom: 30px;
 }
 
-.tr-menu .navbar-default {
+.tr-menu .navbar-light {
 	border: none;
 	border-radius: 0;
 	min-height: 0;
@@ -490,7 +494,7 @@ input:focus, textarea:focus, select:focus,
 	padding: 5px 15px;
 }
 
-.tr-menu.sidebar-menu .navbar-default li,
+.tr-menu.sidebar-menu .navbar-light li,
 span.discover {
 	text-transform: uppercase;
 	font-size: 14px;
@@ -552,9 +556,9 @@ span.discover {
 .tr-menu .navbar-nav li a:focus i,
 .tr-menu li.active .sub-menu li a:hover,
 .tr-menu li.active .sub-menu li.active>a,
-.navbar-default .navbar-nav>.open>a, 
-.navbar-default .navbar-nav>.open>a:focus, 
-.navbar-default .navbar-nav>.open>a:hover,
+.navbar-light .navbar-nav>.open>a, 
+.navbar-light .navbar-nav>.open>a:focus, 
+.navbar-light .navbar-nav>.open>a:hover,
 .tr-menu.menu-style-two .navbar-nav li a:hover,
 .tr-menu.menu-style-two .navbar-nav li.active,
 .tr-menu.menu-style-two .navbar-nav li.active>a,
@@ -566,29 +570,29 @@ span.discover {
 
 /* Navbar Toggle */
 
-.tr-menu .navbar-toggle {
+.tr-menu .navbar-toggler {
 	border-color: #ff0000;
 }	
 
-.tr-menu .navbar-toggle .icon-bar {
+.tr-menu .navbar-toggler .icon-bar {
 	background-color: #ff0000;
 }
 
-.tr-menu .navbar-toggle:focus, 
-.tr-menu .navbar-toggle:hover {
+.tr-menu .navbar-toggler:focus, 
+.tr-menu .navbar-toggler:hover {
 	background-color: transparent;
 }
 
-.toggle-white.navbar-toggle {
+.toggle-white.navbar-toggler {
 	border-color: #fff;
 }
 
-.toggle-white.navbar-toggle .icon-bar {
+.toggle-white.navbar-toggler .icon-bar {
 	background-color: #fff;
 }
 
-.toggle-white.navbar-toggle:focus,
-.toggle-white.navbar-toggle:hover {
+.toggle-white.navbar-toggler:focus,
+.toggle-white.navbar-toggler:hover {
 	background-color: transparent;
 }
 
@@ -597,11 +601,11 @@ span.discover {
 	padding: 20px 0;
 }
 
-.tr-menu .navbar-default .feed li a i {
+.tr-menu .navbar-light .feed li a i {
 	margin-right: 0;
 }
 
-.tr-menu .navbar-default .feed li a {
+.tr-menu .navbar-light .feed li a {
 	transition: inherit;
 	color: #696969;
 }
@@ -711,20 +715,20 @@ ul.sub-menu .sub-menu-2 {
 	border-top-color: #7a559f;
 }
 
-.homepage-1 .navbar-default li.active .sub-menu li a {
+.homepage-1 .navbar-light li.active .sub-menu li a {
 	color: #696969;
 }
 
-.tr-menu.sidebar-menu-two .navbar-default li.active a, 
-.tr-menu.sidebar-menu-two .navbar-default li.active a i, 
-.tr-menu.sidebar-menu-two .navbar-default li a:hover, 
-.tr-menu.sidebar-menu-two .navbar-default li a:focus, 
-.tr-menu.sidebar-menu-two .navbar-default li a:focus i, 
-.tr-menu.sidebar-menu-two .navbar-default li a:hover i, 
-.tr-menu.sidebar-menu-two .navbar-default li .sub-menu li a:hover, 
-.tr-menu.sidebar-menu-two .navbar-default li.active .sub-menu li a:hover, 
-.tr-menu.sidebar-menu-two .navbar-default li.active .sub-menu li a:focus, 
-.tr-menu.sidebar-menu-two .navbar-default li.active .sub-menu li.active a,
+.tr-menu.sidebar-menu-two .navbar-light li.active a, 
+.tr-menu.sidebar-menu-two .navbar-light li.active a i, 
+.tr-menu.sidebar-menu-two .navbar-light li a:hover, 
+.tr-menu.sidebar-menu-two .navbar-light li a:focus, 
+.tr-menu.sidebar-menu-two .navbar-light li a:focus i, 
+.tr-menu.sidebar-menu-two .navbar-light li a:hover i, 
+.tr-menu.sidebar-menu-two .navbar-light li .sub-menu li a:hover, 
+.tr-menu.sidebar-menu-two .navbar-light li.active .sub-menu li a:hover, 
+.tr-menu.sidebar-menu-two .navbar-light li.active .sub-menu li a:focus, 
+.tr-menu.sidebar-menu-two .navbar-light li.active .sub-menu li.active a,
 .homepage-1 #footer a:hover, 
 .homepage-1 .copyright a:hover {
 	color: #7a559f;
@@ -1074,7 +1078,7 @@ ul.sub-menu .sub-menu-2 {
 	display: inline-block;
 }
 
-.topbar-two .pull-left>ul {
+.topbar-two .float-left>ul {
 	float: left;
 	margin-top: 15px;
 }
@@ -1227,7 +1231,7 @@ ul.sub-menu .sub-menu-2 {
   a.btn {
     color: #fff;
 
-    &.btn-default {color: #333}
+    &.btn-secondary {color: #333}
   }
 }
 
@@ -1289,22 +1293,22 @@ ul.sub-menu .sub-menu-2 {
 }
 
 a:hover i.fa-facebook,
-.navbar-default .feed li a:hover i.fa-facebook {
+.navbar-light .feed li a:hover i.fa-facebook {
 	color: #3b5998;
 }
 
 a:hover i.fa-twitter,
-.navbar-default .feed li a:hover i.fa-twitter {
+.navbar-light .feed li a:hover i.fa-twitter {
 	color: #00aced;
 }
 
 a:hover i.fa-google-plus,
-.navbar-default .feed li a:hover i.fa-google-plus {
+.navbar-light .feed li a:hover i.fa-google-plus {
 	color: #CA3E27;
 }
 
 a:hover i.fa-rss,
-.navbar-default .feed li a:hover i.fa-rss {
+.navbar-light .feed li a:hover i.fa-rss {
 	color: #ee802f;
 }
 
@@ -1686,11 +1690,11 @@ a:hover i.fa-rss,
 	width: 33.3%;
 } 
 
-.league-result li ul li .pull-left {
+.league-result li ul li .float-left {
 	text-align: left;
 } 
 
-.league-result li ul li .pull-right {
+.league-result li ul li .float-right {
 	text-align: right;
 } 
 
@@ -2017,17 +2021,17 @@ a:hover i.fa-rss,
 	margin-left: 20px;
 }
 
-.meta-widget .nav-tabs {
+.meta-widget .nav-pills {
 	border-radius: 0;
 	margin-bottom: 5px;
 	border-bottom:1px solid #f2f3f5;
 }
 
-.meta-widget .nav-tabs li {
+.meta-widget .nav-pills li {
 	margin-bottom: 0;
 }
 
-.meta-widget .nav-tabs li>a {
+.meta-widget .nav-pills li>a {
 	color: #999999;
 	font-size: 12px;
 	border-radius: 0;
@@ -2041,14 +2045,14 @@ a:hover i.fa-rss,
 	font-weight: 500;
 }
 
-.meta-widget .nav-tabs li>a i {
+.meta-widget .nav-pills li>a i {
 	margin-right: 10px;
 }
 
-.meta-widget .nav-tabs li.active>a, 
-.meta-widget .nav-tabs li a:hover, 
-.meta-widget .nav-tabs li.active>a:focus, 
-.meta-widget .nav-tabs li.active>a:hover {
+.meta-widget .nav-pills li.active>a, 
+.meta-widget .nav-pills li a:hover, 
+.meta-widget .nav-pills li.active>a:focus, 
+.meta-widget .nav-pills li.active>a:hover {
 	color: #fff;
 	border-left: none;
 	border-right: none;
@@ -2061,10 +2065,10 @@ a:hover i.fa-rss,
 	color: #7a559f;
 }
 
-.meta-color .nav-tabs li.active>a, 
-.meta-color .nav-tabs li a:hover, 
-.meta-color .nav-tabs li.active>a:focus, 
-.meta-color .nav-tabs li.active>a:hover {
+.meta-color .nav-pills li.active>a, 
+.meta-color .nav-pills li a:hover, 
+.meta-color .nav-pills li.active>a:focus, 
+.meta-color .nav-pills li.active>a:hover {
 	color: #fff;
 	border-left: none;
 	border-right: none;
@@ -2417,12 +2421,10 @@ a:hover i.fa-rss,
 .local-events {
   color: #afb1b2;
 
-  .nav-tabs {
+  .nav-pills {
     margin:30px 0 20px;
     border: 0;
-    position: relative;
     min-height: 24px;
-    display: block;
 
     &:after {
        position: absolute;
@@ -2440,7 +2442,7 @@ a:hover i.fa-rss,
     &:last-child {margin-right: 0;}
   }
 
-  .nav-tabs>li>a {
+  .nav-pills>li>a {
     font-size: 14px;
     color: #000;
     text-transform: uppercase;
@@ -2451,25 +2453,25 @@ a:hover i.fa-rss,
     display: inline;
   }
 
-  .nav-tabs>li:last-child a {margin-right: 0;}
+  .nav-pills>li:last-child a {margin-right: 0;}
 
-  .nav-tabs>li.active>a {
+  .nav-pills>li.active>a {
     &, &:focus, &:hover {
       border: none;
       background-color: $primary-bg-color;
     }
   }
   &.local-events-index {
-    .nav-tabs { margin:0 0 20px; }
-    .nav-tabs li { margin-bottom:20px; }
+    .nav-pills { margin:0 0 20px; }
+    .nav-pills li { margin-bottom:20px; }
 
-    .nav-tabs>li>a {
+    .nav-pills>li>a {
       &, &:focus, &:hover {
         background-color: #fff;
         color: #333;
       }
     }
-    .nav-tabs>li.active>a {
+    .nav-pills>li.active>a {
       &, &:focus, &:hover {
         background-color: #ed1c24;
         color: #fff;
@@ -2717,7 +2719,7 @@ textarea.form-control {
   border-radius: 0;
   text-transform: uppercase;
 
-  &.btn-default {
+  &.btn-secondary {
     background-color: #eee;
     border-color: #ddd;
     color: #666;
@@ -2940,7 +2942,7 @@ textarea.form-control {
 }
 
 .trending-news:before,
-.tr-post-tab .nav-tabs:before {
+.tr-post-tab .nav-pills:before {
 	position: absolute;
 	content: "";
 	top: 0;
@@ -3033,19 +3035,19 @@ textarea.form-control {
 
 /* Tr Post Tab */
 
-.tr-post-tab .nav-tabs {
+.tr-post-tab .nav-pills {
 	background-color: #f1f1f1;
 	border-top: 1px solid #cecece;
 	border-bottom: 0;
 	position: relative;
 }
 
-.tr-post-tab .nav-tabs:before {
+.tr-post-tab .nav-pills:before {
 	top: -1px;
 	right: -100%;
 }
 
-.tr-post-tab .nav-tabs li a {
+.tr-post-tab .nav-pills li a {
 	font-size: 12px;
 	color: #9c9c9c;
 	border: 0;
@@ -3056,7 +3058,7 @@ textarea.form-control {
 	position: relative;
 }
 
-.tr-post-tab .nav-tabs li a:after {
+.tr-post-tab .nav-pills li a:after {
 	position: absolute;
 	content: "";
 	bottom: 0;
@@ -3068,20 +3070,20 @@ textarea.form-control {
     opacity: 0;
 }
 
-.tr-post-tab .nav-tabs>li.active>a,
-.tr-post-tab .nav-tabs li a:hover, 
-.tr-post-tab .nav-tabs>li.active>a:focus, 
-.tr-post-tab .nav-tabs>li.active>a:hover {
+.tr-post-tab .nav-pills>li.active>a,
+.tr-post-tab .nav-pills li a:hover, 
+.tr-post-tab .nav-pills>li.active>a:focus, 
+.tr-post-tab .nav-pills>li.active>a:hover {
 	background-color: #fff;
 	color: #616161;
 	border: 0;
 	border-radius: 0;
 }
 
-.tr-post-tab .nav-tabs>li.active>a:after,
-.tr-post-tab .nav-tabs li a:hover:after, 
-.tr-post-tab .nav-tabs>li.active>a:focus:after, 
-.tr-post-tab .nav-tabs>li.active>a:hover:after {
+.tr-post-tab .nav-pills>li.active>a:after,
+.tr-post-tab .nav-pills li a:hover:after, 
+.tr-post-tab .nav-pills>li.active>a:focus:after, 
+.tr-post-tab .nav-pills>li.active>a:hover:after {
 	opacity: 1;
 	bottom: -4px;
 }
@@ -3760,13 +3762,13 @@ input[type="radio"]:checked + label:before {
   Extra Css
  ========================================================================== */
 
-a, .navbar-default li a i,
+a, .navbar-light li a i,
 .carousel-indicators li,
 .gallery-indicators li img, .overlay,
 .entry-header img, .post-content .author img,
 .feed a:hover i,
 .owl-next, .owl-next, .small-post-list>li,
-.nav-tabs li a:hover:after, .slick-prev,
+.nav-pills li a:hover:after, .slick-prev,
 .slick-next, .slick-prev:before,
 .slick-next:before, .btn.btn-primary,
 .tr-box-shadow, .form-control, .icon,

@@ -2,12 +2,12 @@
   .tr-post
     .row
     .entry-header
-      .col-md-3.col-xs-6
+      .col-md-3.col-6
         .entry-header
           .entry-thumbnail
             = link_to big_place do
-              = image_tag big_place.photos.first.slide(:thumb), class: 'img-responsive' unless big_place.photos.pluck(:id).empty?
-      .col-md-9.col-xs-6
+              = image_tag big_place.photos.first.slide(:thumb), class: 'img-fluid' unless big_place.photos.pluck(:id).empty?
+      .col-md-9.col-6
         .post-content
           .entry-meta
             %ul

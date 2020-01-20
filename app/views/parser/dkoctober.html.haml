@@ -3,13 +3,13 @@
     - source = link.at_css('.btn').attr('href')
     - p = Nokogiri::HTML(open(source.to_s))
     .row.well
-      .col-xs-2
+      .col-2
         - img = p.at_css('.wp-post-image')
         - unless img.nil?
           - img = img.attr('src')
           = link_to image_tag(img), img, class: 'thumbnail gallery', rel: 'gallery1'
 
-      .col-xs-9
+      .col-9
         %h3= link_to 'link', link.at_css('.btn').attr('href')
         %h5= p.at_css('.page h1').text
         %p= date= p.at_css('.dateinfo').text.squish
@@ -17,7 +17,7 @@
         %p= /\d{2}:\d{2}/.match(date)
         %p= date
 
-      .col-xs-12
+      .col-12
         %hr
         - text = p.css('.page p')
         - text.search('a').remove

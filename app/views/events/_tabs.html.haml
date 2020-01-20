@@ -1,32 +1,32 @@
 .row
   .col-sm-12
     .local-events.local-events-index
-      %ul.nav.nav-tabs(role='tablist')
+      %ul.nav.nav-pills
         - if current_user && (current_user.role? :admin)
-          %li.hidden{ class: params[:action] == 'calendar'? 'active' : nil }
-            = link_to(calendar_events_path, style: 'border-bottom:0;font-size:18px;') do
+          %li.nav-item.d-none{ class: params[:action] == 'calendar'? 'active' : nil }
+            = link_to(calendar_events_path, class: 'nav-link', style: 'border-bottom:0;font-size:18px;') do
               = fa_icon 'calendar-alt'
-          %li{ role: 'presentation', class: params[:by] == 'created'? 'active' : nil }
-            = link_to t('sort.by_created'), events_path(by: 'created')
-        %li{ role: 'presentation', class: !params[:by] && !params[:by_user] && params[:action] == 'index'? 'active' : nil }
-          = link_to t('sort_by.coming'), events_path
-        %li{ role: 'presentation', class: params[:action] == 'archive' ? 'active' : nil }
-          = link_to t('sort_by.last'), archive_events_path
-        %li{ role: 'presentation', class: params[:by] == 'rate'? 'active' : nil }
-          = link_to t('sort_by.rate'), events_path(by: 'rate')
+          %li.nav-item{ class: params[:by] == 'created'? 'active' : nil }
+            = link_to t('sort.by_created'), events_path(by: 'created'), class: 'nav-link'
+        %li.nav-item{ class: !params[:by] && !params[:by_user] && params[:action] == 'index'? 'active' : nil }
+          = link_to t('sort_by.coming'), events_path, class: 'nav-link'
+        %li.nav-item{ class: params[:action] == 'archive' ? 'active' : nil }
+          = link_to t('sort_by.last'), archive_events_path, class: 'nav-link'
+        %li.nav-item{ class: params[:by] == 'rate'? 'active' : nil }
+          = link_to t('sort_by.rate'), events_path(by: 'rate'), class: 'nav-link'
         - if params[:by_user]
-          %li.active= link_to "#{t('sort_by.author')} #{params[:by_user]}", "#"
+          %li.nav-item.active= link_to "#{t('sort_by.author')} #{params[:by_user]}", "#", class: 'nav-link'
         - if user_signed_in?
-          %li{ role: 'presentation', class: params[:by] == 'owner'? 'active' : nil }
-            = link_to t('sort_by.owner'), events_path(by: 'owner')
+          %li.nav-item{ class: params[:by] == 'owner'? 'active' : nil }
+            = link_to t('sort_by.owner'), events_path(by: 'owner'), class: 'nav-link'
           - if current_user.role? :admin
-            %li.dropdown{ role: 'presentation' }
-              = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false'  } do
+            %li.nav-item.dropdown
+              = link_to '#', class: 'dropdown-toggle nav-link', data: { toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false'  } do
                 Admin
                 %span.caret
               %ul.dropdown-menu
                 %li= link_to 'Hidden/New', admin_events_path
-                %li.divider(role='separator')
+                %li.dropdown-divider
                 %li= link_to 'dkoctober',       parse_events_path,          method: :post
                 %li= link_to 'lepse',           parse_lepse_events_path,    method: :post
                 %li= link_to 'karl marks',      parse_karl_events_path,     method: :post

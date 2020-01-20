@@ -6,7 +6,7 @@
 = render 'tabs'
 
 .row
-  .col-sm-9.col-sm-push-3#events.tr-padding-0
+  .col-sm-9.order-sm-3#events.tr-padding-0
     = render partial: 'events/event', collection: @events, locals: { event_class: 'col-lg-3 col-md-4 col-sm-6', lazy: true }
 
   .col-sm-3.col-sm-pull-9.tr-sticky

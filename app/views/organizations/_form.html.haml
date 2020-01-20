@@ -21,7 +21,7 @@
     = render 'address_fields', f: address
 
   = f.form_group do
-    = link_to_add_association t('address.add'), f, :addresses, class: 'btn btn-default'
+    = link_to_add_association t('address.add'), f, :addresses, class: 'btn btn-secondary'
 
   - if current_user&.role? :admin
     .well
@@ -36,4 +36,4 @@
 
   = f.form_group do
     = f.primary t('actions.save')
-    = link_to t('actions.cancel'), categories_path, class: 'btn btn-default'
+    = link_to t('actions.cancel'), categories_path, class: 'btn btn-secondary'

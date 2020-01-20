@@ -1,5 +1,5 @@
 = search_form_for @q do |f|
-  .input-group.col-xs-12
+  .input-group.col-12
     = f.search_field :casetitle_cont_any, class: 'form-control', placeholder: t('search.link')
     .input-group-btn
       = f.button(type: 'submit', class: 'btn btn-primary' ) do

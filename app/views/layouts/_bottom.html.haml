@@ -11,13 +11,13 @@
               %li= link_to t('helper'), categories_path
               %li= link_to t('users.title'), users_path
               %li= link_to t('live.title'), places_path
-        .col-sm-3.col-sm-offset-7
+        .col-sm-3.offset-sm-7
           .widget
             %ul
-              - %i[about, sponsor].each do |page_name|
+              - %i[about sponsor].each do |page_name|
                 %li= link_to t(page_name), static_page_path(page_name)
         .col-sm-12
-          .text-center= link_to t('note.add'),new_note_path, class: 'btn btn-default btn-xs btn-primary'
+          .text-center= link_to t('note.add'),new_note_path, class: 'btn btn-secondary btn-sm btn-primary'
 
   .footer-bottom.text-center
     .container

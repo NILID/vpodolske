@@ -4,11 +4,11 @@
   index: true
 
 .row.tr-content
-  .col-xs-12
+  .col-12
     .tr-section
-      = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary col-md-4 col-xs-12'
-      .col-md-4
-      = link_to t('events.add'), new_event_path, class: 'btn btn-primary col-md-4 col-xs-12'
+      .row
+        = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary col mx-5'
+        = link_to t('events.add'), new_event_path, class: 'btn btn-primary col mx-5'
 
 .row.tr-content
   - unless @articles.empty?
@@ -22,22 +22,25 @@
     .tr-section.local-events
       .section-title.title-before
         %h2= link_to t('events.title'), events_path
-      %ul.nav.nav-tabs(role='tablist')
-        %li.active(role='presentation')= link_to t('event.today'), '#today', data: { toggle: 'tab' }, aria: { expanded: true }
-        %li(role='presentation')= link_to t('event.tomorrow'), '#tomorrow', data: { toggle: 'tab' }, aria: { expanded: true }
-        %li(role='presentation')= link_to t('event.soon'), '#soon', data: { toggle: 'tab' }, aria: { expanded: true }
-      .tab-content
-        #today.tab-pane.active.fade.in(role='tabpanel')
+      %ul.nav.nav-tabs#events-tab(role='tablist')
+        %li.nav-item
+          = link_to t('event.today'), '#today',       data: { toggle: 'tab' }, aria: { expanded: true, controls: 'today', selected: 'true' },     class: 'nav-link active', id: 'today-tab'
+        %li.nav-item
+          = link_to t('event.tomorrow'), '#tomorrow', data: { toggle: 'tab' }, aria: { expanded: true, controls: 'tomorrow', selected: 'false' }, class: 'nav-link',        id: 'tomorrow-tab'
+        %li.nav-item
+          = link_to t('event.soon'), '#soon',         data: { toggle: 'tab' }, aria: { expanded: true, controls: 'soon', selected: 'false' },     class: 'nav-link',        id: 'soon-tab'
+      .tab-content#events-tab-content
+        #today.tab-pane.active.fade.show(role='tabpanel' aria-labelledby='today-tab')
           - unless @ev_today.empty?
             = render partial: 'events/event', collection: @ev_today, locals: { event_class: 'col-md-6', lazy: true }
           - else
             %p= t 'shared.empty'
-        #tomorrow.tab-pane.fade.in(role='tabpanel')
+        #tomorrow.tab-pane.fade.in(role='tabpanel' aria-labelledby='tomorrow-tab')
           - unless @ev_tomorrow.empty?
             = render partial: 'events/event', collection: @ev_tomorrow, locals: { event_class: 'col-md-6', lazy: false }
           - else
             %p= t 'shared.empty'
-        #soon.tab-pane.fade.in(role='tabpanel')
+        #soon.tab-pane.fade.in(role='tabpanel' aria-labelledby='soon-tab')
           - unless @ev_soon.empty?
             = render partial: 'events/event', collection: @ev_soon, locals: { event_class: 'col-md-6', lazy: false }
           - else
@@ -61,6 +64,6 @@
             - @users.each do |user|
               %li
                 .entry-meta
-                  .author-image= link_to image_tag(user.profile.avatar(:thumb), class: 'img-responsive'), user
+                  .author-image= link_to image_tag(user.profile.avatar(:thumb), class: 'img-fluid'), user
                   .author-info
                     %h2= link_to user.login, user

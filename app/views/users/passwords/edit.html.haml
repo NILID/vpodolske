@@ -10,7 +10,7 @@
       .form-group
         = f.password_field :password, autofocus: true, class: 'form-control', autocomplete: 'new-password'
         - if @minimum_password_length
-          %p.help-block.small-help= t 'devise.form.min', min: @minimum_password_length
+          %p.form-text.small-help= t 'devise.form.min', min: @minimum_password_length
 
         = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'
 

@@ -1,7 +1,7 @@
 - @pages.each do |page|
   - page.css('#block-system-main .view-content .views-row').each do |link|
     .row.well
-      .col-xs-9
+      .col-9
         %h5= title = link.at_css('.views-field-title .field-content a').text
         %p= link.at_css('.views-field-body .field-content').text
         %p= image_tag(link.at_css('.views-field-field-slide img').attr(:src)) if link.at_css('.views-field-field-slide img')

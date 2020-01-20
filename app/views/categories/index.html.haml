@@ -19,22 +19,22 @@
         - if current_user
           - orgs = current_user.organizations
           - if orgs
-            %table.table.table-condensed
+            %table.table.table-sm
               - orgs.each do |org|
                 %tr
                   %td
                     = link_to org.title, org
                     - if org.status? 'hidden'
-                      %span.label.label-warning= t 'organizations.check_short'
+                      %span.badge.badge-warning= t 'organizations.check_short'
 
 .row
   .col-sm-12
     .tr-section
       .row
-        .col-xs-12.col-sm-6
+        .col-12.col-sm-6
           .section-title.title-before.clearfix
             %h1= t 'categories.title'
-        .col-xs-12.col-sm-6= render 'organizations/search_form'
+        .col-12.col-sm-6= render 'organizations/search_form'
 
   = render 'admin_panel' if can? :manage, Category
 
@@ -47,14 +47,14 @@
             %h4
               = link_to category.title, category_path(category)
               - if can? :manage, category
-                .btn-group.pull-right
-                  %button.btn.btn-xs.btn-default.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                .btn-group.float-right
+                  %button.btn.btn-sm.btn-secondary.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
                     %span.fa.fa-cog
                     %span.caret
                   %ul.dropdown-menu
                     %li= link_to t('categories.new'), new_category_path(parent_id: category.id)
                     %li= link_to t('actions.edit'), edit_category_path(category)
                     %li= link_to t('actions.del'), category, method: :delete, data: { confirm: t('actions.sure') }
-          %table.table.table-condensed
+          %table.table.table-sm
             = render partial: 'categories/descendant', collection: category.descendants.order(:title)
 = render 'main/toplink'

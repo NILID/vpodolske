@@ -1,6 +1,6 @@
 - @page.css('.timetable-single').each do |link|
   .row.well
-    .col-xs-12
+    .col-12
       %h5= link.at_css('.timetable-single-description h3').text
       %p.well
         = raw link.css('.timetable-single-description p').text

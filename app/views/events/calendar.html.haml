@@ -7,10 +7,10 @@
 
 #calendar
   %h2#month
-    = link_to(calendar_events_path(month: (@date.beginning_of_month-1).strftime("%Y-%m-01")), class: 'btn btn-default') do
+    = link_to(calendar_events_path(month: (@date.beginning_of_month-1).strftime("%Y-%m-01")), class: 'btn btn-secondary') do
       = fa_icon 'chevron-left'
     = Russian::strftime(@date, "%B %Y")
-    = link_to(calendar_events_path(month: (@date.end_of_month+1).strftime("%Y-%m-01")), class: 'btn btn-default') do
+    = link_to(calendar_events_path(month: (@date.end_of_month+1).strftime("%Y-%m-01")), class: 'btn btn-secondary') do
       = fa_icon 'chevron-right'
   = calendar_for @events, year: @date.year, month: @date.month, first_day_of_week: 1 do |calendar|
     = calendar.head(t('daynames.mon'),t('daynames.tue'),t('daynames.wed'),t('daynames.thu'),t('daynames.fri'),t('daynames.sat'),t('daynames.sun'))

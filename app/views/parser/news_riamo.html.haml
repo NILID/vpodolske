@@ -1,7 +1,7 @@
 - if @page
   - @page.css('.content-container .news-item').each do |link|
     .row.well
-      .col-xs-9
+      .col-9
         %h5= link.at_css('h2').text.squish
         %p
           -  date = link.at_css('time').text.squish

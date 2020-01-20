@@ -1,6 +1,6 @@
 - @page.css('#homelist .col').each do |link|
   .row.well
-    .col-xs-9
+    .col-9
       %h3= link.at_css('h3 a.header').text
       .well
         - url = link.at_css('h3 a.header').attr('href')

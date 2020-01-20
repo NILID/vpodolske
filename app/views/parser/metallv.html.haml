@@ -3,7 +3,7 @@
   - p = Nokogiri::HTML(open(source.to_s), Encoding::UTF_8.to_s)
 
   .row.well
-    .col-xs-9
+    .col-9
       %h5= p.at_css('.article h1', Encoding::UTF_8.to_s).text
       %p.well
         - text = p.css('.article p').text

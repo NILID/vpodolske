@@ -6,7 +6,7 @@
   index: true
 
 .row
-  .col-xs-12.col-sm-5.col-md-4.tr-sticky
+  .col-12.col-sm-5.col-md-4.tr-sticky
     .tr-section
       .section-title.title-before
         %h1= t 'articles.title'
@@ -17,14 +17,14 @@
           = link_to t('actions.add'), new_article_path, class: 'btn btn-primary'
           = link_to t('actions.parse'), parse_articles_path, class: 'btn btn-primary'
 
-  .col-xs-12.col-sm-7.col-md-8
+  .col-12.col-sm-7.col-md-8
     .tr-section.news
       .row
-        .col-xs-12.col-md-5
+        .col-12.col-md-5
           = render 'articles/search_form'
         - unless check_articles_empty
-          .col-xs-12.col-md-7
-            .pull-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
+          .col-12.col-md-7
+            .float-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
       - unless check_articles_empty
         %table.table.table-hover.table-striped
           = render partial: 'article_admin', collection: @articles
@@ -32,7 +32,7 @@
         %strong= t 'search.no_results'
 
       - unless check_articles_empty
-        .pull-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
+        .float-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
 
 - unless check_articles_empty
   = render 'main/toplink'

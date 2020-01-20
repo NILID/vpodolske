@@ -4,9 +4,9 @@
       .entry-thumbnail
         = link_to event do
           - if lazy
-            = image_tag asset_url('grey.gif'), class: 'img-responsive b-lazy', data: { src: event.src(:thumb), src_small: event.src(:thumb)}, alt: event.title
+            = image_tag asset_url('grey.gif'), class: 'img-fluid b-lazy', data: { src: event.src(:thumb), src_small: event.src(:thumb)}, alt: event.title
           - else
-            = image_tag event.src(:thumb), class: 'img-responsive', alt: event.title
+            = image_tag event.src(:thumb), class: 'img-fluid', alt: event.title
 
     .post-content
       %span.catagory{ data: { animation: 'animated fadeInUp' } }
