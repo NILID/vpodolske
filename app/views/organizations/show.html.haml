@@ -6,16 +6,16 @@
 .row.tr-content
   .col-12
     .tr-section
-      %ul.nav.nav-pills
-        - @categories.each do |c|
-          %li= link_to c.title, c
+      %ul.nav
+        - @categories.each do |category|
+          %li.nav-item= link_to category.title, category, class: 'nav-link'
 
 .row.tr-content
   .col-12.col-sm-6.col-md-4.col-lg-3.tr-sticky
     .tr-section
       .section-title.title-before
         %h1= @organization.title
-      = image_tag @organization.logo.url, class: 'center-block img-fluid', alt: @organization.title unless @organization.logo.nil?
+      = image_tag(@organization.logo.url, class: 'center-block img-fluid', alt: @organization.title) if @organization.logo?
 
     - if @addresses.size > 0
       .tr-section
