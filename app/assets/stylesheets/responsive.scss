@@ -1,15 +1,11 @@
 @import 'mixins';
 
+
 /* lg */
 @media (min-width: 1200px) {
-  .masonry[data-columns]::before {
-    content: '3 .col-4';
+  .card-columns {
+    column-count: 3;
   }
-
-  .other-organizations-columns[data-columns]::before {
-    content: '3 .col-4';
-  }
-
 
 	.gallery-indicators li,
 	.gallery-indicators li.active {
@@ -20,12 +16,8 @@
 
 /* md */
 @media (min-width: 992px) and (max-width: 1199px) {
-  .masonry[data-columns]::before {
-    content: '3 .col-4';
-  }
-
-  .other-organizations-columns[data-columns]::before {
-    content: '2 .col-6';
+  .card-columns {
+    column-count: 3;
   }
 
 	.tr-menu.sidebar-menu .navbar-light {
@@ -205,12 +197,8 @@
 
 /* sm */
 @media(max-width: 768px) {
-  .masonry[data-columns]::before {
-    content: '1 .col-12';
-  }
-
-  .other-organizations-columns[data-columns]::before {
-    content: '1 .col-12';
+  .card-columns {
+    column-count: 1;
   }
 
 	.tr-live-match>ul {
@@ -238,13 +226,8 @@
 
 /* sm */
 @media (min-width: 768px) and (max-width: 991px) {
-
-  .masonry[data-columns]::before {
-    content: '2 .col-6';
-  }
-
-  .other-organizations-columns[data-columns]::before {
-    content: '1 .col-12';
+  .card-columns {
+    column-count: 2;
   }
 
 	.entry-title {

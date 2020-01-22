@@ -38,22 +38,23 @@
 
   = render 'admin_panel' if can? :manage, Category
 
-.row.masonry(data-columns='1')
-  - @categories.each do |category|
-    %div
-      .tr-widget
-        .tr-section
-          .section-title.title-before
-            %h4
-              = link_to category.title, category_path(category)
-              - if can? :manage, category
-                .btn-group.float-right
-                  %button.btn.btn-sm.btn-secondary.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-                    %span.fa.fa-cog
-                  .dropdown-menu.dropdown-menu-right
-                    = link_to t('categories.new'), new_category_path(parent_id: category.id), class: 'dropdown-item'
-                    = link_to t('actions.edit'), edit_category_path(category), class: 'dropdown-item'
-                    = link_to t('actions.del'), category, method: :delete, data: { confirm: t('actions.sure') }, class: 'dropdown-item'
-          %table.table.table-sm
-            = render partial: 'categories/descendant', collection: category.descendants.order(:title)
+.row
+  .col
+    .card-columns
+      - @categories.each do |category|
+        .card
+          .card-body
+            .section-title.title-before
+              %h4
+                = link_to category.title, category_path(category)
+                - if can? :manage, category
+                  .btn-group.float-right
+                    %button.btn.btn-sm.btn-secondary.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                      %span.fa.fa-cog
+                    .dropdown-menu.dropdown-menu-right
+                      = link_to t('categories.new'), new_category_path(parent_id: category.id), class: 'dropdown-item'
+                      = link_to t('actions.edit'), edit_category_path(category), class: 'dropdown-item'
+                      = link_to t('actions.del'), category, method: :delete, data: { confirm: t('actions.sure') }, class: 'dropdown-item'
+            %table.table.table-sm.mb-0
+              = render partial: 'categories/descendant', collection: category.descendants.order(:title)
 = render 'main/toplink'
