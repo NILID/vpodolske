@@ -5,12 +5,12 @@
 #bugForm.modal.fade(tabinfdex='-1' role='dialog' aria-labelledby="bugFormLabel")
   .modal-dialog(role='document')
     .modal-content.text-left
-      .modal-body= t 'bugs.about'
-      = bootstrap_form_for Bug.new, remote: true do |f|
-        = f.hidden_field :url, value: request.original_url
-        #bug_errors
+      .modal-body
+        .text-muted.mb-4= t 'bugs.about'
+        = bootstrap_form_for Bug.new, remote: true do |f|
+          = f.hidden_field :url, value: request.original_url
+          #bug_errors
 
-        .modal-body
           = f.text_area :content, hide_label: true, placeholder: Bug.human_attribute_name(:content)
           = f.primary t(:send)
           %button.btn.btn-secondary(data-dismiss='modal')= t :close
