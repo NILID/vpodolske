@@ -101,7 +101,7 @@ gem 'russian'
 gem 'i18n'
 
 gem 'acts-as-taggable-on'
-gem 'bootstrap_form', '~> 2.7'
+gem 'bootstrap_form', '~> 4.0'
 
 gem 'meta-tags', require: 'meta_tags'
 

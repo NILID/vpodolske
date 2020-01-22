@@ -74,7 +74,9 @@ GEM
       msgpack (~> 1.0)
     bootstrap3-datetimepicker-rails (4.17.47)
       momentjs-rails (>= 2.8.1)
-    bootstrap_form (2.7.0)
+    bootstrap_form (4.3.0)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     builder (3.2.4)
     bullet (6.1.0)
       activesupport (>= 3.0.0)
@@ -478,7 +480,7 @@ DEPENDENCIES
   animate-rails
   bootsnap (>= 1.1.0)
   bootstrap3-datetimepicker-rails (~> 4.17.47)
-  bootstrap_form (~> 2.7)
+  bootstrap_form (~> 4.0)
   bullet
   byebug
   cancancan
