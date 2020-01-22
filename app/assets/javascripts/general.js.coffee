@@ -1,4 +1,8 @@
 $ ->
+
+  $('#top-link-block').on 'click', ->
+    $("html, body").animate({scrollTop: 0}, "slow")
+
   $('.select2-token').select2
     multiple: true
     minimumInputLength: 2
@@ -46,9 +50,6 @@ $ ->
     current_item = window.location.hash.substr(1)
     if current_item
       $('#' + current_item).addClass('info')
-
-  if $(window).height() + 100 < $(document).height()
-    $('#top-link-block').affix offset: top: 100
 
   $('#diff-container').twentytwenty
     before_label: 'До'

@@ -3792,7 +3792,7 @@ a, .navbar-light li a i,
 }
 
 .aside-menu li a {
-	padding: 5px;
+  padding: 5px;
 }
 
 .center-block {
@@ -3811,17 +3811,6 @@ a, .navbar-light li a i,
 
 .link-hover {
   cursor: pointer;
-}
-
-#top-link-block {
-  &.affix-top {
-    position:absolute;
-    bottom: -82px;
-    left: 10px;
-  }
-  &.affix {bottom: 28px;left: 10px;}
-
-  &:hover a, &:focus a, & a:active, & a:visited, & a:link {text-decoration:none;}
 }
 
 .carousel-item {
