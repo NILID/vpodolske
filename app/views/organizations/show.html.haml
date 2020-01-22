@@ -105,21 +105,21 @@
       .section-title
         .title-strong
           %span= t 'comments.title'
+    .card
+      .card-body
+        = bootstrap_form_for [@organization, Comment.new], remote: true, html: { method: :post, class: 'contact-form' } do |f|
+          .form-errors
+          = f.text_area :content, hide_label: true, placeholder: t('comments.textarea_html', title: @organization.title)
 
-      = bootstrap_form_for [@organization, Comment.new], remote: true, html: { method: :post, class: 'contact-form' } do |f|
-        .form-errors
-        = f.text_area :content, hide_label: true, placeholder: t('comments.textarea_html', title: @organization.title)
-
-        - unless user_signed_in?
+          - unless user_signed_in?
+            .float-right
+              = f.form_group do
+                = recaptcha_tags hl: 'ru'
+            .clearfix
           .float-right
-            = f.form_group do
-              = recaptcha_tags hl: 'ru'
-          .clearfix
-        .float-right
-          = f.primary t('actions.create')
-
-      %ul.post-comment#comments
-        = render @comments, commentable: @organization, show_commentable: false
+            = f.primary t('actions.create')
+        .post-comment#comments
+          = render @comments, commentable: @organization, show_commentable: false
 
   .col-12.col-sm-12.col-md-3.col-lg-3
     .tr-section

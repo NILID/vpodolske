@@ -1,21 +1,23 @@
-= content_tag_for :li, comment do
-  .commenter-avatar
+= content_tag_for(:div, comment, class: 'media mb-4') do
+  .mr-3
     - if comment.user
       = link_to comment.user do
         = image_tag comment.user.profile.avatar(:thumb), class: 'img-fluid rounded-circle'
     - else
       = image_tag image_url('missing_m.png'), class: 'img-fluid rounded-circle'
   .media-body
-    .comment-title
-      - if comment.user
-        = link_to comment.user.login, comment.user
-      - else
-        = t 'users.inkognito'
-      %span
-        = rusdatecom comment.created_at
-
+    .row
+      .col-auto
+        .h5
+          - if comment.user
+            = link_to comment.user.login, comment.user
+          - else
+            = t 'users.inkognito'
+          %span.h6
+            = rusdatecom comment.created_at
       - if show_commentable
-        .float-right= link_to comment.commentable.title, comment.commentable
+        .col
+          = link_to comment.commentable.title, comment.commentable
 
     %p= comment.content
     = yield if block_given?

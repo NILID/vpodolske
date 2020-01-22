@@ -3,23 +3,20 @@
   keywords: t('baseseo.main.words'),
   index: true
 
-.row.tr-content
-  .col-12
-    .tr-section
-      .row
-        = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary col mx-5'
-        = link_to t('events.add'), new_event_path, class: 'btn btn-primary col mx-5'
+.row.mb-4
+  = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary col mx-5'
+  = link_to t('events.add'), new_event_path, class: 'btn btn-primary col mx-5'
 
-.row.tr-content
+.card-columns-main
   - unless @articles.empty?
-    .col-sm-6.medium-post-responsive
-      .tr-section
+    .card.mb-3
+      .card-body
         .section-title.title-before
           %h2= link_to t('articles.last'), articles_path
-        %table.table= render @articles
+        %table.table.mb-0= render @articles
 
-  .col-sm-6
-    .tr-section.local-events
+  .card.mb-3
+    .card-body.local-events
       .section-title.title-before
         %h2= link_to t('events.title'), events_path
       %ul.nav.nav-tabs#events-tab(role='tablist')
@@ -50,23 +47,24 @@
             %p.mt-4= t 'shared.empty'
 
   - if @comments.size > 0
-    .col-sm-6
-      .tr-section.local-events
+    .card.mb-3
+      .card-body
         .section-title.title-before
           %h2= t('comments.new_list')
-        %ul.post-comment.post-comment-mini
-          = render @comments, show_commentable: true
+        = render @comments, show_commentable: true
 
-  .col-sm-3.tr-sidebar
-    - unless @users.empty?
-      .tr-widget.meta-widget
-        .widget-title.title-before
-          %span= t :newusers
-        .tab-content
-          %ul.authors-post
-            - @users.each do |user|
-              %li
-                .entry-meta
-                  .author-image= link_to image_tag(user.profile.avatar(:thumb), class: 'img-fluid'), user
-                  .author-info
-                    %h2= link_to user.login, user
+  - unless @users.empty?
+    .card.mb-3
+      .card-body
+        .section-title.title-before
+          %h2= t :newusers
+
+        .row.justify-content-center
+          - @users.each do |user|
+            = link_to user, class: 'col-sm-3 m-sm-auto' do
+              .row.align-items-center
+                .col-4
+                  = image_tag user.profile.avatar(:thumb), class: 'rounded-circle imf-fluid'
+
+                .col-8
+                  .h6.text-muted= user.login

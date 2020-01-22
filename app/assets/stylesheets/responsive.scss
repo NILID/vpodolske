@@ -1,5 +1,10 @@
 @import 'mixins';
 
+.card-columns-main {
+  column-count: 2;
+}
+
+
 
 /* lg */
 @media (min-width: 1200px) {
@@ -942,6 +947,11 @@
 
 /* XS Portrait */
 @media (max-width: 479px) {
+  .card-columns-main {
+    column-count: 1;
+  }
+
+
   .g-recaptcha {
     transform: scale(.77);
     -webkit-transform: scale(.77);

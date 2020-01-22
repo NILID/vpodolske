@@ -15,7 +15,7 @@ class MainController < ApplicationController
                     .order(Arel.sql('random()'))
                     .limit(6)
                     .order('eventdate')
-    @users = User.where.not(confirmed_at: nil).includes(:profile).order(created_at: :desc).limit(3)
+    @users = User.where.not(confirmed_at: nil).includes(:profile).order(created_at: :desc).limit(6)
     @articles = Article.order('created_at desc').limit(5)
     @comments = Comment.shown.includes(:user, :commentable).order(created_at: :desc).limit(5)
     # NEWS
