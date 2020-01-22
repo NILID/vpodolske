@@ -22,10 +22,14 @@
           %tbody
             = render partial: 'user_info', collection: @users
       - else
-        %ul
-          - @users.each do |user|
-            = link_to user, class: 'col-4 col-sm-3 col-md-2 col-lg-1' do
-              = image_tag user.profile.avatar(:thumb), class: 'rounded-circle center-block'
-              .text-center
-                = user.login
+        %section
+          .container
+            .row.justify-content-center
+              - @users.each do |user|
+                = link_to user, class: 'col-sm-3 m-sm-auto' do
+                  .row.align-items-center
+                    .col-4
+                      = image_tag user.profile.avatar(:thumb), class: 'rounded-circle imf-fluid'
 
+                    .col-8
+                      .h3.text-muted= user.login
