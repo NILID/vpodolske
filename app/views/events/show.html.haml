@@ -29,24 +29,22 @@
                   %li= link_to @event.user.login, @event.user
                 %li= plural @event.views, 'view'
 
-              .float-right
-                - if (can? :edit, @event) || (can? :destroy, @event)
-                  = link_to('#menu1', class: 'btn btn-secondary btn-sm dropdown-toggle', aria: { expanded: 'false', haspopup: 'true' }, data: { toggle: 'dropdown' }) do
-                    = fa_icon 'cog'
-                  %ul.dropdown-menu
-                    %li
-                      = link_to edit_event_path(@event) do
-                        = fa_icon 'pencil-alt', text: t('actions.edit')
-                    %li
-                      = link_to event_path(@event), confirm: t('actions.sure'), method: :delete do
-                        = fa_icon 'trash', text: t('actions.del')
-                    - if can? :coolme, @event
-                      %li.dropdown-divider
-                      %li
-                        = link_to coolme_event_path(@event), class: 'btn btn-primary', remote: true, method: :put do
-                          = fa_icon 'star', text: @event.cool
-                = render 'events/like_buttons', event: @event
+              .float-right= render 'events/like_buttons', event: @event
             %h1.entry-title= @event.title
+            - if (can? :edit, @event) || (can? :destroy, @event)
+              .dropdown
+                = link_to('#menu1', class: 'btn btn-secondary btn-sm dropdown-toggle', role: 'button', aria: { expanded: 'false', haspopup: 'true' }, data: { toggle: 'dropdown' }) do
+                  = fa_icon 'cog'
+                .dropdown-menu
+                  = link_to edit_event_path(@event), class: 'dropdown-item' do
+                    = fa_icon 'pencil-alt', text: t('actions.edit')
+                  = link_to event_path(@event), confirm: t('actions.sure'), method: :delete, class: 'dropdown-item' do
+                    = fa_icon 'trash', text: t('actions.del')
+                  - if can? :coolme, @event
+                    .dropdown-divider
+                    = link_to coolme_event_path(@event), class: 'btn btn-primary dropdown-item', remote: true, method: :put do
+                      = fa_icon 'star', text: @event.cool
+
         .tr-details
           %p= raw @event.content
           .clearfix

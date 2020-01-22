@@ -20,10 +20,10 @@
       = link_to t('shared.admin'), '#', 'data-toggle' => 'dropdown', class: 'nav-link dropdown-toggle', role: "button", aria: { haspopup: 'true', expanded: 'false'}
       %ul.dropdown-menu
         = link_to t('articles.title'), manager_articles_path, class: 'dropdown-item'
-        = link_to t('comments.title'), comments_path, class: 'dropdown-item'
-        = link_to t('bugs.title'),     bugs_path, class: 'dropdown-item'
-        = link_to t('note.title'),     notes_path, class: 'dropdown-item'
-        = link_to t('admin.letters'),  letters_path, class: 'dropdown-item'
+        = link_to t('comments.title'), comments_path,         class: 'dropdown-item'
+        = link_to t('bugs.title'),     bugs_path,             class: 'dropdown-item'
+        = link_to t('note.title'),     notes_path,            class: 'dropdown-item'
+        = link_to t('admin.letters'),  letters_path,          class: 'dropdown-item'
         - if Rails.env.development?
           .dropdown-divider
           = link_to t('admin.preview_emails'), rails_mailers_path, class: 'dropdown-item'
