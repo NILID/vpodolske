@@ -24,7 +24,7 @@
         - unless check_articles_empty
           .col-12.col-md-7
             .float-right
-              = render partial: 'pagy/nav', locals: { pagy: @pagy }
+              = raw pagy_bootstrap_nav(@pagy)
       - unless check_articles_empty
         %table.table.table-hover.table-striped
           = render @articles
@@ -32,7 +32,8 @@
         %strong= t 'search.no_results'
 
       - unless check_articles_empty
-        .float-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
+        .float-right
+          = raw pagy_bootstrap_nav(@pagy)
 
 - unless check_articles_empty
   = render 'main/toplink'
