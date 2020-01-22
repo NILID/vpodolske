@@ -1,19 +1,14 @@
-%div{ class: event_class }
-  .tr-post.post-content-absolute.tr-post-padding-2
-    .entry-header
-      .entry-thumbnail
-        = link_to event do
-          - if lazy
-            = image_tag asset_url('grey.gif'), class: 'img-fluid b-lazy', data: { src: event.src(:thumb), src_small: event.src(:thumb)}, alt: event.title
-          - else
-            = image_tag event.src(:thumb), class: 'img-fluid', alt: event.title
-
-    .post-content
-      %span.catagory{ data: { animation: 'animated fadeInUp' } }
+.col.mb-4
+  = link_to event, class: 'card h-100' do
+    - if lazy
+      = image_tag asset_url('grey.gif'), class: 'b-lazy card-img-top', data: { src: event.src(:thumb), src_small: event.src(:thumb)}, alt: event.title
+    - else
+      = image_tag event.src(:thumb), class: 'card-img-top', alt: event.title
+    .card-body
+      %p.card-text.text-muted{ data: { animation: 'animated fadeInUp' } }
         - if event.eventdate?
-          = link_to '#' do
-            = rusdate(event.eventdate)
-            - if event.finishdate?
-              \ -
-              = rusdate(event.finishdate)
-      %h2.entry-title= link_to event.title, event
+          = rusdate(event.eventdate)
+          - if event.finishdate?
+            \ -
+            = rusdate(event.finishdate)
+      %h2.h5.card-title= event.title

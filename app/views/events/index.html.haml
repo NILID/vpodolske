@@ -7,7 +7,8 @@
 
 .row
   .col-sm-9.order-sm-3#events.tr-padding-0
-    = render partial: 'events/event', collection: @events, locals: { event_class: 'col-lg-3 col-md-4 col-sm-6', lazy: true }
+    .row.row-cols-1.row-cols-md-3.row-cols-xl-4
+      = render partial: 'events/event', collection: @events, locals: { lazy: true }
 
   .col-sm-3.col-sm-pull-9.tr-sticky
     .tr-section
