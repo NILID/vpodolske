@@ -35,19 +35,19 @@
             .row.row-cols-1.row-cols-md-2
               = render @ev_today, lazy: true
           - else
-            %p= t 'shared.empty'
+            %p.mt-4= t 'shared.empty'
         #tomorrow.tab-pane.fade.in(role='tabpanel' aria-labelledby='tomorrow-tab')
           - unless @ev_tomorrow.empty?
             .row.row-cols-1.row-cols-md-2
               = render @ev_tomorrow, lazy: false
           - else
-            %p= t 'shared.empty'
+            %p.mt-4= t 'shared.empty'
         #soon.tab-pane.fade.in(role='tabpanel' aria-labelledby='soon-tab')
           - unless @ev_soon.empty?
             .row.row-cols-1.row-cols-md-2
               = render @ev_soon, lazy: false
           - else
-            %p= t 'shared.empty'
+            %p.mt-4= t 'shared.empty'
 
   - if @comments.size > 0
     .col-sm-6
