@@ -1,6 +1,6 @@
-= search_form_for @q do |f|
-  .input-group.col-12
+= search_form_for @q, html: { class: 'form-inline' } do |f|
+  .input-group.col-12.px-0
     = f.search_field :casetitle_cont_any, class: 'form-control', placeholder: t('search.link')
-    .input-group-btn
+    .input-group-append
       = f.button(type: 'submit', class: 'btn btn-primary' ) do
         = fa_icon 'search'

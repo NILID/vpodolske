@@ -18,12 +18,13 @@
 
   .col-12.col-sm-8.col-md-9
     .tr-section.news
-      .row
+      .row.mb-3
         .col-12.col-md-5
           = render 'articles/search_form'
         - unless check_articles_empty
           .col-12.col-md-7
-            .float-right= render partial: 'pagy/nav', locals: { pagy: @pagy }
+            .float-right
+              = render partial: 'pagy/nav', locals: { pagy: @pagy }
       - unless check_articles_empty
         %table.table.table-hover.table-striped
           = render @articles
