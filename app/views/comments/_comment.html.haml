@@ -19,5 +19,8 @@
         .col
           = link_to comment.commentable.title, comment.commentable
 
-    %p= comment.content
+    - if show_commentable
+      %p= truncate(comment.content, length: 140)
+    - else
+      %p= comment.content
     = yield if block_given?
