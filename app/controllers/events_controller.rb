@@ -4,10 +4,10 @@ class EventsController < ApplicationController
   def index
     @plustag = t('seo.events.soon')
     if params[:by] == 'rate'
-      @events = Event.where(hidden: false).where('eventdate > ?', Date.yesterday).includes(:user).sort_by{|event| event.votes_for.size}.reverse
+      @events = Event.where(hidden: false).where('eventdate > ?', Date.yesterday).sort_by{|event| event.votes_for.size}.reverse
       @plustag = t('sort_by.rate')
     elsif params[:by] == 'created'
-      @events = Event.where(hidden: false).includes(:user).order(created_at: :desc)
+      @events = Event.where(hidden: false).order(created_at: :desc)
       @plustag = t('sort_by.rate')
     elsif params[:by] == 'owner'
       @user = current_user
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
   end
 
   def archive
-    @events = @events.where(hidden: false).where('eventdate < ?', Date.today).includes(:user).order('eventdate desc')
+    @events = @events.where(hidden: false).where('eventdate < ?', Date.today).order('eventdate desc')
     @plustag = t('seo.events.archive')
     render :index
   end
