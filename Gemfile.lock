@@ -97,9 +97,8 @@ GEM
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
     chronic (0.10.2)
-    ckeditor (4.3.0)
+    ckeditor (5.0.0)
       orm_adapter (~> 0.5.0)
-      terrapin
     client_side_validations (13.1.0)
       jquery-rails (~> 4.3)
       js_regex (~> 3.1)
