@@ -59,9 +59,9 @@
         .section-title.title-before
           %h2= t :newusers
 
-        .row.justify-content-center
+        .row
           - @users.each do |user|
-            = link_to user, class: 'col-sm-3 m-sm-auto' do
+            = link_to user, class: 'col-sm-4 mb-2' do
               .row.align-items-center
                 .col-4
                   = image_tag user.profile.avatar(:thumb), class: 'rounded-circle imf-fluid'
