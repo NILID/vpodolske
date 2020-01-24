@@ -69,36 +69,6 @@ jQuery(function ($) {
     }());
 
 
-    /*==============================================================*/
-    // carouFredSel
-    /*==============================================================*/
-
-   (function() {
-
-        $('.breaking-news-slider').carouFredSel({
-            width: '100%',
-            direction   : "bottom",
-            scroll : 400,
-            items: {
-                visible: '+3'
-            },
-            auto: {
-                items: 1,
-                timeoutDuration : 4000
-            },
-            prev: {
-                button: '.prev',
-                items: 1
-            },
-            next: {
-                button: '.next',
-                items: 1
-            }
-        });
-
-    }());
-
-
 	/*==============================================================*/
 	// Animationend
 	/*==============================================================*/
