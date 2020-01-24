@@ -9,7 +9,8 @@ require 'faker'
 
 FactoryBot.define do
   factory :user do
-    login { Faker::Lorem.unique.characters(5..9) }
+    login { Faker::Lorem.unique.characters(number: 8) }
+
     email { Faker::Internet.unique.email }
 
     password              { 'password' }
