@@ -12,7 +12,7 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require jquery-ui
+//= require jquery-ui/widgets/slider
 //= require activestorage
 //= require twitter/typeahead
 //= require moment
