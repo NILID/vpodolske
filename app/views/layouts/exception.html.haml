@@ -1,8 +1,7 @@
 !!! 5
 %html(lang='ru')
   = render 'layouts/header'
-
-  %body{ class: params[:controller] == 'main' ? 'homepage-2' : nil }
+  %body
     - unless flash.empty?
       .container-fluid#flash
         .row
@@ -13,23 +12,7 @@
 
     .main-wrapper.tr-page-top
       .container-fluid
-        .tr-topbar.clearfix.margin-bottom-0
-          .row
-            .col-sm-3
-              = link_to root_url, class: 'navbar-brand' do
-                = image_tag 'logo-small.png', class: 'img-fluid'
-            .col-sm-9.nnews
-              .topbar-left
-                .breaking-news
-                  %span(style="border:none;")=# render 'news'
-              .topbar-right= render 'users/userbar'
-        .tr-menu.menu-responsive
-          %nav.navbar.navbar-light.navbar-expand-lg
-            %button.navbar-toggler.collapsed{ type: 'button', data: { toggle: 'collapse', target: '#navbar-collapse' }, aria: {controls:"navbar-collapse", expanded: "false", label: "Toggle navigation" } }
-              %span.navbar-toggler-icon
-            #navbar-collapse.collapse.navbar-left.navbar-collapse
-              %ul.nav.navbar-nav= render 'main/menu'
-
+        = render 'layouts/menu'
         = content_tag :body, yield
       = render 'layouts/bottom'
     = javascript_include_tag :application

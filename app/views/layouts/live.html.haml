@@ -14,20 +14,7 @@
     .main-wrapper
       .tr-pixed-top
         .container-fluid
-          .tr-topbar.clearfix.margin-bottom-0
-            .row
-              .col-sm-3.tr-sidebar.tr-sticky
-                = link_to root_url, class: 'navbar-brand' do
-                  = image_tag 'logo-small.png', class: 'img-responsive'
-              .col-sm-8.col-sm-offset-1.nnews
-                .topbar-left= render 'layouts/news'
-                .topbar-right= render 'users/userbar'
-          .tr-menu.menu-responsive.menu-style-two
-            %nav.navbar.navbar-light.navbar-expand-lg
-              %button.navbar-toggler.collapsed{ type: 'button', data: { toggle: 'collapse', target: '#navbar-collapse' }, aria: {controls:"navbar-collapse", expanded: "false", label: "Toggle navigation" } }
-                %span.navbar-toggler-icon
-              #navbar-collapse.collapse.navbar-left.navbar-collapse
-                %ul.nav.navbar-nav= render 'main/menu'
+          = render 'layouts/menu', menu_style: 'menu-style-two'
       .slider-style-three
         .slide
           .carousel-inner(role='listbox')
