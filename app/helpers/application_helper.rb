@@ -92,4 +92,11 @@ module ApplicationHelper
     count.to_s + ' ' + Russian.p(count, t("#{val}_1", locale: :ru), t("#{val}_2", locale: :ru), t("#{val}_10", locale: :ru))
   end
 
+  def thumb_img(thumb)
+    thumb
+  end
+
+  def lazy_img(thumb, alt, style)
+    image_tag asset_url('grey.gif'), class: "b-lazy #{style}", data: { src: thumb, src_small: thumb}, alt: alt
+  end
 end

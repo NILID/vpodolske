@@ -2,9 +2,9 @@
   .mr-3
     - if comment.user
       = link_to comment.user do
-        = image_tag comment.user.profile.avatar(:thumb), class: 'img-fluid rounded-circle'
+        = lazy_img(comment.user.profile.avatar(:thumb), comment.user.login, 'rounded-circle img-fluid')
     - else
-      = image_tag image_url('missing_m.png'), class: 'img-fluid rounded-circle'
+      = lazy_img(image_url('missing_m.png'), 'Anonymous', 'rounded-circle img-fluid')
   .media-body
     .row
       .col-auto

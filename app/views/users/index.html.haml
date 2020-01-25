@@ -29,7 +29,6 @@
                 = link_to user, class: 'col-sm-3 m-sm-auto' do
                   .row.align-items-center
                     .col-4
-                      = image_tag user.profile.avatar(:thumb), class: 'rounded-circle imf-fluid'
-
+                      = lazy_img(user.profile.avatar(:thumb), user.login, 'rounded-circle imf-fluid')
                     .col-8
                       .h3.text-muted= user.login
