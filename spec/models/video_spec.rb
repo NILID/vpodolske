@@ -15,10 +15,10 @@ describe User do
     expect(video.errors[:url]).not_to be_empty
   end
 
-  it 'url should have http prefix' do
+  it 'url should be without  http prefix' do
     video.url = 'youtu.be/sdfsdfsdf'
-    expect(video.valid?).to be false
-    expect(video.errors[:url]).not_to be_empty
+    expect(video.valid?).to be true
+    expect(video.errors[:url]).to be_empty
   end
 
   it 'url should have valid google url' do

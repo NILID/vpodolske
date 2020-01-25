@@ -1,14 +1,13 @@
 class Video < ActiveRecord::Base
   belongs_to :user
+  has_many :comments, as: :commentable
 
   acts_as_likeable
   acts_as_taggable_on :keywords
 
-  validates :title, presence: true
-  validates :url, uniqueness: true, presence: true, format: { with: URI.regexp(%w(http https)), message: I18n.t('videos.must_have_http') }
-  validates :url, format: { with: /(youtu.be|youtube.com\/watch\?(?=[^?]*v=\w+)(?:[^\s?]*)$)/, message: I18n.t('videos.must_have_youtube') }
-
-  has_many :comments, :as => :commentable
+  validates :title, :url, presence: true
+  validates :url, presence: true,
+                    format: { with: /\A(https?\:\/\/)?((www\.)?youtube\.com|youtu\.?be)\/.+\z/ }
 
   def to_param
     "#{id}-#{title.parameterize}"
