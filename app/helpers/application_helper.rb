@@ -98,4 +98,8 @@ module ApplicationHelper
   def lazy_img(thumb, alt, style)
     image_tag asset_url('grey.gif'), class: "b-lazy #{style}", data: { src: thumb, src_small: thumb}, alt: alt
   end
+
+  def ads_block(ads)
+    Rails.env.production? ? render("main/yandex/#{ads}") : content_tag(:div, 'Здесь могла бы быть ваша реклама', class: 'text-muted')
+  end
 end

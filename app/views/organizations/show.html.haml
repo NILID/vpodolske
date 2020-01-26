@@ -123,4 +123,4 @@
 
   .col-12.col-sm-12.col-md-3.col-lg-3
     .tr-section
-      = Rails.env.production? ? render('main/yandex/org_vertical') : content_tag(:div, 'Здесь могла бы быть ваша реклама', class: 'well')
+      = ads_block('org_vertical')

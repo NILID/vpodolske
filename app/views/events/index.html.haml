@@ -19,6 +19,6 @@
           = link_to(new_event_path, class: 'btn btn-primary') do
             = fa_icon 'plus', text: t(:new)
     .tr-section
-      = render 'main/yandex/events_vertical'
+      = ads_block('events_vertical')
 
 = render 'main/toplink'
