@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def body_class
     # params[:controller] == 'main' ? 'homepage-2' : nil
     if params[:controller] == 'main'
