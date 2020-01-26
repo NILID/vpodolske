@@ -2,7 +2,7 @@
 %html(lang='ru')
   = render 'layouts/header'
   %body
-    - unless flash.empty?
+    - if flash.any?
       .container-fluid#flash
         .row
           .col-sm-12

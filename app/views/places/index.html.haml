@@ -30,7 +30,7 @@
             %p Добавляете фото, как место выглядело раньше
             %p= link_to t('new'), new_place_path, class: 'btn btn-primary'
 
-- unless @places.empty?
+- if @places.any?
   .tr-latest-news.tr-padding-0
     .container
       .latest-news
@@ -46,7 +46,7 @@
               %h1= t('live.best')
             .latest-news
               = render @best_places
-  - unless @places_with_address.empty?
+  - if @places_with_address.any?
     .tr-team-section.tr-section.text-center.tr-padding-0
       .container
         .section-title

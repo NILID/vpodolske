@@ -34,7 +34,7 @@
 
           .tr-post
             .post-content
-              - unless @organizations.empty?
+              - if @organizations.any?
                 %ol= render(@organizations)
                 - if current_user&.role? :admin
                   %hr

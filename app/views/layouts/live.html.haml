@@ -3,7 +3,7 @@
   = render 'layouts/header'
   %body.homepage-3
     = render 'layouts/metrika' if Rails.env.production?
-    - unless flash.empty?
+    - if flash.any?
       .container-fluid#flash
         .row
           .col-sm-12

@@ -12,7 +12,7 @@
         %p.section-title.title-before
           = t 'organizations.own'
 
-        - unless @organizations.empty?
+        - if @organizations.any?
           = render partial: 'organizations/organization_user', collection: @organizations
         - else
           .tr-section
@@ -28,7 +28,7 @@
         %blockquote(style="padding:20px;margin:20px;")
           %p= @profile.aboutme
 
-  - unless @events.size == 0
+  - if @events.any?
     .col-12.col-md-6
       .tr-section
         .widget-title.title-before

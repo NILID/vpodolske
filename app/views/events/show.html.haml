@@ -83,7 +83,7 @@
           .map-container
             = render('main/multi_map', list: [@event], center: true, zoom_int: 12, hide_info: true) if @event.longitude && @event.latitude
 
-    - unless @other_events.empty?
+    - if @other_events.any?
       .tr-section
         .row
           .col-12

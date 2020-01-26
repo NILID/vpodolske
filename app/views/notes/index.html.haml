@@ -4,7 +4,4 @@
       .section-title.title-before
         %h1= t 'note.title'
 
-      - unless @notes.empty?
-        = render @notes
-      - else
-        %p= t 'shared.empty'
+      = render(@notes) || content_tag(:div, t('shared.empty'), class: 'h4 text-muted')

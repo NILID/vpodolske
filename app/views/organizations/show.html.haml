@@ -92,7 +92,7 @@
     .tr-widget.tr-ad
       .text-right= render 'bugs/bugs_panel'
 
-    - unless @other_organizations.empty?
+    - if @other_organizations.any?
       .tr-widget.tr-section
         .widget-title
           %span

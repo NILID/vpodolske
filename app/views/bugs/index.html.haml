@@ -4,7 +4,7 @@
       .section-title.title-before
         %h1= t 'bugs.title_all'
 
-      - unless @bugs.empty?
+      - if @bugs.any?
         %table.table.table-striped
           %thead
             %tr

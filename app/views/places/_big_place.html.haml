@@ -6,7 +6,7 @@
         .entry-header
           .entry-thumbnail
             = link_to big_place do
-              = image_tag big_place.photos.first.slide(:thumb), class: 'img-fluid' unless big_place.photos.pluck(:id).empty?
+              = image_tag big_place.photos.first.slide(:thumb), class: 'img-fluid' if big_place.photos.pluck(:id).any?
       .col-md-9.col-6
         .post-content
           .entry-meta

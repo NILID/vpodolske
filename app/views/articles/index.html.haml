@@ -1,4 +1,4 @@
-- check_articles_empty = @articles.empty?
+- check_articles_exists = @articles.any?
 
 - set_meta_tags title: t('articles.title'),
   description: t('articles.intro'),
@@ -21,19 +21,19 @@
       .row.mb-3
         .col-12.col-md-5
           = render 'articles/search_form'
-        - unless check_articles_empty
+        - if check_articles_exists
           .col-12.col-md-7
             .float-right
               = raw pagy_bootstrap_nav(@pagy)
-      - unless check_articles_empty
+      - if check_articles_exists
         %table.table.table-hover.table-striped
           = render @articles
       - else
         %strong= t 'search.no_results'
 
-      - unless check_articles_empty
+      - if check_articles_exists
         .float-right
           = raw pagy_bootstrap_nav(@pagy)
 
-- unless check_articles_empty
+- if check_articles_exists
   = render 'main/toplink'
