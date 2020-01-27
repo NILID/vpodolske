@@ -9,13 +9,14 @@
       %h1= t :signin
 
     = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'contact-form contact-form-two'}) do |f|
-      .form-group
+      = f.form_group do
         = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Email', hide_label: true
         = f.password_field :password, autocomplete: 'current-password', placeholder: User.human_attribute_name(:password), hide_label: true
 
       - if devise_mapping.rememberable?
-        .float-left
-          = f.check_box :remember_me
+        = f.form_group do
+          .text-left
+            = f.check_box :remember_me
 
       = f.primary t(:sign)
 
