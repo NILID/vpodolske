@@ -13,15 +13,12 @@
         .col-4
           = p.form_group :avatar do
             = p.file_field :avatar, class: 'input-file'
-            %div(style="padding:10px 10px 0 0")= image_tag @profile.avatar.url(:thumb), class: 'thumbnail'
+            = image_tag @profile.avatar.url(:thumb), class: 'thumbnail mt-2'
 
       - if current_user.role? :admin
         .col-4
-          = f.form_group "user[roles][]" do
-            - for role in User::ROLES
-              = check_box_tag "user[roles][]", role, @profile.user.roles.include?(role)
-              = raw(role.humanize)
-              = hidden_field_tag 'user[roles][]', ''
+          = f.form_group :roles do
+            = f.collection_check_boxes :roles, User::ROLES, :to_s, :to_s
     = f.fields_for :profile do |p|
       = p.text_area :aboutme, rows: 3, class: 'form-control'
 

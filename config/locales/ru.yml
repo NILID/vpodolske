@@ -168,6 +168,13 @@ ru:
     like: понравилось
     not_like: не понравилось
     inkognito: Инкогнито
+    roles:
+      expert: Expert
+      registered_user: User
+      admin: Administrator
+      moderator: Moderator
+      guest: Guest
+
   posts: Посты
   team: Наша команда
   by_tag: по тегу
