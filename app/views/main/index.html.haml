@@ -51,7 +51,7 @@
 
         .row
           - @users.each do |user|
-            = link_to user, class: 'col-sm-4 mb-2' do
+            = link_to user, class: 'col-sm-12 col-md-6 col-xl-4 mb-2' do
               .row.align-items-center
                 .col-4
                   = lazy_img(user.profile.avatar(:thumb), user.login, 'rounded-circle img-fluid')
