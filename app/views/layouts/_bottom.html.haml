@@ -3,27 +3,24 @@
   .footer-widgets
     .container
       .row
-        .col-sm-2
-          .widget
-            %ul
-              %li= link_to t('articles.title'), articles_path
-              %li= link_to t('events.title'), events_path
-              %li= link_to t('helper'), categories_path
-              %li= link_to t('users.title'), users_path
-              %li= link_to t('live.title'), places_path
-        .col-sm-3.offset-sm-7
-          .widget
-            %ul
-              - %i[about sponsor].each do |page_name|
-                %li= link_to t(page_name), static_page_path(page_name)
+        .col-12.col-sm-6
+          %nav
+            = link_to t('articles.title'), articles_path, class: 'nav-link'
+            = link_to t('events.title'), events_path, class: 'nav-link'
+            = link_to t('helper'), categories_path, class: 'nav-link'
+            = link_to t('users.title'), users_path, class: 'nav-link'
+            = link_to t('live.title'), places_path, class: 'nav-link'
+        .col-12.col-sm-6.text-sm-right
+          %nav
+            - %i[about sponsor].each do |page_name|
+              = link_to t(page_name), static_page_path(page_name), class: 'nav-link'
         .col-sm-12
           .text-center= link_to t('note.add'),new_note_path, class: 'btn btn-secondary btn-sm btn-primary'
 
   .footer-bottom.text-center
     .container
       .footer-bottom-content
-        .footer-logo
-          2018-2020 &copy; vPodolske
-          %p.text-muted= t :helplicense
+        2018-2020 &copy; vPodolske
+        %p.text-muted= t :helplicense
 = javascript_include_tag :application
 = yield :js
