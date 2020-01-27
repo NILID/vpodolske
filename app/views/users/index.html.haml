@@ -22,11 +22,11 @@
           %tbody
             = render partial: 'user_info', collection: @users
       - else
-        %section
+        %section.fdb-block.team-7
           .container
             .row.justify-content-center
               - @users.each do |user|
-                = link_to user, class: 'col-sm-3 m-sm-auto' do
+                = link_to user, class: 'col-sm-4 m-sm-auto pb-5' do
                   .row.align-items-center
                     .col-4
                       = lazy_img(user.profile.avatar(:thumb), user.login, 'rounded-circle imf-fluid')
