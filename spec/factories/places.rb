@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :place do
     title { "MyString" }
     content { "MyText" }
-    address { Faker::Address.street_address }
+    address { 'New York, NY' }
     longitude { Faker::Address.longitude }
     latitude { Faker::Address.latitude }
 
