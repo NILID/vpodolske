@@ -8,7 +8,7 @@
     .section-title
       %h1= t :signup
 
-    = bootstrap_form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: {class: 'contact-form'}) do |f|
+    = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'contact-form'}) do |f|
       = f.text_field :login, placeholder: User.human_attribute_name(:login), hide_label: true
       = f.email_field :email, autofocus: true, autocomplete: 'off', placeholder: User.human_attribute_name(:email), hide_label: true
 

@@ -20,7 +20,6 @@
 //= require cocoon
 //= require bootstrap-datetimepicker
 //= require fancybox
-//= require rails.validations
 //= require select2
 //= require select2_locale_ru
 //= require font_awesome5

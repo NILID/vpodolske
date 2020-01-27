@@ -89,8 +89,6 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'acts_as_list'
 gem 'acts_as_votable'
 
-gem 'client_side_validations'
-
 gem 'activevalidators'
 
 gem 'high_voltage'

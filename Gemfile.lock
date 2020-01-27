@@ -91,7 +91,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
-    character_set (1.4.0)
     childprocess (3.0.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
@@ -99,10 +98,6 @@ GEM
     chronic (0.10.2)
     ckeditor (5.0.0)
       orm_adapter (~> 0.5.0)
-    client_side_validations (13.1.0)
-      jquery-rails (~> 4.3)
-      js_regex (~> 3.1)
-      rails (>= 5.0.0.1, <= 6.0.0.beta3)
     climate_control (0.2.0)
     cocoon (1.2.14)
     coffee-rails (4.2.2)
@@ -218,10 +213,6 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    js_regex (3.5.0)
-      character_set (~> 1.4)
-      regexp_parser (~> 1.6)
-      regexp_property_values (~> 1.0)
     json (2.3.0)
     jwt (2.2.1)
     libv8 (3.16.14.19)
@@ -348,7 +339,6 @@ GEM
       actionview (>= 5)
     ref (2.0.0)
     regexp_parser (1.6.0)
-    regexp_property_values (1.0.0)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.0)
@@ -488,7 +478,6 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   ckeditor
-  client_side_validations
   cocoon
   coffee-rails (~> 4.2)
   devise
