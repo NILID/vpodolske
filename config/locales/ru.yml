@@ -289,6 +289,7 @@ ru:
     owner: Мои
     tag: По тегу
     author: По автору
+    created: По созданию
   user_link:
     cancel_account: Удалить мой аккаунт
     edit_reg: Изменение регистрационных данных

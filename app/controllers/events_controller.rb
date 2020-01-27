@@ -4,11 +4,11 @@ class EventsController < ApplicationController
   def index
     @plustag = t('seo.events.soon')
     if params[:by] == 'rate'
-      @events = Event.where(hidden: false).where('eventdate > ?', Date.yesterday).sort_by{|event| event.votes_for.size}.reverse
+      @events = @events.where(hidden: false).where('eventdate > ?', Date.yesterday).sort_by{|event| event.votes_for.size}.reverse
       @plustag = t('sort_by.rate')
     elsif params[:by] == 'created'
-      @events = Event.where(hidden: false).order(created_at: :desc)
-      @plustag = t('sort_by.rate')
+      @events = @events.where(hidden: false).order(created_at: :desc)
+      @plustag = t('sort_by.created')
     elsif params[:by] == 'owner'
       @user = current_user
       @events = @user.events.order('eventdate asc')
@@ -17,9 +17,32 @@ class EventsController < ApplicationController
       user = User.where(id: params[:by]).first
       @events = user.events.where(hidden: false).order('eventdate asc')
     else
-      @events = Event.where('(eventdate >= ? OR (finishdate >=? OR timeless = ?)) AND hidden=? AND cool = ?', Date.today, Date.today, true, false, false)
+      @events = @events.where('(eventdate >= ? OR (finishdate >=? OR timeless = ?))', Date.today, Date.today, true)
+          .where(hidden: false)
+          .where(cool: false)
           .order(eventdate: :asc)
     end
+  end
+
+  def list
+    today = Date.today
+    tomorrow = today + 1.days
+    after_tomorrow = today + 2.days
+
+    @events = @events.where(hidden: false)
+
+    @events = if params[:period] == 'today'
+                @events.where('eventdate = ? or (eventdate < ? AND finishdate > ?)', today, today, today)
+              elsif params[:period] == 'tomorrow'
+                @events.where('eventdate = ? or (eventdate < ? AND finishdate > ?)', tomorrow, tomorrow, tomorrow)
+              else
+                @events.where('eventdate >=? OR (timeless = ? OR finishdate >=?)', after_tomorrow, true, after_tomorrow)
+                    .order('eventdate')
+              end
+
+    @events = @events.sample(6)
+
+    render layout: false
   end
 
   def archive

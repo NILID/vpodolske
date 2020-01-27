@@ -55,4 +55,14 @@ $ ->
     before_label: 'До'
     after_label: 'После'
 
+  $('[data-toggle="tabajax"]').click (e) ->
+    $this = $(this)
+    loadurl = $this.attr('href')
+    targ = $this.attr('data-target')
+    $.get loadurl, (data) ->
+      $(targ).html data
+      return
+    $this.tab 'show'
+    false
+
   bLazy = new Blazy(selector: '.b-lazy')

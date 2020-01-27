@@ -21,11 +21,11 @@
         %h2= link_to t('events.title'), events_path
       %ul.nav.nav-tabs#events-tab(role='tablist')
         %li.nav-item
-          = link_to t('event.today'), '#today',       data: { toggle: 'tab' }, aria: { expanded: true, controls: 'today', selected: 'true' },     class: 'nav-link active', id: 'today-tab'
+          = link_to t('event.today'), list_events_path(period: :today),       data: { toggle: 'tabajax', target: '#today' }, aria: { expanded: true, controls: 'today', selected: 'true' },     class: 'nav-link active', id: 'today-tab'
         %li.nav-item
-          = link_to t('event.tomorrow'), '#tomorrow', data: { toggle: 'tab' }, aria: { expanded: true, controls: 'tomorrow', selected: 'false' }, class: 'nav-link',        id: 'tomorrow-tab'
+          = link_to t('event.tomorrow'), list_events_path(period: :tomorrow), data: { toggle: 'tabajax', target: '#tomorrow' }, aria: { expanded: true, controls: 'tomorrow', selected: 'false' }, class: 'nav-link',        id: 'tomorrow-tab'
         %li.nav-item
-          = link_to t('event.soon'), '#soon',         data: { toggle: 'tab' }, aria: { expanded: true, controls: 'soon', selected: 'false' },     class: 'nav-link',        id: 'soon-tab'
+          = link_to t('event.soon'), list_events_path(period: :soon),         data: { toggle: 'tabajax', target: '#soon' }, aria: { expanded: true, controls: 'soon', selected: 'false' },     class: 'nav-link',        id: 'soon-tab'
       .tab-content#events-tab-content
         #today.tab-pane.active.fade.show(role='tabpanel' aria-labelledby='today-tab')
           - if @ev_today.any?
@@ -34,17 +34,7 @@
           - else
             %p.mt-4= t 'shared.empty'
         #tomorrow.tab-pane.fade.in(role='tabpanel' aria-labelledby='tomorrow-tab')
-          - if @ev_tomorrow.any?
-            .row.row-cols-1.row-cols-md-2
-              = render @ev_tomorrow, lazy: false
-          - else
-            %p.mt-4= t 'shared.empty'
         #soon.tab-pane.fade.in(role='tabpanel' aria-labelledby='soon-tab')
-          - if @ev_soon.any?
-            .row.row-cols-1.row-cols-md-2
-              = render @ev_soon, lazy: false
-          - else
-            %p.mt-4= t 'shared.empty'
 
   - if @comments.any?
     .card.mb-3
