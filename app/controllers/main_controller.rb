@@ -13,16 +13,6 @@ class MainController < ApplicationController
     # @page = Nokogiri::HTML(open(source.to_s))
   end
 
-  def sponsor
-    @page = Page.where(id: 2).first
-  end
-
-  def about
-    @page = Page.where(id: 1).first
-  end
-
-  def orelireshka
-    # source = 'https://friday.ru/votes/gorod/'
-    # @page = Nokogiri::HTML(open(source.to_s))
-  end
+  def sponsor; end
+  def about;   end
 end

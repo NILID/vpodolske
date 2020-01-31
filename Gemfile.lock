@@ -192,7 +192,6 @@ GEM
       html2haml (>= 1.0.1)
       railties (>= 5.1)
     hashie (3.6.0)
-    high_voltage (3.1.2)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -491,7 +490,6 @@ DEPENDENCIES
   friendly_id
   geocoder
   haml-rails
-  high_voltage
   i18n
   jbuilder (~> 2.5)
   jquery-rails

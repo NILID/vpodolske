@@ -91,8 +91,6 @@ gem 'acts_as_votable'
 
 gem 'activevalidators'
 
-gem 'high_voltage'
-
 gem 'premailer-rails'
 
 gem 'russian'

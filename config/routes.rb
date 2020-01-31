@@ -1,7 +1,6 @@
 scope_advert = 'obyavleniya'
 
 Rails.application.routes.draw do
-
   resources :letters, except: %i[edit update]
   mount_roboto
   resources :bugs, only: %i[index create new destroy]
@@ -122,7 +121,9 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'main#index'
+  %i[about sponsor den_goroda_2018].each do |page|
+    get page, to: "main##{page}"
+  end
 
   devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks' }
 
@@ -135,6 +136,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'pages/:id' => 'static_pages#show', as: :static_page
-  # get 'orel-i-reshka', to: 'main#orelireshka'
+  root to: 'main#index'
 end
