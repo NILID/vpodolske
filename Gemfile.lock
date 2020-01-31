@@ -256,7 +256,7 @@ GEM
     oga (3.2)
       ast
       ruby-ll (~> 2.1)
-    oj (3.10.1)
+    oj (3.10.2)
     omniauth (1.9.0)
       hashie (>= 3.4.6, < 3.7.0)
       rack (>= 1.6.2, < 3)
