@@ -3,14 +3,17 @@
   keywords: t('seo.pages.sponsor'),
   index: true
 
-.tr-section
-  .section-title
-    %h1 Помощь проекту
+%section.fdb-block
+  .container
+    .row.justify-content-center
+      .col-12.col-md-10.col-lg-8.col-xl-6
+        %h1.mb-5 Помощь проекту
+        .lead
+          %p Мы благодарим Вас за интерес к нашему проекту!
+          %p В данный момент проект vPodolske.com активно развивается, у нас скопилось огромное количество идей и разработок.
+          %p Проект является некоммерческим продуктом, все разработки ведутся небольшой группой людей и нашим общим энтузиазмом.
+          %p Если Вам понравился наш проект или заинтересованы в его развитии, то Вы можете внести свою лепту в развитие и поддержку проекта  материально, либо #{link_to 'сообщить нам мнение', new_note_path} о проекте.
 
-  %p Мы благодарим Вас за интерес к нашему проекту!
-  %p В данный момент проект vPodolske.com активно развивается, у нас скопилось огромное количество идей и разработок.
-  %p Проект является некоммерческим продуктом, все разработки ведутся небольшой группой людей и нашим общим энтузиазмом.
-  %p Если Вам понравился наш проект или заинтересованы в его развитии, то Вы можете внести свою лепту в развитие и поддержку проекта  материально, либо #{link_to 'сообщить нам мнение', new_note_path} о проекте.
-
-  %p
-    %iframe(src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%9F%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0%20%D1%80%D0%B0%D0%B7%D0%B2%D0%B8%D1%82%D0%B8%D1%8F%20VPODOLSKE.COM&targets-hint=&default-sum=100&button-text=11&payment-type-choice=on&mobile-payment-type-choice=on&comment=on&hint=&successURL=https%3A%2F%2Fvpodolske.com&quickpay=shop&account=410011187086008" width="450" height="288" frameborder="0" allowtransparency="true" scrolling="no")
+    .row.justify-content-center
+      .col.text-center
+        %iframe.my-5(src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%9F%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0%20%D1%80%D0%B0%D0%B7%D0%B2%D0%B8%D1%82%D0%B8%D1%8F%20VPODOLSKE.COM&targets-hint=&default-sum=100&button-text=11&payment-type-choice=on&mobile-payment-type-choice=on&comment=on&hint=&successURL=https%3A%2F%2Fvpodolske.com&quickpay=shop&account=410011187086008" width="450" height="288" frameborder="0" allowtransparency="true" scrolling="no")
