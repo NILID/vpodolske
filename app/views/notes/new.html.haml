@@ -14,9 +14,11 @@
                   .col= f.text_area :content, placeholder: Note.human_attribute_name(:content), hide_label: true
                 - unless user_signed_in?
                   .row
-                    .col-sm-12= f.text_field :email, placeholder: t('note.email_placeholder'), hide_label: true
-                  = f.form_group do
-                    = recaptcha_tags hl: 'ru'
+                    .col
+                      = f.text_field :email, placeholder: t('note.email_placeholder'), hide_label: true
+                  .row
+                    .col
+                      = recaptcha_tags hl: 'ru', class: 'mx-auto'
                 .row.mt-4
                   .col.text-center
                     = f.form_group do
