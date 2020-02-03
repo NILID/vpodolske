@@ -1,7 +1,10 @@
 %h1= @page.title
 
-- @blocks.each do |block|
-  %p= block.content
+#sortable{ data: { update_url: sort_page_blocks_path(@page) } }
+  = content_tag_for(:p, @blocks) do |block|
+    = block.content
+    = link_to fa_icon(:edit), edit_page_block_path(@page, block)
+    = fa_icon :arrows_alt, class: 'handle'
 
 = link_to 'Edit', edit_page_path(@page)
 \|

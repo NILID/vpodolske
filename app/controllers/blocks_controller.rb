@@ -5,13 +5,16 @@ class BlocksController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
   end
 
   def edit
+  end
+
+  def sort
+    params[:block].each_with_index do |id, index|
+      @page.blocks.where(id: id).update_all({ position: index+1 })
+    end
   end
 
   def create

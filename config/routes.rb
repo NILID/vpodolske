@@ -3,7 +3,11 @@ scope_advert = 'obyavleniya'
 Rails.application.routes.draw do
 
   resources :pages do
-    resources :blocks
+    resources :blocks, except: %i[show] do
+      collection do
+        post :sort
+      end
+    end
   end
   resources :letters, except: %i[edit update]
   mount_roboto

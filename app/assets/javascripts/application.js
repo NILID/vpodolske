@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require jquery-ui/widgets/slider
+//= require jquery-ui/widgets/sortable
 //= require activestorage
 //= require twitter/typeahead
 //= require moment

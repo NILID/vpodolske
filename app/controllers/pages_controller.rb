@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def show
-    @blocks = @page.blocks
+    @blocks = @page.blocks.order(position: :desc)
   end
 
   def new

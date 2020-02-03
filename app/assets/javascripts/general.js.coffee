@@ -65,4 +65,9 @@ $ ->
     $this.tab 'show'
     false
 
+  $('#sortable').sortable
+    handle: '.handle'
+    update: ->
+      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+
   bLazy = new Blazy(selector: '.b-lazy')
