@@ -1,0 +1,10 @@
+%h1= @page.title
+
+- @blocks.each do |block|
+  %p= block.content
+
+= link_to 'Edit', edit_page_path(@page)
+\|
+= link_to 'Back', pages_path
+\|
+= link_to 'Add block', new_page_block_path(@page)

@@ -1,6 +1,10 @@
 scope_advert = 'obyavleniya'
 
 Rails.application.routes.draw do
+
+  resources :pages do
+    resources :blocks
+  end
   resources :letters, except: %i[edit update]
   mount_roboto
   resources :bugs, only: %i[index create new destroy]
