@@ -110,6 +110,7 @@ class Organization < ActiveRecord::Base
 
   def self.make_parse(category)
     url = category.url
+    puts "======== #{url} ==========="
 
     pages = []
     last_page = Organization.get_page_numbers(url)
@@ -123,7 +124,7 @@ class Organization < ActiveRecord::Base
     end
 
     pages.each do |page|
-      page.css('.container_left .card .card-body').each do |link|
+      page.css('.container_left .panel .panel-body').each do |link|
         source = URI.encode(link.at_css('h4 a').attr('href'))
         new_organization = Organization.new(url: source)
         new_organization.valid?
