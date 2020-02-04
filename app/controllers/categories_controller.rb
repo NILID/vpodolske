@@ -35,16 +35,7 @@ class CategoriesController < ApplicationController
   end
 
   def create_list
-    @page = Nokogiri::HTML(open('http://www.podolsk.ru/catalog/'))
-    @page.css('.container_left .row-spaced .media').each do |link|
-      root_link = link.at_css('h4 a')
-      root_cat = Category.create!(title: root_link.text.squish)
-      url = root_link.attr('href')
-      categories_url = Nokogiri::HTML(open(url))
-      categories_url.css('.container_left .media .media-heading').each do |l|
-        Category.create!(title: l.text.squish, parent_id: root_cat.id, url: l.at_css('a').attr('href'))
-      end
-    end
+    Category.parse!
 
     redirect_to categories_url
   end
