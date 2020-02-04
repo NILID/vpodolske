@@ -110,7 +110,6 @@ class Organization < ActiveRecord::Base
 
   def self.make_parse(category)
     url = category.url
-    puts "======== #{url} ==========="
 
     pages = []
     last_page = Organization.get_page_numbers(url)
