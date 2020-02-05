@@ -67,6 +67,12 @@ describe OrganizationsController do
       expect{ delete :destroy, params: { id: organization } }.to change(Address, :count).by(-addresses_count)
     end
 
+    it 'destroy with comments' do
+      create_list(:comment, 2, commentable: organization)
+      expect(organization.comments.empty?).to be false
+      expect{ delete :destroy, params: { id: organization } }.to change(Comment, :count).by(-2)
+    end
+
     it 'show hidden' do
       expect(@ability.can? :show, organization).to be true
       expect(get :show, params: { id: organization }).to render_template(:show)
