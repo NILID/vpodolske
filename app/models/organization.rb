@@ -5,7 +5,7 @@ class Organization < ActiveRecord::Base
 
   belongs_to :user
   has_many :addresses, dependent: :destroy, inverse_of: :organization
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   has_and_belongs_to_many :categories
   has_attached_file :logo,
     :styles      => { medium: '400x400', thumb: '280x280#' },
