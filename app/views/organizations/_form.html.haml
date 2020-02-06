@@ -24,10 +24,11 @@
     = link_to_add_association t('address.add'), f, :addresses, class: 'btn btn-secondary'
 
   - if current_user&.role? :admin
-    .well
-      %h6 Admin
+    .border.border-secondary.my-3.p-3
+      %h4.title.text-muted Admin
       = f.text_field :status_mask
       = f.check_box :notify
+      = f.text_field :url
       = f.text_field :user_id
 
   - unless user_signed_in?
