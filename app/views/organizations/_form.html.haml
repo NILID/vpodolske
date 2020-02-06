@@ -7,7 +7,9 @@
   = f.text_field :title, placeholder: t('placeholders.org_title')
   = f.file_field :logo
 
-  = f.cktext_area :desc, ckeditor: { toolbar: 'mini' }
+  .my-3
+    = f.label :desc
+    = f.cktext_area :desc, ckeditor: { toolbar: 'mini' }
 
   = f.text_field :site,     placeholder: t('placeholders.site')
   = f.text_field :worktime, placeholder: t('placeholders.worktime')
