@@ -53,6 +53,7 @@
                       %span.fa.fa-cog
                     .dropdown-menu.dropdown-menu-right
                       = link_to t('categories.new'), new_category_path(parent_id: category.id), class: 'dropdown-item'
+                      = link_to 'create orgs', create_multi_orgs_category_path(category), method: :post, class: 'dropdown-item'
                       = link_to t('actions.edit'), edit_category_path(category), class: 'dropdown-item'
                       = link_to t('actions.del'), category, method: :delete, data: { confirm: t('actions.sure') }, class: 'dropdown-item'
             %table.table.table-sm.mb-0

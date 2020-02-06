@@ -72,6 +72,7 @@ Rails.application.routes.draw do
       end
       member do
         post :create_orgs
+        post :create_multi_orgs
       end
     end
     resources :organizations do

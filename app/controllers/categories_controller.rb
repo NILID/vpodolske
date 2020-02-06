@@ -45,6 +45,13 @@ class CategoriesController < ApplicationController
     redirect_to @category
   end
 
+  def create_multi_orgs
+    @category.descendants.each do |desc|
+      Organization.make_parse(desc)
+    end
+    redirect_to categories_url
+  end
+
   def create
     respond_to do |format|
       if @category.save
