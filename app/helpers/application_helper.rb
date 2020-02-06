@@ -95,7 +95,7 @@ module ApplicationHelper
     thumb
   end
 
-  def lazy_img(thumb, alt, style)
+  def lazy_img(thumb, alt=nil, style)
     image_tag asset_url('grey.gif'), class: "b-lazy #{style}", data: { src: thumb, src_small: thumb}, alt: alt
   end
 
