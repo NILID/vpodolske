@@ -3,22 +3,15 @@
   keywords: t('baseseo.orgs.words'),
   index: true
 
-.row
-  .col-sm-12
-    .tr-section
-      - if current_user
-        .section-title.title-before
-          %h4= t 'organizations.own'
-        .well= t 'organizations.add_you_can_html'
-      - else
-        .well
-          = t 'organizations.add_you_can_html'
-          = t 'organizations.add_unreg_html', url: link_to(t('signuping').downcase, new_user_registration_path)
-      .post-content
-        = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary'
-        - if current_user
-          - orgs = current_user.organizations
-          - if orgs
+= render 'action'
+
+- if current_user
+  - orgs = current_user.organizations
+  - if orgs.any?
+    .row
+      .col-sm-12
+        .tr-section
+          .post-content
             %table.table.table-sm
               - orgs.each do |org|
                 %tr
