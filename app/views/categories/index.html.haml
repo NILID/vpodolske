@@ -11,6 +11,8 @@
     .row
       .col-sm-12
         .tr-section
+          .section-title.title-before
+            .h4= t 'organizations.own'
           .post-content
             %table.table.table-sm
               - orgs.each do |org|
@@ -20,16 +22,12 @@
                     - if org.status? 'hidden'
                       %span.badge.badge-warning= t 'organizations.check_short'
 
-.row
-  .col-sm-12
-    .tr-section
-      .row
-        .col-12.col-sm-6
-          .section-title.title-before.clearfix
-            %h1= t 'categories.title'
-        .col-12.col-sm-6= render 'organizations/search_form'
+.section-title
+  .title-strong
+    %span= t 'categories.title'
+    = render 'admin_panel' if can? :manage, Category
 
-  = render 'admin_panel' if can? :manage, Category
+= render 'organizations/search_form'
 
 .row
   .col
@@ -37,12 +35,12 @@
       - @categories.each do |category|
         .card
           .card-body
-            .section-title.title-before
+            .section-title.title-before.mb-4
               %h4
                 = link_to category.title, category_path(category)
                 - if can? :manage, category
-                  .btn-group.float-right
-                    %button.btn.btn-sm.btn-secondary.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                  .dropdown.float-right
+                    .dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
                       %span.fa.fa-cog
                     .dropdown-menu.dropdown-menu-right
                       = link_to t('categories.new'), new_category_path(parent_id: category.id), class: 'dropdown-item'

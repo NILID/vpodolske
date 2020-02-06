@@ -5,7 +5,7 @@
         = lazy_img(asset_url('orgs.jpg'), 'imf-fluid')
       .col-12.col-md-8.ml-auto.pt-5.pt-md-0
         - if current_user
-          %h2= t 'organizations.own'
+          %h2= t 'organizations.title'
           %p.lead
             = t 'organizations.add_you_can_html'
         - else
