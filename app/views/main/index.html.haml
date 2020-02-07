@@ -7,14 +7,9 @@
   = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary col mx-3'
   = link_to t('events.add'),        new_event_path,        class: 'btn btn-primary col mx-3 mt-3 mt-sm-0'
 
-.card-columns-main
-  - if @articles.any?
-    .card.mb-3
-      .card-body
-        .section-title.title-before
-          %h2= link_to t('articles.last'), articles_path
-        %table.table.mb-0= render @articles
+= render 'articles'
 
+.card-columns-main
   .card.mb-3
     .card-body.local-events
       .section-title.title-before
