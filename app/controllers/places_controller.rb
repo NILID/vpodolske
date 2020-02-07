@@ -1,8 +1,6 @@
 class PlacesController < ApplicationController
   load_and_authorize_resource except: [:get_photo, :about]
 
-  layout 'live', only: [:index]
-
   def index
     @new_places = @places.order(created_at: :desc).limit(4)
     @best_places = @places.order(cached_weighted_average: :desc).limit(4)

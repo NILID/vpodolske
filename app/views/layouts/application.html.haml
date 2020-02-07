@@ -1,7 +1,7 @@
 !!! 5
 %html(lang='ru')
   = render 'layouts/header'
-  %body
+  %body{ class: (%w[photos places].include? params[:controller]) ? 'homepage-3' : nil }
     = render 'layouts/metrika' if Rails.env.production?
     - if flash.any?
       .container-fluid#flash
@@ -11,8 +11,23 @@
               - flash.each do |name, msg|
                 = content_tag :div, msg
 
-    .main-wrapper.tr-page-top
-      .container-fluid
-        = render 'layouts/menu'
+    = render 'layouts/menu'
+
+    .main-wrapper
+      - if %w[photos places].include? params[:controller]
+        .slider-style-three
+          .slide
+            .carousel-inner(role='listbox')
+              .item.carousel-item.active
+                .slider-overlay
+                  .container
+                    .post-content
+                      %h1.entry-title.animated.fadeInUp= link_to t('live.title'), '#'
+                      %span.catagory.animated.fadeInUp
+                        %a= t('live.title_short')
         = yield
+      - else
+        .container-fluid
+          = yield
+
       = render 'layouts/footer'

@@ -1,16 +1,11 @@
-- menu_style ||= nil
-
-.tr-topbar.clearfix.margin-bottom-0
-  .row
-    .col-sm-3.tr-sidebar.tr-sticky
-      = link_to root_url, class: 'navbar-brand' do
-        = image_tag 'logo-small.png', class: 'img-fluid'
-    .col-sm-8.offset-sm-1.nnews
-      .topbar-left= render 'layouts/news'
-      .topbar-right= render 'users/userbar'
-.tr-menu.menu-responsive{ class: menu_style }
-  %nav.navbar.navbar-light.navbar-expand-lg.px-0
-    %button.navbar-toggler.collapsed{ type: 'button', data: { toggle: 'collapse', target: '#navbar-collapse' }, aria: {controls:"navbar-collapse", expanded: "false", label: "Toggle navigation" } }
-      %span.navbar-toggler-icon
-    #navbar-collapse.collapse.navbar-left.navbar-collapse
-      %ul.nav.navbar-nav= render 'main/menu'
+%header.m-4
+  .container-fluid
+    %nav.navbar.navbar-expand-md.no-gutters
+      .col-3.text-left
+        = link_to root_url do
+          = image_tag 'logo-small.png', height: 30
+      %button.navbar-toggler{aria: { controls: "navbarNav7", expanded: "false", label: "Toggle navigation"}, data: { target: ".navbar-collapse-2", toggle: "collapse" }, type: "button" }
+        %span.navbar-toggler-icon
+      = render 'main/menu'
+      .collapse.navbar-collapse.navbar-collapse-2
+        = render 'users/userbar'
