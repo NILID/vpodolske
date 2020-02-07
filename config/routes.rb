@@ -105,7 +105,6 @@ Rails.application.routes.draw do
        get 'calendar'
        get 'admin'
        get 'archive'
-       get 'list'
        post 'parse'
        post 'parse_lepse'
        post 'parse_karl'

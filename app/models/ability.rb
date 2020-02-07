@@ -14,7 +14,7 @@ class Ability
     can :read, Organization, status_mask: 2
     can :create, [Note, Bug, Organization, Place, Photo, Event, Comment]
     can :search, Category
-    can [:archive, :list], Event
+    can [:archive], Event
     can %i[gallery about map], Place
 
     if user.role? :admin
