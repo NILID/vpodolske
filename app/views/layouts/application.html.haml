@@ -22,9 +22,10 @@
                 .slider-overlay
                   .container
                     .post-content
-                      %h1.entry-title.animated.fadeInUp= link_to t('live.title'), '#'
-                      %span.catagory.animated.fadeInUp
-                        %a= t('live.title_short')
+                      %h1.entry-title.animated.fadeInUp
+                        = link_to t('live.title'), '#'
+                      %span.catagory.animated.fadeInUp.text-white
+                        = t('live.title_short')
         = yield
       - else
         .container-fluid

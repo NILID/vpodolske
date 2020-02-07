@@ -4,7 +4,8 @@
       .col-3.text-left
         = link_to root_url do
           = image_tag 'logo-small.png', height: 30
-      %button.navbar-toggler{aria: { controls: "navbarNav7", expanded: "false", label: "Toggle navigation"}, data: { target: ".navbar-collapse-2", toggle: "collapse" }, type: "button" }
+      %button.navbar-toggler{aria: { controls: 'navbarNav7', expanded: 'false', label: 'Toggle navigation'}, data: { target: '.navbar-collapse-2', toggle: 'collapse' }, type: 'button' }
+        %span.text-muted МЕНЮ
         %span.navbar-toggler-icon
       = render 'main/menu'
       .collapse.navbar-collapse.navbar-collapse-2
