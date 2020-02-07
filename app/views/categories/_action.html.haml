@@ -2,7 +2,7 @@
   .container
     .row.align-items-center
       .col-10.col-sm-6.col-md-4.col-lg-3.m-auto.m-md-0
-        = lazy_img(asset_url('orgs.jpg'), 'imf-fluid')
+        = lazy_img(asset_url('orgs.jpg'), nil, 'img-fluid')
       .col-12.col-md-8.ml-auto.pt-5.pt-md-0
         - if current_user
           %h2= t 'organizations.title'

@@ -1,8 +1,8 @@
-%section.fdb-block.mb-3
+%section.fdb-block.mb-3.py-5
   .container
     .row.text-left.align-items-center
       .col-10.col-sm-6.m-auto.m-lg-0.col-lg-4
-        = image_tag asset_url('news.jpg'), class: 'img-fluid'
+        = lazy_img(asset_url('news.jpg'), nil, 'img-fluid')
       .col-12.col-lg-7.offset-lg-1.pt-4.pt-lg-0
         %h2= link_to t('articles.title'), articles_path
         %p.lead
