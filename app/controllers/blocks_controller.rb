@@ -2,9 +2,6 @@ class BlocksController < ApplicationController
   load_and_authorize_resource :page, find_by: :slug
   load_and_authorize_resource :block, through: :page
 
-  def index
-  end
-
   def new
   end
 

@@ -3,7 +3,7 @@ scope_advert = 'obyavleniya'
 Rails.application.routes.draw do
 
   resources :pages do
-    resources :blocks, except: %i[show] do
+    resources :blocks, except: %i[show index] do
       collection do
         post :sort
       end
