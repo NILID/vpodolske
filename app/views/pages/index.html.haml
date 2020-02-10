@@ -1,23 +1,24 @@
-%h1 Listing pages
+%section.fdb-block{ style: "background-image: url(#{image_url 'shapes/8.svg'})" }
+  .container
+    .row.align-items-center.pb-xl-5
+      .col-8.col-md-4
+        = lazy_img(asset_url('wiki-1.jpg'), nil, 'img-fluid')
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Slug
-      %th
-      %th
-      %th
+      .col-4.col-md-2
+        .row
+          .col-12
+            = lazy_img(asset_url('wiki-2.jpg'), nil, 'img-fluid')
 
-  %tbody
-    - @pages.each do |page|
-      %tr
-        %td= page.title
-        %td= page.slug
-        %td= link_to 'Show', page
-        %td= link_to 'Edit', edit_page_path(page)
-        %td= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' }
+        .row.mt-4
+          .col-12
+            = lazy_img(asset_url('wiki-3.jpg'), nil, 'img-fluid')
+      .col-12.col-md-6.col-lg-5.ml-auto.pt-5.pt-md-0
+        %h1 Энциклопедия
+        %p.lead Уникальный городской проект, в которой может принять участие каждый.
+        = link_to 'New Page', new_page_path, class: 'btn btn-primary'
 
-%br
-
-= link_to 'New Page', new_page_path
+    .row.pt-5
+      - @pages.each do |page|
+        .col-12.col-sm-6.col-md-3
+          .h3
+            %strong= link_to page.title, page

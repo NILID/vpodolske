@@ -1,6 +1,9 @@
 -# frozen_string_literal: true
 = bootstrap_form_for([@page, @block]) do |f|
   .form-inputs
+    = f.text_field :title
+
+  .form-inputs
     = f.text_area :content
 
   .form-actions

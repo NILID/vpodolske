@@ -1,13 +1,24 @@
-%h1= @page.title
+%section.fdb-block
+  .container
+    .row.mb-5.text-left
+      .col
+        %h1.display-4= @page.title
+      .col.text-right
+        = link_to 'Add block', new_page_block_path(@page)
+        \|
+        = link_to t('actions.edit'), edit_page_path(@page)
+        \|
+        = link_to t('actions.del'), @page, method: :delete, data: { confirm: t('actions.sure') }
 
-#sortable{ data: { update_url: sort_page_blocks_path(@page) } }
-  = content_tag_for(:p, @blocks) do |block|
-    = block.content
-    = link_to fa_icon(:edit), edit_page_block_path(@page, block)
-    = fa_icon :arrows_alt, class: 'handle'
+    .row
+      .col.text-left
+        #sortable{ data: { update_url: sort_page_blocks_path(@page) } }
+          = content_tag_for(:div, @blocks, class: 'mb-5 bg-white') do |block|
+            .lead.text-muted.mb-2
+              = block.title
+              .float-right
+                = fa_icon :arrows_alt, class: 'handle'
+                = link_to fa_icon(:edit), edit_page_block_path(@page, block)
 
-= link_to 'Edit', edit_page_path(@page)
-\|
-= link_to 'Back', pages_path
-\|
-= link_to 'Add block', new_page_block_path(@page)
+            = block.content
+

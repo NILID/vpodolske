@@ -12,9 +12,10 @@ class BlocksController < ApplicationController
   end
 
   def sort
-    params[:block].each_with_index do |id, index|
+    params[:block].reverse.each_with_index do |id, index|
       @page.blocks.where(id: id).update_all({ position: index+1 })
     end
+    head :no_content
   end
 
   def create
@@ -51,6 +52,6 @@ class BlocksController < ApplicationController
 
   private
     def block_params
-      params.require(:block).permit(:content, :type, :position, :page_id)
+      params.require(:block).permit(:title, :content, :type, :position, :page_id)
     end
 end
