@@ -67,7 +67,7 @@ $ ->
 
   $('.counter-up').counterUp
     delay: 10
-    time: 1000
+    time: 1500
 
   $('#sortable').sortable
     handle: '.handle'
