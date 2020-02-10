@@ -25,8 +25,6 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 
-  add static_page_path(:den_goroda_2018), :priority => 0.9, :changefreq => 'monthly'
-
   add events_path, :priority => 0.9, :changefreq => 'daily'
   add places_path, :priority => 0.9, :changefreq => 'weekly'
   add categories_path, :priority => 0.6, :changefreq => 'daily'
