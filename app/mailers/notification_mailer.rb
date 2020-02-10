@@ -26,9 +26,9 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def provide_access_organization(organization, user)
+  def provide_access_organization(organization)
     @organization = organization
-    @user = user
+    @user = organization.user
     mail(to: @user.email, subject: I18n.t('mailer.provide_access_organization'), template_name: 'provide_access_organization')
   end
 end

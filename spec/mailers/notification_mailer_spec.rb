@@ -21,9 +21,9 @@ describe NotificationMailer do
     end
 
     it 'provide access organization gor reg user notification should be delivered' do
-      @email = NotificationMailer.provide_access_organization(organization, user)
+      @email = NotificationMailer.provide_access_organization(organization)
       expect(@email.subject).to eq(I18n.t('mailer.provide_access_organization'))
-      expect(@email.to).to eq([user.email])
+      expect(@email.to).to eq([organization.user.email])
     end
 
     it 'inivitation for unreg user notification should be delivered' do
