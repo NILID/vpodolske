@@ -4,7 +4,7 @@
   - if @hidden_orgs > 0
     = link_to(hidden_organizations_path, class: 'dropdown-item') do
       = t('organizations.hidden')
-      %span.badge.badge-secondary
+      .badge.badge-danger.d-inline
         = @hidden_orgs
   = link_to t('organizations.blocked'), blocked_organizations_path, class: 'dropdown-item'
   = link_to '+ category', new_category_path, class: 'dropdown-item'
