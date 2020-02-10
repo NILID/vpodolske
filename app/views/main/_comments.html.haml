@@ -1,7 +1,9 @@
 %section.fdb-block{style: "background-image: url(#{image_url 'shapes/6.svg'})" }
   .container
-    .row.text-center
-      .col-12
+    .row.align-items-center
+      .col-12.col-md-8.col-lg-6.m-md-auto.ml-lg-0.mr-lg-auto
+        = lazy_img(asset_url('review.jpg'), nil, 'img-fluid')
+      .col-12.col-lg-6.col-xl-5.ml-sm-auto.pt-5.pt-lg-0
         %h2= t('comments.new_list')
-    .row.text-left.mt-5
-      = render partial: 'comments/comment_mini', collection: @comments, as: :comment
+        .row.text-left.mt-5
+          = render partial: 'comments/comment_mini', collection: @comments, as: :comment

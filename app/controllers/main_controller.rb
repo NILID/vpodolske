@@ -7,7 +7,7 @@ class MainController < ApplicationController
                      .sample(5)
     @articles = Article.order('created_at desc').limit(4)
 
-    @comments = Comment.shown.includes(:user, :commentable).order(created_at: :desc).limit(5)
+    @comments = Comment.shown.includes(:user, :commentable).order(created_at: :desc).limit(3)
   end
 
   def sponsor; end
