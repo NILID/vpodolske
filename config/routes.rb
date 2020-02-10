@@ -84,6 +84,8 @@ Rails.application.routes.draw do
       member do
         put :accept
         put :block
+        get :edit_access
+        patch :update_access
       end
       resources :comments, except: %i[new index destroy show]
     end

@@ -7,9 +7,14 @@ class MailPreview < ActionMailer::Preview
     NotificationMailer.send_admin_letter('dm.ilin@mail.ru', 'Hello my name is')
   end
 
-
   def accept_organization
     organization = Organization.first
     NotificationMailer.accept_organization(organization)
   end
+
+  def provide_access_organization
+    organization = Organization.first
+    NotificationMailer.provide_access_organization(organization, User.first)
+  end
+
 end

@@ -113,14 +113,6 @@ ru:
     excluded: Исключенные
     orel_html: <b>Орел</b>&<i>Решка</i>
     admin: Админ
-  mail: vPodolske
-  mailer:
-    feedback_me_html:  Мы постоянно работаем над ресурсом и будем признательны, если вы уделите нам внимание, и расскажите о своих пожеланиях или замечаниях по работе сайта vPodolske.
-    contact_me_html: Мы доступны по %{url} или по электронной почте %{email}.
-    by_feedback: обратной связи
-    check_item: На сайте создано событие, проверьте
-    accept_organization: Ваша организация добавлена в каталог vPodolske
-    send_admin_letter: Вам письмо от городского портала vPodolske.com
   search:
     result: Результат поиска по организациям
     link: Поиск

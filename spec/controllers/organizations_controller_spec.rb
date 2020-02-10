@@ -15,9 +15,19 @@ describe OrganizationsController do
       expect(get :edit, params: { id: organization }).to render_template(:edit)
     end
 
+    it 'edit access' do
+      expect(@ability.can? :edit_access, organization).to be true
+      expect(get :edit_access, params: { id: organization }).to render_template(:edit_access)
+    end
+
     it 'update' do
       expect(@ability.can? :update, organization).to be true
       expect(put :update, params: { id: organization, organization: attributes_for(:organization, category_tokens: [new_category.id]) } ).to redirect_to(assigns(:organization))
+    end
+
+    it 'update access' do
+      expect(@ability.can? :update_access, organization).to be true
+      expect(put :update_access, params: { id: organization, organization: attributes_for(:organization, category_tokens: [new_category.id]) } ).to redirect_to(assigns(:organization))
     end
 
     it 'accept' do
@@ -144,6 +154,11 @@ describe OrganizationsController do
         expect{ put :accept, params: { id: organization } }.to raise_error(CanCan:: AccessDenied)
       end
 
+      it 'not edit access' do
+        expect(@ability.can? :edit_access, organization).to be false
+        expect{ get :edit_access, params: { id: organization } }.to raise_error(CanCan:: AccessDenied)
+      end
+
       it 'not accept' do
         expect(organization.status? :hidden).to be true
         expect(@ability.cannot? :block, organization).to be true
@@ -153,6 +168,11 @@ describe OrganizationsController do
       it 'not update' do
         expect(@ability.can? :update, organization).to be false
         expect{ put :update, params: { id: organization, organization: attributes_for(:organization) } }.to raise_error(CanCan:: AccessDenied)
+      end
+
+      it 'not update access' do
+        expect(@ability.can? :update_access, organization).to be false
+        expect{ put :update_access, params: { id: organization, organization: attributes_for(:organization) } }.to raise_error(CanCan:: AccessDenied)
       end
 
       it 'not destroy' do
@@ -178,12 +198,14 @@ describe OrganizationsController do
 
     describe 'not' do
       after(:each)  { expect(response).to redirect_to(new_user_session_path) }
-      it('get edit')    { get :edit,   params: { id: organization } }
-      it('show hidden') { get :show,   params: { id: organization } }
-      it('update')      { put :update, params: { id: organization, organization: attributes_for(:organization) } }
-      it('accept')      { put :accept, params: { id: organization } }
-      it('block')       { put :block,  params: { id: organization } }
-      it('destroy')     { expect{ delete :destroy, params: { id: organization } }.to change(Organization, :count).by(0) }
+      it('get edit')        { get :edit,   params: { id: organization } }
+      it('get edit access') { get :edit,   params: { id: organization } }
+      it('show hidden')     { get :show,   params: { id: organization } }
+      it('update')          { put :update, params: { id: organization, organization: attributes_for(:organization) } }
+      it('update access')   { put :update_access, params: { id: organization, organization: attributes_for(:organization) } }
+      it('accept')          { put :accept, params: { id: organization } }
+      it('block')           { put :block,  params: { id: organization } }
+      it('destroy')         { expect{ delete :destroy, params: { id: organization } }.to change(Organization, :count).by(0) }
     end
   end
 end

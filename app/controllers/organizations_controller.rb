@@ -104,6 +104,19 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def update_access
+    respond_to do |format|
+      if @organization.update(organization_params)
+        format.html { redirect_to @organization, notice: t('flash.was_updated', model_name: Organization.model_name.human, title: @organization.title ) }
+        format.json { render :show, status: :ok, location: @organization }
+      else
+        format.html { render :edit }
+        format.json { render json: @organization.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   def destroy
     categories = @organization.categories
     @organization.destroy

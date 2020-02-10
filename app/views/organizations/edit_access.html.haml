@@ -1,0 +1,10 @@
+= render 'js_ckeditor'
+
+= bootstrap_form_for [:update_access, @organization], html: { class: 'contact-form' } do |f|
+  .section-title
+    %h1 Provide access
+    = f.text_field :user_id
+
+  = f.form_group do
+    = f.primary t('actions.save')
+    = link_to t('actions.cancel'), categories_path, class: 'btn btn-secondary'
