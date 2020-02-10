@@ -84,11 +84,15 @@ module ApplicationHelper
         'вс' => '' )
   end
 
-  def plural(count, value)
+  def plural(count, value, only_text=false)
     # custom pluralization
     # for russian pluralization
     val = "plural.#{value}"
-    count.to_s + ' ' + Russian.p(count, t("#{val}_1", locale: :ru), t("#{val}_2", locale: :ru), t("#{val}_10", locale: :ru))
+    text = Russian.p(count, t("#{val}_1", locale: :ru), t("#{val}_2", locale: :ru), t("#{val}_10", locale: :ru))
+    unless only_text
+      text = count.to_s + ' ' + text
+    end
+    text
   end
 
   def thumb_img(thumb)

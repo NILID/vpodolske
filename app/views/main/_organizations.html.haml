@@ -1,0 +1,16 @@
+%section.fdb-block.mb-5{style: "background-image: url(#{image_url 'shapes/8.svg'})" }
+  .container
+    .row.align-items-center
+      .col-12.col-lg-6.col-xl-5
+        %h2= link_to t('organizations.title'), organizations_path
+        .row.py-4.pt-xl-5
+          .col-12
+            .display-4
+              %span.counter-up= @orgs_size
+              = plural(@orgs_size, 'organization', true)
+
+        %p.lead
+          = t('organizations.intro')
+
+      .col-12.col-md-8.col-lg-6.m-auto.mr-lg-0.ml-lg-auto.pt-5.pt-lg-0
+        = lazy_img(asset_url('bar.jpg'), nil, 'img-fluid')

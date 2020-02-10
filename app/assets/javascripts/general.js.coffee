@@ -65,6 +65,10 @@ $ ->
     $this.tab 'show'
     false
 
+  $('.counter-up').counterUp
+    delay: 10
+    time: 1000
+
   $('#sortable').sortable
     handle: '.handle'
     update: ->
