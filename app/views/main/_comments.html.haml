@@ -1,0 +1,7 @@
+%section.fdb-block{style: "background-image: url(#{image_url 'shapes/6.svg'})" }
+  .container
+    .row.text-center
+      .col-12
+        %h2= t('comments.new_list')
+    .row.text-left.mt-5
+      = render partial: 'comments/comment_mini', collection: @comments, as: :comment

@@ -1,0 +1,12 @@
+= content_tag_for(:div, comment, class: 'col-12 col-md-6') do
+  .row
+    .col-2
+      - if comment.user
+        = link_to comment.user do
+          = lazy_img(comment.user.profile.avatar(:thumb), comment.user.login, 'fdb-icon img-fluid')
+      - else
+        = lazy_img(image_url('missing_m.png'), 'Anonymous', 'fdb-icon img-fluid')
+    .col-10
+      .h4.mt-0
+        %strong= link_to comment.commentable.title, comment.commentable
+      %p= truncate(comment.content, length: 140)

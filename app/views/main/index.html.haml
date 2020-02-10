@@ -9,10 +9,4 @@
 
 = render 'articles'
 = render 'events'
-.card-columns-main
-  - if @comments.any?
-    .card.mb-3
-      .card-body
-        .section-title.title-before
-          %h2= t('comments.new_list')
-        = render @comments, show_commentable: true
+= render 'comments'
