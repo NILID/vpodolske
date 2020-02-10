@@ -107,7 +107,7 @@ class OrganizationsController < ApplicationController
   def update_access
     respond_to do |format|
       if @organization.update(organization_params)
-        NotificationMailer.provide_access_organization(@organization).deliver
+        NotificationMailer.provide_access_organization(@organization).deliver_now
         format.html { redirect_to @organization, notice: t('flash.was_updated', model_name: Organization.model_name.human, title: @organization.title ) }
         format.json { render :show, status: :ok, location: @organization }
       else
