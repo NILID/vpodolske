@@ -1,29 +1,31 @@
-- if %w[photos places].include? params[:controller]
-  %li.nav-item{ class: (params[:controller] == 'places' && params[:action] == 'index') ? 'active' : nil }
-    = link_to t('live.title'), places_path, class: 'nav-link'
-  %li.nav-item{ class: ((%w[places photos].include? params[:controller]) && params[:action] != 'index') ? 'active' : nil }
-    = link_to t('live.gallery'), gallery_places_path, class: 'nav-link'
-- else
-  %li.nav-item{ class: params[:controller] == 'articles'?   'active' : nil }
-    = link_to t('articles.title'), articles_path, class: 'nav-link'
-  %li.nav-item{ class: params[:controller] == 'events'?     'active' : nil }
-    = link_to t('events.title'), events_path, class: 'nav-link'
-  %li.nav-item{ class: params[:controller] == 'categories'? 'active' : nil }
-    = link_to t('helper'), categories_path, class: 'nav-link'
-  %li.nav-item{ class: params[:controller] == 'users'?      'active' : nil }
-    = link_to t('users.title'), users_path, class: 'nav-link'
-  %li.nav-item
-    = link_to t('live.title'), places_path, class: 'nav-link'
+#navbarNav7.collapse.navbar-collapse.navbar-collapse-2.justify-content-center.col-md-6
+  %ul.navbar-nav.justify-content-center
+    - if %w[photos places].include? params[:controller]
+      %li.nav-item{ class: (params[:controller] == 'places' && params[:action] == 'index') ? 'active' : nil }
+        = link_to t('live.title'), places_path, class: 'nav-link'
+      %li.nav-item{ class: ((%w[places photos].include? params[:controller]) && params[:action] != 'index') ? 'active' : nil }
+        = link_to t('live.gallery'), gallery_places_path, class: 'nav-link'
+    - else
+      %li.nav-item{ class: params[:controller] == 'articles'?   'active' : nil }
+        = link_to t('articles.title'), articles_path, class: 'nav-link'
+      %li.nav-item{ class: params[:controller] == 'events'?     'active' : nil }
+        = link_to t('events.title'), events_path, class: 'nav-link'
+      %li.nav-item{ class: params[:controller] == 'categories'? 'active' : nil }
+        = link_to t('helper'), categories_path, class: 'nav-link'
+      %li.nav-item{ class: params[:controller] == 'users'?      'active' : nil }
+        = link_to t('users.title'), users_path, class: 'nav-link'
+      %li.nav-item
+        = link_to t('live.title'), places_path, class: 'nav-link'
 
-  - if can? :manage, :all
-    %li.nav-item.dropdown
-      = link_to t('shared.admin'), '#', 'data-toggle' => 'dropdown', class: 'nav-link dropdown-toggle', role: "button", aria: { haspopup: 'true', expanded: 'false'}
-      %ul.dropdown-menu
-        = link_to t('articles.title'), manager_articles_path, class: 'dropdown-item'
-        = link_to t('comments.title'), comments_path,         class: 'dropdown-item'
-        = link_to t('bugs.title'),     bugs_path,             class: 'dropdown-item'
-        = link_to t('note.title'),     notes_path,            class: 'dropdown-item'
-        = link_to t('admin.letters'),  letters_path,          class: 'dropdown-item'
-        - if Rails.env.development?
-          .dropdown-divider
-          = link_to t('admin.preview_emails'), rails_mailers_path, class: 'dropdown-item'
+      - if can? :manage, :all
+        %li.nav-item.dropdown
+          = link_to t('shared.admin'), '#', 'data-toggle' => 'dropdown', class: 'nav-link dropdown-toggle', role: "button", aria: { haspopup: 'true', expanded: 'false'}
+          %ul.dropdown-menu
+            = link_to t('articles.title'), manager_articles_path, class: 'dropdown-item'
+            = link_to t('comments.title'), comments_path,         class: 'dropdown-item'
+            = link_to t('bugs.title'),     bugs_path,             class: 'dropdown-item'
+            = link_to t('note.title'),     notes_path,            class: 'dropdown-item'
+            = link_to t('admin.letters'),  letters_path,          class: 'dropdown-item'
+            - if Rails.env.development?
+              .dropdown-divider
+              = link_to t('admin.preview_emails'), rails_mailers_path, class: 'dropdown-item'

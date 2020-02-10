@@ -1,0 +1,11 @@
+%section.fdb-block.mb-5.py-5{style: "background-image: url(#{image_url 'shapes/8.svg'})" }
+  .container
+    .row.text-left.align-items-center
+      .col-10.col-sm-6.m-auto.m-lg-0.col-lg-4
+        = lazy_img(asset_url('news.jpg'), nil, 'img-fluid')
+      .col-12.col-lg-7.offset-lg-1.pt-4.pt-lg-0
+        %h2= link_to t('articles.title'), articles_path
+        %p.lead
+          = t 'articles.intro'
+        .row.mt-5
+          = render partial: 'articles/article_mini', collection: @articles, as: :article

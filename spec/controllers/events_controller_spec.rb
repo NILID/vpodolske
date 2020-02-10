@@ -84,13 +84,6 @@ describe EventsController do
         expect(assigns(:events)).not_to be_empty
       end
 
-      it 'list' do
-        expect(@ability.can? :list, Event).to be true
-        expect(get :list).to render_template(:list)
-        expect(assigns(:events)).not_to be_empty
-      end
-
-
       it 'like' do
         expect(@ability.can? :like, event).to be true
         expect{ put :like, params: { id: event }, xhr: true }.to change(event.get_upvotes, :size).by(1)
@@ -166,7 +159,6 @@ describe EventsController do
 
   describe 'unreg user activities should' do
     it('index')  { expect(get :index).to render_template(:index) }
-    it('lsit')   { expect(get :list).to render_template(:list) }
     it('show')   { expect(get :show, params: { id: event }).to render_template(:show) }
     it('new')    { expect(get :new).to render_template(:new) }
     it('create') do

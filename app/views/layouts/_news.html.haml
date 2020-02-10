@@ -1,7 +1,0 @@
-- @articles = Article.order(from_at: :desc, created_at: :asc).limit(10)
-
-.breaking-news
-  #ticker
-    %ul
-      - @articles.each do |article|
-        %li= link_to article.title, articles_path(anchor: dom_id(article))

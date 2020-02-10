@@ -7,7 +7,9 @@
   = f.text_field :title, placeholder: t('placeholders.org_title')
   = f.file_field :logo
 
-  = f.cktext_area :desc, ckeditor: { toolbar: 'mini' }
+  .my-3
+    = f.label :desc
+    = f.cktext_area :desc, ckeditor: { toolbar: 'mini' }
 
   = f.text_field :site,     placeholder: t('placeholders.site')
   = f.text_field :worktime, placeholder: t('placeholders.worktime')
@@ -24,11 +26,11 @@
     = link_to_add_association t('address.add'), f, :addresses, class: 'btn btn-secondary'
 
   - if current_user&.role? :admin
-    .well
-      %h6 Admin
+    .border.border-secondary.my-3.p-3
+      %h4.title.text-muted Admin
       = f.text_field :status_mask
       = f.check_box :notify
-      = f.text_field :user_id
+      = f.text_field :url
 
   - unless user_signed_in?
     = f.form_group do

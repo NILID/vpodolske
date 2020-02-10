@@ -1,12 +1,12 @@
-.col-12
-  .tr-section
-    %ul.list-inline
-      - if @hidden_orgs > 0
-        %li.list-inline-item
-          = link_to(hidden_organizations_path, class: 'btn btn-primary')do
-            = t('organizations.hidden')
-            %span.badge.badge-secondary= @hidden_orgs
-      %li.list-inline-item= link_to t('organizations.blocked'), blocked_organizations_path, class: 'btn btn-primary'
-      %li.list-inline-item= link_to '+ category', new_category_path, class: 'btn btn-primary'
-      %li.list-inline-item= link_to '+ parse categories', create_list_categories_path, class: 'btn btn-primary', method: :post
-      %li.list-inline-item= link_to 'search', organizations_path(to_search_nil: 'site'), class: 'btn btn-secondary'
+%button.btn.btn-sm.btn-secondary.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+  %span.fa.fa-cog
+.dropdown-menu
+  - if @hidden_orgs > 0
+    = link_to(hidden_organizations_path, class: 'dropdown-item') do
+      = t('organizations.hidden')
+      .badge.badge-danger.d-inline
+        = @hidden_orgs
+  = link_to t('organizations.blocked'), blocked_organizations_path, class: 'dropdown-item'
+  = link_to '+ category', new_category_path, class: 'dropdown-item'
+  = link_to '+ parse categories', create_list_categories_path, class: 'dropdown-item', method: :post
+  = link_to 'search', organizations_path(to_search_nil: 'site'), class: 'dropdown-item'

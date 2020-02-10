@@ -10,8 +10,8 @@
               - flash.each do |name, msg|
                 = content_tag :div, msg
 
+    = render 'layouts/menu'
     .main-wrapper.tr-page-top
       .container-fluid
-        = render 'layouts/menu'
         = content_tag :body, yield
       = render 'layouts/footer'

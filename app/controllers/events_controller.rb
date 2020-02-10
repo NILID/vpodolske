@@ -24,27 +24,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def list
-    today = Date.today
-    tomorrow = today + 1.days
-    after_tomorrow = today + 2.days
-
-    @events = @events.where(hidden: false)
-
-    @events = if params[:period] == 'today'
-                @events.where('eventdate = ? or (eventdate < ? AND finishdate > ?)', today, today, today)
-              elsif params[:period] == 'tomorrow'
-                @events.where('eventdate = ? or (eventdate < ? AND finishdate > ?)', tomorrow, tomorrow, tomorrow)
-              else
-                @events.where('eventdate >=? OR (timeless = ? OR finishdate >=?)', after_tomorrow, true, after_tomorrow)
-                    .order('eventdate')
-              end
-
-    @events = @events.sample(6)
-
-    render layout: false
-  end
-
   def archive
     @events = @events.where(hidden: false).where('eventdate < ?', Date.today).order('eventdate desc')
     @plustag = t('seo.events.archive')

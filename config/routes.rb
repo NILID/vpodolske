@@ -80,6 +80,7 @@ Rails.application.routes.draw do
       end
       member do
         post :create_orgs
+        post :create_multi_orgs
       end
     end
     resources :organizations do
@@ -91,6 +92,8 @@ Rails.application.routes.draw do
       member do
         put :accept
         put :block
+        get :edit_access
+        patch :update_access
       end
       resources :comments, except: %i[new index destroy show]
     end
@@ -112,7 +115,6 @@ Rails.application.routes.draw do
        get 'calendar'
        get 'admin'
        get 'archive'
-       get 'list'
        post 'parse'
        post 'parse_lepse'
        post 'parse_karl'

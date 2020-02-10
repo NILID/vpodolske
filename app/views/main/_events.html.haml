@@ -1,0 +1,13 @@
+%section.fdb-block.mb-5.py-5{style: "background-image: url(#{image_url 'shapes/9.svg'})" }
+  .container
+    .row.text-center
+      .col-12
+        %h2= t('events.title')
+        %p.lead
+          = link_to events_path do
+            = t('events.title_all')
+            = fa_icon :angle_right
+        %p.lead
+          = t 'events.about_short'
+    .row.justify-content-center.mt-5.row-cols-2.row-cols-md-4.row-cols-lg-5
+      = render @events, lazy: true

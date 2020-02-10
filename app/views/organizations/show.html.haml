@@ -71,6 +71,7 @@
           - if @organization.email?
             %p= @organization.email
           = link_to t('actions.edit'), [:edit, @organization], class: 'btn btn-secondary'
+          = link_to t('actions.edit_access'), [:edit_access, @organization], class: 'btn btn-secondary'
           = link_to t("actions.#{@organization.shown? ? 'deaccept' : 'accept'}"), [:accept, @organization], class: 'btn btn-secondary', method: :put
           = link_to t("actions.#{@organization.blocked? ? 'deblock' : 'block'}"), [:block, @organization], class: 'btn btn-secondary', method: :put
           = link_to t('actions.del'), organization_path(@organization), method: :delete, data: { confirm: t('actions.sure') }, class: 'btn btn-danger'

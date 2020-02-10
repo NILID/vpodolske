@@ -63,7 +63,7 @@ class OrganizationsController < ApplicationController
   def show
     @categories = @organization.categories
     @addresses  = @organization.addresses
-    @other_organizations = (Organization.shown.joins(:categories).where(categories: { id:  @categories.pluck(:id) }).distinct - [@organization]).sample(9).sort
+    @other_organizations = (Organization.shown.joins(:categories).where(categories: { id: @categories.pluck(:id) }).distinct - [@organization]).sample(9).sort
     @comments = @organization.comments.shown.order(created_at: :desc).includes(:user)
     @organization.update_views!
   end
@@ -103,6 +103,20 @@ class OrganizationsController < ApplicationController
       end
     end
   end
+
+  def update_access
+    respond_to do |format|
+      if @organization.update(organization_params)
+        NotificationMailer.provide_access_organization(@organization).deliver_now
+        format.html { redirect_to @organization, notice: t('flash.was_updated', model_name: Organization.model_name.human, title: @organization.title ) }
+        format.json { render :show, status: :ok, location: @organization }
+      else
+        format.html { render :edit }
+        format.json { render json: @organization.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   def destroy
     categories = @organization.categories

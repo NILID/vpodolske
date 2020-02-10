@@ -23,6 +23,6 @@ FactoryBot.define do
     trait(:hidden)  { status_mask { 1 } }
     trait(:shown)   { status_mask { 2 } }
     trait(:blocked) { status_mask { 4 } }
-
+    trait(:without_user) { user_id { nil } }
   end
 end

@@ -7,26 +7,28 @@
   .col-sm-12
     .tr-section
       %nav(aria-label='breadcrumb')
-      %ol.breadcrumb
-        %li.breadcrumb-item(aria-current='page')= link_to t('categories.title'), categories_path
-        - @category.ancestors.each do |a|
-          %li.breadcrumb-item(aria-current='page')= link_to a.title, a
-        %li.active.breadcrumb-item(aria-current='page')= @category.title
+        %ol.breadcrumb
+          %li.breadcrumb-item(aria-current='page')= link_to t('categories.title'), categories_path
+          - @category.ancestors.each do |a|
+            %li.breadcrumb-item(aria-current='page')= link_to a.title, a
+          %li.active.breadcrumb-item(aria-current='page')
+            %h1.h4.d-inline.text-danger= @category.title
 
       .row
-        .col-12
-          .section-title.title-before
-            %h1= @category.title
+        .col-md-6.mb-3.mb-md-0
+          = link_to t('organizations.add'), new_organization_path(category: (@category.root? ? nil: @category.id) ), class: 'btn btn-primary'
+          - if can? :manage, @category
+            %button.btn.btn-secondary.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+              %span.fa.fa-cog
+            .dropdown-menu
+              = link_to t('actions.edit'), edit_category_path(@category), class: 'dropdown-item'
+              = link_to t('actions.del'), category_path(@category), method: :delete, data: { confirm: t('actions.sure') }, class: 'dropdown-item'
+              = link_to 'create orgs', create_orgs_category_path(@category), method: :post, class: 'dropdown-item'
+        .col-md-6
+          = render 'organizations/search_form'
 
+      .row
         .col-12.col-sm-5
-
-          %p
-            = link_to t('organizations.add'), new_organization_path(category: (@category.root? ? nil: @category.id) ), class: 'btn btn-primary'
-            - if can? :manage, @category
-              = link_to t('actions.edit'), edit_category_path(@category), class: 'btn btn-secondary'
-              = link_to t('actions.del'), category_path(@category), method: :delete, data: { confirm: t('actions.sure') }, class: 'btn btn-danger'
-              = link_to 'create orgs', create_orgs_category_path(@category), method: :post, class: 'btn btn-secondary'
-
           - if @category.desc?
             .well= @category.desc
           %table.table.table-sm
@@ -43,6 +45,5 @@
                 .text-muted.well= t 'organizations.empty'
 
         .col-12.col-sm-7.category-events.tr-sticky
-          = render 'organizations/search_form'
           = render('main/multi_map', list: @addresses, center: false, zoom_int: 12) if @addresses.size > 0
 

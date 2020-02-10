@@ -1,0 +1,17 @@
+%section.fdb-block.mb-4.py-5
+  .container
+    .row.align-items-center
+      .col-10.col-sm-6.col-md-4.col-lg-3.m-auto.m-md-0
+        = lazy_img(asset_url('orgs.jpg'), nil, 'img-fluid')
+      .col-12.col-md-8.ml-auto.pt-5.pt-md-0
+        - if current_user
+          %h2= t 'organizations.title'
+          %p.lead
+            = t 'organizations.add_you_can_html'
+        - else
+          %p.lead
+            = t 'organizations.add_you_can_html'
+            = t 'organizations.add_unreg_html', url: link_to(t('signuping').downcase, new_user_registration_path)
+
+        %p.mt-4
+          = link_to t('organizations.add'), new_organization_path, class: 'btn btn-primary'

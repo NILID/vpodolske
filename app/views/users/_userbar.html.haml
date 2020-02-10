@@ -1,16 +1,19 @@
 - if user_signed_in?
-  .user
-    .user-image
-      = link_to (image_tag current_user.profile.avatar(:thumb), class: 'img-fluid rounded-circle', width: 35), current_user
-    .dropdown.user-dropdown
-      = link_to current_user.login, '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false' }
-      .dropdown-menu.sub-menu.text-left
-        = link_to t('shared.settings'), edit_user_path(current_user), class: 'dropdown-item'
-        .dropdown-divider
-        = link_to t(:signout), destroy_user_session_path, method: :delete, class: 'dropdown-item'
+  %ul.navbar-nav.ml-auto.justify-content-end
+    %li.nav-item
+      = link_to (image_tag current_user.profile.avatar(:thumb), class: 'img-fluid rounded-circle', width: 30), current_user
+    %li.nav-item
+      .dropdown
+        = link_to current_user.login, '#', class: 'dropdown-toggle nav-link', data: { toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false' }
+        .dropdown-menu.dropdown-menu-left
+          = link_to t('shared.settings'), edit_user_path(current_user), class: 'dropdown-item'
+          .dropdown-divider
+          = link_to t(:signout), destroy_user_session_path, method: :delete, class: 'dropdown-item'
 - else
-  .searchNlogin
-    %ul
-      %li= link_to t(:signup), new_user_registration_path
-      %li= link_to t(:signin), new_user_session_path
-      %li= link_to 'VK', omniauth_authorize_path(User, :vkontakte)
+  %ul.navbar-nav.ml-auto.justify-content-end
+    %li.nav-item
+      = link_to t(:signup), new_user_registration_path, class: 'nav-link'
+    %li.nav-item
+      = link_to t(:signin), new_user_session_path, class: 'nav-link'
+    %li.nav-item
+      = link_to 'VK', omniauth_authorize_path(User, :vkontakte), class: 'nav-link'
