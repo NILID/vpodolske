@@ -8,7 +8,7 @@ class Ability
 
     can :read, :all
     cannot :read, Event, hidden: true
-    cannot :read, [Bug, Note, Letter, Organization]
+    cannot :read, [Bug, Note, Letter, Organization, Page]
     cannot :index, Comment
     can :emails, Organization
     can :read, Organization, status_mask: 2
