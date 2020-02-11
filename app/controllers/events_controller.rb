@@ -174,7 +174,7 @@ class EventsController < ApplicationController
         :longitude,
         :gmaps
       ]
-      list_params_allowed << [:hidden, :cool, :excluded_flag] if current_user&.role? :admin
+      list_params_allowed << %w[hidden cool excluded_flag siteurl] if current_user&.role? :admin
       params.require(:event).permit(list_params_allowed)
     end
 

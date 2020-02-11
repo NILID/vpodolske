@@ -132,7 +132,7 @@ class OrganizationsController < ApplicationController
     def organization_params
       address_params = (current_user&.role? :admin) ? %i[id latitude longitude address phone worktime _destroy] : %i[id address phone worktime _destroy]
       list_params_allowed = [:title, :desc, :site, :worktime, :phone, :email, :logo, { category_tokens: [], addresses_attributes: address_params } ]
-      list_params_allowed << %i[status_mask statuses user_id notify] if current_user&.role? :admin
+      list_params_allowed << %i[status_mask statuses user_id notify url] if current_user&.role? :admin
       params.require(:organization).permit(list_params_allowed)
     end
 end
