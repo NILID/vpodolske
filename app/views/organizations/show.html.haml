@@ -3,59 +3,28 @@
   keywords: @organization.title,
   index: true
 
-.row.tr-content
-  .col-12
-    .tr-section
-      %ul.nav
-        - @categories.each do |category|
-          %li.nav-item= link_to category.title, category, class: 'nav-link'
+.slider-style-three
+  .slide
+    .carousel-inner(role='listbox')
+      .item.carousel-item.active.organization-item
+        = image_tag asset_url('bar.jpg'), class: 'd-block w-100', style: 'filter: brightness(30%)'
+        %section.carousel-caption
+          .container.pt-5
+            .row.justify-content-center.text-center.pb-3
+              .col-5.col-md-3
+                = image_tag(@organization.logo.url, class: 'img-fluid animated fadeInDown' , alt: @organization.title) if @organization.logo?
+            .row.justify-content-center.text-center
+              .col-12
+                %h1.h2.text-white.animated.fadeInUp
+                  = @organization.title
+
 
 .row.tr-content
-  .col-12.col-sm-6.col-md-4.col-lg-3.tr-sticky
-    .tr-section
-      .section-title.title-before
-        %h1= @organization.title
-      = image_tag(@organization.logo.url, class: 'center-block img-fluid', alt: @organization.title) if @organization.logo?
-
-    - if @addresses.size > 0
-      .tr-section
-        .map-container= render('main/multi_map', list: @addresses, center: true, zoom_int: 12, title: @organization.title, hide_info: true) if @addresses.size > 0
-
-        .tr-post
-          .post-content
-            %table.table.table-sm.table-hover.table-addresses
-              - @addresses.each do |addr|
-                %tr{ class: (addr.phone? || addr.worktime?) ? 'link-hover' : nil,
-                     data: { toggle: 'collapse', target: "#collapse_#{addr.id}" },
-                     aria: { expanded: 'false', controls: "#collapse_#{addr.id}" } }
-                  %td
-                    - if addr.phone? || addr.worktime?
-                      .float-right= fa_icon 'info-circle'
-                    %address
-                      = addr.address
-                      - if addr.phone? || addr.worktime?
-                        .collapse{ id: "collapse_#{addr.id}" }
-                          %table.table.table-sm
-                            - if addr.worktime?
-                              %tr
-                                %td
-                                  = fa_icon 'calendar-alt'
-                                %td= addr.worktime
-                            - if addr.phone?
-                              %tr
-                                %td
-                                  = fa_icon 'phone'
-                                %td= addr.phone
-
+  .col-12.col-sm-6.col-md-4.col-lg-3
     - if @organization.worktime?
       .tr-section
         %span= Organization.human_attribute_name(:worktime)
         = @organization.worktime
-    - if @organization.phone?
-      .tr-section= @organization.phone
-    - if @organization.site?
-      .tr-section
-        = link_to t('organizations.go_site'), @organization.site, target: '_blank', rel: 'nofollow'
 
   .col-12.col-sm-6.col-md-5.col-lg-6
     - if current_user
@@ -93,7 +62,63 @@
     .tr-widget.tr-ad
       .text-right= render 'bugs/bugs_panel'
 
-    - if @other_organizations.any?
+  .col-12.col-sm-12.col-md-3.col-lg-3
+    .tr-section
+      = ads_block('org_vertical')
+
+
+%section.fdb-block.p-0
+  .container-fluid.p-0
+    .bg-dark
+      .container
+        .row-50
+        .row.justify-content-center.text-center
+          - if @organization.phone?
+            .col-12.col-md.mr-auto.ml-auto
+              = fa_icon 'phone 3x', class: 'mb-2'
+              %p.lead= @organization.phone
+
+          - if @addresses.size > 0
+            .col-12.col-md.pt-4.pt-md-0.mr-auto.ml-auto
+              = fa_icon 'map-marked-alt 3x', class: 'mb-2'
+
+              - @addresses.each do |addr|
+                %p{ class: (addr.phone? || addr.worktime?) ? 'link-hover' : nil,
+                     data: { toggle: 'collapse', target: "#collapse_#{addr.id}" },
+                     aria: { expanded: 'false', controls: "#collapse_#{addr.id}" } }
+                  - if addr.phone? || addr.worktime?
+                    .float-right= fa_icon 'info-circle'
+                  %address
+                    = addr.address
+                    - if addr.phone? || addr.worktime?
+                      .collapse{ id: "collapse_#{addr.id}" }
+                        %table.table.table-sm
+                          - if addr.worktime?
+                            %tr
+                              %td
+                                = fa_icon 'calendar-alt'
+                              %td= addr.worktime
+                          - if addr.phone?
+                            %tr
+                              %td
+                                = fa_icon 'phone'
+                              %td= addr.phone
+
+          - if @organization.site?
+            .col-12.col-md.pt-4.pt-md-0.mr-auto.ml-auto
+              = fa_icon 'wifi 3x', class: 'mb-2'
+              %p.lead
+                = link_to t('organizations.go_site'), @organization.site, target: '_blank', rel: 'nofollow', class: 'text-white'
+
+        .row-50
+
+  .container-fluid.p-0
+    .map-container= render('main/multi_map', list: @addresses, center: true, zoom_int: 12, title: @organization.title, hide_info: true) if @addresses.size > 0
+
+= render 'comments'
+%section.fdb-block.p-0
+  - if @other_organizations.any?
+    .container-fluid.p-0
       .tr-widget.tr-section
         .widget-title
           %span
@@ -102,26 +127,10 @@
         .catagory-list.other-organizations-columns.card-columns
           = render partial: 'organization_small', collection: @other_organizations
 
-    .tr-comment
-      .section-title
-        .title-strong
-          %span= t 'comments.title'
-    .card
-      .card-body
-        = bootstrap_form_for [@organization, Comment.new], remote: true, html: { method: :post, class: 'contact-form' } do |f|
-          .form-errors
-          = f.text_area :content, hide_label: true, placeholder: t('comments.textarea_html', title: @organization.title)
-
-          - unless user_signed_in?
-            .float-right
-              = f.form_group do
-                = recaptcha_tags hl: 'ru'
-            .clearfix
-          .float-right
-            = f.primary t('actions.create')
-        .post-comment#comments
-          = render @comments, commentable: @organization, show_commentable: false
-
-  .col-12.col-sm-12.col-md-3.col-lg-3
+.row
+  .col-12
     .tr-section
-      = ads_block('org_vertical')
+      %ul.nav
+        - @categories.each do |category|
+          %li.nav-item= link_to category.title, category, class: 'nav-link'
+

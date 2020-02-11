@@ -25,6 +25,7 @@
                       = link_to t('live.title'), '#'
                     %span.catagory.animated.fadeInUp.text-white
                       = t('live.title_short')
+    - if %w[organizations].include? params[:controller]
       = yield
     - else
       .container-fluid

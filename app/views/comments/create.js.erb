@@ -11,3 +11,7 @@ $(form_errors).html('');
     $("#comments").prepend("<%= j render(partial: 'comments/moderate_notice')%>");
   <% end %>
 <% end %>
+
+bLazy = new Blazy({
+  selector: '.b-lazy'
+});

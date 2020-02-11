@@ -1,0 +1,21 @@
+%section.fdb-block
+  .container
+    .row
+      .col-12.text-center
+        .h2= t 'comments.title'
+
+      .card-body
+        = bootstrap_form_for [@organization, Comment.new], remote: true, html: { method: :post, class: 'contact-form' } do |f|
+          .form-errors
+          = f.text_area :content, hide_label: true, placeholder: t('comments.textarea_html', title: @organization.title)
+
+          - unless user_signed_in?
+            .float-right
+              = f.form_group do
+                = recaptcha_tags hl: 'ru'
+            .clearfix
+          .float-right
+            = f.primary t('actions.create')
+
+    .row.text-left.justify-content-center.pt-5#comments
+      = render @comments, commentable: @organization, show_commentable: false
