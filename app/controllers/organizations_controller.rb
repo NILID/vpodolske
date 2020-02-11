@@ -47,16 +47,16 @@ class OrganizationsController < ApplicationController
   def accept
     if @organization.email
       send_flag = @organization.notify
-      @organization.update_attributes!(status_mask: (@organization.shown? ? 1 : 2), notify: true)
+      @organization.update!(status_mask: (@organization.shown? ? 1 : 2), notify: true)
       @organization.send_accept_notification unless send_flag
     else
-      @organization.update_attributes!(status_mask: (@organization.shown? ? 1 : 2))
+      @organization.update!(status_mask: (@organization.shown? ? 1 : 2))
     end
     redirect_to @organization, notice: t('flash.was_updated', model_name: Organization.model_name.human, title: @organization.title )
   end
 
   def block
-    @organization.update_attributes!(status_mask: (@organization.blocked? ? 1 : 4))
+    @organization.update!(status_mask: (@organization.blocked? ? 1 : 4))
     redirect_to @organization, notice: t('flash.was_updated', model_name: Organization.model_name.human, title: @organization.title )
   end
 

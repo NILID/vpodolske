@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @article.update_attributes(article_params)
+      if @article.update(article_params)
         format.html { redirect_to articles_path(anchor: "article_#{@article.id}"), notice: 'Article was successfully updated.' }
         format.json { head :no_content }
       else
