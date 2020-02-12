@@ -104,6 +104,6 @@ module ApplicationHelper
   end
 
   def ads_block(ads)
-    Rails.env.production? ? render("main/yandex/#{ads}") : content_tag(:div, 'Здесь могла бы быть ваша реклама', class: 'text-muted')
+    Rails.env.production? ? render("main/yandex/#{ads}") : content_tag(:div, 'Здесь могла бы быть ваша реклама', class: 'text-center py-5 bg-info lead text-white')
   end
 end

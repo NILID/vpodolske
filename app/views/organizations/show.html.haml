@@ -6,6 +6,7 @@
 .container-fluid
   .row.text-center.top-block(style="background-image: url(#{asset_url('bar-long.jpg')});")
     .col.align-self-center
+
       .container.py-5
         - if @organization.logo?
           .row.mb-4.justify-content-center
@@ -16,53 +17,50 @@
             %h1.h2.text-white.animated.fadeInUp
               = @organization.title
 
-.row.tr-content
-  .col-12.col-sm-6.col-md-4.col-lg-3
-    - if @organization.worktime?
-      .tr-section
-        %span= Organization.human_attribute_name(:worktime)
-        = @organization.worktime
-
-  .col-12.col-sm-6.col-md-5.col-lg-6
-    - if current_user
-      - if current_user.role? :admin
-        .tr-section
+%section.fdb-block.py-5{style: "background-image: url(#{image_url 'shapes/9.svg'})" }
+  .container
+    .row
+      - if current_user
+        - if current_user.role? :admin
           - if @organization.status? 'hidden'
-            .alert.alert-warning
-              = t 'organizations.need_check'
+            .col-12
+              .alert.alert-warning
+                = t 'organizations.need_check'
           - elsif @organization.status? 'blocked'
-            .alert.alert-danger
-              = t 'organizations.is_blocked'
-
-          - if @organization.email?
-            %p= @organization.email
-          = link_to t('actions.edit'), [:edit, @organization], class: 'btn btn-secondary'
-          = link_to t('actions.edit_access'), [:edit_access, @organization], class: 'btn btn-secondary'
-          = link_to t("actions.#{@organization.shown? ? 'deaccept' : 'accept'}"), [:accept, @organization], class: 'btn btn-secondary', method: :put
-          = link_to t("actions.#{@organization.blocked? ? 'deblock' : 'block'}"), [:block, @organization], class: 'btn btn-secondary', method: :put
-          = link_to t('actions.del'), organization_path(@organization), method: :delete, data: { confirm: t('actions.sure') }, class: 'btn btn-danger'
+            .col-12
+              .alert.alert-danger
+                = t 'organizations.is_blocked'
+          .col
+            - if @organization.email?
+              %p= @organization.email
+            .dropdown
+              %button.btn.btn-primary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                %span.fa.fa-cog
+              .dropdown-menu.dropdown-menu-top
+                = link_to t('actions.edit'), [:edit, @organization], class: 'dropdown-item'
+                = link_to t('actions.edit_access'), [:edit_access, @organization], class: 'dropdown-item'
+                = link_to t("actions.#{@organization.shown? ? 'deaccept' : 'accept'}"), [:accept, @organization], class: 'dropdown-item', method: :put
+                = link_to t("actions.#{@organization.blocked? ? 'deblock' : 'block'}"), [:block, @organization], class: 'dropdown-item', method: :put
+                = link_to t('actions.del'), organization_path(@organization), method: :delete, data: { confirm: t('actions.sure') }, class: 'dropdown-item'
       - elsif current_user == @organization.user
         - if can? :edit, @organization
-          .tr-section
-            - if @organization.status? 'hidden'
+          - if @organization.status? 'hidden'
+            .col-12
               .alert.alert-warning
                 = t 'organizations.check'
-            = link_to t('actions.edit'), [:edit, @organization], class: 'btn btn-secondary'
+          .col= link_to t('actions.edit'), [:edit, @organization], class: 'btn btn-primary'
+      .col
+        .float-right= render 'bugs/bugs_panel'
 
-    - if @organization.desc?
-      .tr-section
-        .entry-meta
-          %ul
-            %li= plural @organization.views, 'view'
-        %p= raw @organization.desc
+      - if @organization.desc?
+        .col-12.pt-4
+          .text-muted.float-right
+            = plural @organization.views, 'view'
+          %p= raw @organization.desc
 
-    .tr-widget.tr-ad
-      .text-right= render 'bugs/bugs_panel'
-
-  .col-12.col-sm-12.col-md-3.col-lg-3
-    .tr-section
-      = ads_block('org_vertical')
-
+.row
+  .col
+    = ads_block('org_horizontal')
 
 %section.fdb-block.p-0
   .container-fluid.p-0
@@ -73,7 +71,8 @@
           - if @organization.phone?
             .col-12.col-md.mr-auto.ml-auto
               = fa_icon 'phone 3x', class: 'mb-2'
-              %p.lead= @organization.phone
+              .pt-3.h3.font-weight-normal
+                = @organization.phone
 
           - if @addresses.size > 0
             .col-12.col-md.pt-4.pt-md-0.mr-auto.ml-auto
@@ -101,10 +100,17 @@
                                 = fa_icon 'phone'
                               %td= addr.phone
 
+          - if @organization.worktime?
+            .col-12.col-md.pt-4.pt-md-0.mr-auto.ml-auto
+              = fa_icon 'clock 3x', class: 'mb-2'
+              .pt-3.h3.font-weight-normal
+                = @organization.worktime
+
+
           - if @organization.site?
             .col-12.col-md.pt-4.pt-md-0.mr-auto.ml-auto
               = fa_icon 'wifi 3x', class: 'mb-2'
-              %p.lead
+              .pt-3.h3.font-weight-normal
                 = link_to t('organizations.go_site'), @organization.site, target: '_blank', rel: 'nofollow', class: 'text-white'
 
         .row-50
