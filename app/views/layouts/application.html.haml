@@ -14,17 +14,13 @@
     = render 'layouts/menu'
 
     - if %w[photos places].include? params[:controller]
-      .slider-style-three
-        .slide
-          .carousel-inner(role='listbox')
-            .item.carousel-item.active
-              .slider-overlay
-                .container
-                  .post-content
-                    %h1.entry-title.animated.fadeInUp
-                      = link_to t('live.title'), '#'
-                    %span.catagory.animated.fadeInUp.text-white
-                      = t('live.title_short')
+      .container-fluid
+        .row.text-center.top-block(style="background-image: url(#{asset_url('live-long.jpg')});")
+          .col.align-self-center
+            %h1.animated.fadeInUp
+              = link_to t('live.title'), '#', class: 'text-white'
+            .lead.animated.fadeInUp.text-white
+              = t('live.title_short')
     - if %w[organizations].include? params[:controller]
       = yield
     - else

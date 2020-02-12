@@ -3763,6 +3763,7 @@ a, .navbar-light li a i,
   cursor: pointer;
 }
 
-.carousel-item {
-  background-image: asset-url('slider7-new.jpg')
+.top-block {
+  min-height: 299px;
+  background-size: cover;
 }
