@@ -58,10 +58,6 @@
             = plural @organization.views, 'view'
           %p= raw @organization.desc
 
-.row
-  .col
-    = ads_block('org_horizontal')
-
 %section.fdb-block.p-0
   .container-fluid.p-0
     .bg-dark
@@ -119,6 +115,8 @@
     .map-container= render('main/multi_map', list: @addresses, center: true, zoom_int: 12, title: @organization.title, hide_info: true) if @addresses.size > 0
 
 = render 'comments'
+
+
 %section.fdb-block.p-0
   - if @other_organizations.any?
     .container-fluid.p-0

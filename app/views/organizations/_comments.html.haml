@@ -1,21 +1,28 @@
 %section.fdb-block
-  .container
+  .container-fluid.px-0
     .row
       .col-12.text-center
         .h2= t 'comments.title'
 
-      .card-body
-        = bootstrap_form_for [@organization, Comment.new], remote: true, html: { method: :post, class: 'contact-form' } do |f|
-          .form-errors
-          = f.text_area :content, hide_label: true, placeholder: t('comments.textarea_html', title: @organization.title)
+    .row
+      .col-4.col-md-2.mt-5.order-2.order-md-1
+        = ads_block('org_vert_1')
+      .col-8.order-1.order-md-2
+        .row
+          .card-body
+            = bootstrap_form_for [@organization, Comment.new], remote: true, html: { method: :post, class: 'contact-form' } do |f|
+              .form-errors
+              = f.text_area :content, hide_label: true, placeholder: t('comments.textarea_html', title: @organization.title)
 
-          - unless user_signed_in?
-            .float-right
-              = f.form_group do
-                = recaptcha_tags hl: 'ru'
-            .clearfix
-          .float-right
-            = f.primary t('actions.create')
+              - unless user_signed_in?
+                .float-right
+                  = f.form_group do
+                    = recaptcha_tags hl: 'ru'
+                .clearfix
+              .float-right
+                = f.primary t('actions.create')
 
-    .row.text-left.justify-content-center.pt-5#comments
-      = render @comments, commentable: @organization, show_commentable: false
+        .row.text-left.justify-content-center.pt-5.px-3.px-0#comments
+          = render @comments, commentable: @organization, show_commentable: false
+      .col-12.col-md-2.mt-5.order-3
+        = ads_block('org_vert_2')
