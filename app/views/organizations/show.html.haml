@@ -14,12 +14,11 @@
 .container-fluid
   .row.text-center.top-block(style="background-image: url(#{asset_url('bar-long.jpg')});")
     .col.align-self-center
-
       .container.py-5
         - if @organization.logo?
           .row.mb-4.justify-content-center
             .col-6.col-md-3
-              = image_tag(@organization.logo.url, class: 'img-fluid animated fadeInDown' , alt: @organization.title)
+              = lazy_img(@organization.logo.url, @organization.title, 'img-fluid animated fadeInDown')
         .row
           .col
             %h1.h2.text-white.animated.fadeInUp
