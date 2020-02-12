@@ -10,6 +10,10 @@ module ApplicationHelper
     end
   end
 
+  def clear_tag(content)
+    sanitize(content, tags: [])
+  end
+
   def rusdate(date)
     Russian::strftime(date, format_year(date.year))
   end

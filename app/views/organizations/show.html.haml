@@ -1,6 +1,14 @@
 - set_meta_tags title: @organization.title,
   description: @organization.title,
   keywords: @organization.title,
+  image_src: (@organization.logo? ? asset_url(@organization.logo.url) : nil),
+  og: { title: @organization.title,
+  type: 'article',
+  published_time: @organization.created_at.strftime('%Y-%m-%d %H:%M'),
+  author: 'vpodolske.com',
+  description: (@organization.desc? ? truncate(clear_tag(@organization.desc).strip, length: 250) : nil),
+  url: request.original_url,
+  image: (@organization.logo? ? asset_url(@organization.logo.url) : nil) },
   index: true
 
 .container-fluid
