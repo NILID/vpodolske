@@ -1,14 +1,16 @@
-%header.m-4
+%header.mb-4
   - if params[:controller] == 'main' && params[:action] ==  'index'
     .container-fluid.py-5
       .col.text-center.justify-content-center
         = image_tag('logo-small.png')
   .container-fluid
     %nav.navbar.navbar-expand-md.no-gutters
-      .col-3.text-left.d-none.d-md-block
-        - unless params[:controller] == 'main' && params[:action] ==  'index'
+      - unless params[:controller] == 'main' && params[:action] ==  'index'
+        .col-md-3.col-12.text-center.text-md-left.my-5.m-md-0
           = link_to root_url do
             = image_tag 'logo-small.png', height: 30
+      - else
+        .col-3.d-none.d-md-block
       %button.navbar-toggler.mx-auto{aria: { controls: 'navbarNav7', expanded: 'false', label: 'Toggle navigation'}, data: { target: '.navbar-collapse-2', toggle: 'collapse' }, type: 'button' }
         .text-muted
           .mb-2 МЕНЮ
