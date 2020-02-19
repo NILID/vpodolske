@@ -2,7 +2,8 @@
   - if params[:controller] == 'main' && params[:action] ==  'index'
     .container-fluid.py-5
       .col.text-center.justify-content-center
-        = image_tag('logo-small.png')
+        = link_to root_url do
+          = image_tag('logo-small.png')
   .container-fluid
     %nav.navbar.navbar-expand-md.no-gutters
       - unless params[:controller] == 'main' && params[:action] ==  'index'
