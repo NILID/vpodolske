@@ -1,10 +1,10 @@
 -# frozen_string_literal: true
 
-%h1= formtitle
+= bootstrap_form_for @page, html: { multipart: true, class: 'contact-form' } do |f|
+  .section-title
+    %h1= formtitle
 
-= bootstrap_form_for(@page) do |f|
-  .form-inputs
-    = f.text_field :title
+  = f.text_field :title
 
-  .form-actions
+  = f.form_group do
     = f.primary
