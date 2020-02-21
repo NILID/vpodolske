@@ -15,27 +15,11 @@ Rails.application.routes.draw do
   resources :comments, only: %i[index destroy]
 
   mount Ckeditor::Engine => '/ckeditor'
-  get 'parser/karofilm'
-  get 'parser/dkoctober'
-  get 'parser/vzpodolsk'
-  get 'parser/inpodolsk'
-  get 'parser/podolsk'
-  get 'parser/list'
-  get 'parser/dkzio'
-  get 'parser/podolsk_cat'
-  get 'parser/dkkarl'
-  get 'parser/dklepse'
-  get 'parser/spravka'
-  get 'parser/parktal'
-  get 'parser/metallv'
-  get 'parser/molodezh'
-  get 'parser/dubrov'
-  get 'parser/sherbinka'
-  get 'parser/metal_lvov'
-  get 'parser/druzhba'
-  get 'parser/news_tvkvarc'
-  get 'parser/news_riamo'
-  get 'parser/news_admin'
+
+  %w[karofilm dkoctober vzpodolsk inpodolsk podolsk list dkzio podolsk_cat dkkarl dklepse spravka parktal metallv molodezh
+     dubrov sherbinka metal_lvov druzhba news_tvkvarc news_riamo news_admin].each do |provider|
+    get "parser/#{provider}"
+  end
 
   scope "/#{scope_advert}" do
     resources :adverts, only: [:index]
