@@ -1,5 +1,11 @@
 $ ->
 
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
   $('#top-link-block').on 'click', ->
     $("html, body").animate({scrollTop: 0}, "slow")
 
