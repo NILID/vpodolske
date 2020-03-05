@@ -1,10 +1,9 @@
 -# frozen_string_literal: true
 = bootstrap_form_for([@page, @block]) do |f|
-  .form-inputs
-    = f.text_field :title
+  .section-title
+    %h1= formtitle
 
-  .form-inputs
-    = f.text_area :content
-
-  .form-actions
-    = f.primary
+  = f.text_field :title
+  = f.text_area :content
+  = f.primary
+  = link_to t('back'), @page, class: 'btn btn-secondary'

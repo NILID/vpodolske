@@ -4,7 +4,7 @@
       .col
         %h1.display-4= @page.title
       .col.text-right
-        = link_to 'Add block', new_page_block_path(@page)
+        = link_to t('pages.add_block'), new_page_block_path(@page)
         \|
         = link_to t('actions.edit'), edit_page_path(@page)
         \|
