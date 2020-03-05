@@ -58,12 +58,11 @@ ru:
     will_bad: Стало хуже
   addresses:
     if_foreign: (укажите, если отличается от единого номера телефона)
-  exception:
+  exception_handler:
     error_404: Страница не найдена
     error_500: Внутренняя ошибка
-  exception_handler:
-    not_found: Your message here
-    unauthorized: You need to login to continue
+    not_found: Страница не найдена
+    unauthorized: У вас нет доступа к данной странице
     internal_server_error: This is a test to show the %{status} of the error
   places:
     new: Создание
