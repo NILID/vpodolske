@@ -9,7 +9,8 @@
   description: (@organization.desc? ? truncate(clear_tag(@organization.desc).strip, length: 250) : nil),
   url: request.original_url,
   image: (@organization.logo? ? asset_url(@organization.logo.url) : nil) },
-  index: true
+  index: true,
+  canonical: request.original_url
 
 .container-fluid
   .row.text-center.top-block(style="background-image: url(#{asset_url('bar-long.jpg')});")

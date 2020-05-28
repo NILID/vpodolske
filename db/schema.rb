@@ -2,11 +2,11 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
   create_table "categories", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "slug"
-    t.string "categorable_type"
     t.integer "categorable_id"
+    t.string "categorable_type"
     t.text "desc"
     t.string "ancestry"
     t.text "url"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
   create_table "comments", id: :serial, force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
-    t.string "commentable_type"
     t.integer "commentable_id"
+    t.string "commentable_type"
     t.integer "state"
     t.string "ancestry"
     t.datetime "created_at", null: false
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
     t.string "url"
     t.string "src_file_name"
     t.string "src_content_type"
-    t.bigint "src_file_size"
+    t.integer "src_file_size"
     t.datetime "src_updated_at"
     t.time "eventime"
     t.date "eventdate"
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
     t.text "old_title", null: false
     t.string "logo_file_name"
     t.string "logo_content_type"
-    t.bigint "logo_file_size"
+    t.integer "logo_file_size"
     t.datetime "logo_updated_at"
     t.text "desc"
     t.float "longitude"
@@ -227,8 +227,6 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
     t.integer "user_id"
     t.boolean "notify", default: false
     t.integer "status_mask", default: 1, null: false
-    t.string "token"
-    t.boolean "hidden", default: true, null: false
     t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
@@ -243,7 +241,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
   create_table "photos", id: :serial, force: :cascade do |t|
     t.string "slide_file_name"
     t.string "slide_content_type"
-    t.bigint "slide_file_size"
+    t.integer "slide_file_size"
     t.datetime "slide_updated_at"
     t.integer "place_id"
     t.integer "user_id"
@@ -280,7 +278,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
     t.text "aboutme"
     t.string "avatar_file_name"
     t.string "avatar_content_type"
-    t.bigint "avatar_file_size"
+    t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string "gender", limit: 1
     t.datetime "created_at"
@@ -290,10 +288,10 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
 
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
-    t.string "taggable_type"
     t.integer "taggable_id"
-    t.string "tagger_type"
+    t.string "taggable_type"
     t.integer "tagger_id"
+    t.string "tagger_type"
     t.string "context", limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context"
@@ -341,7 +339,6 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
     t.string "provider"
     t.integer "uid"
     t.text "auth_raw_info"
-    t.string "invitation_token"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -358,6 +355,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
     t.string "whodunnit"
     t.text "object"
     t.datetime "created_at"
+    t.text "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
@@ -374,10 +372,10 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
   end
 
   create_table "votes", id: :serial, force: :cascade do |t|
-    t.string "votable_type"
     t.integer "votable_id"
-    t.string "voter_type"
+    t.string "votable_type"
     t.integer "voter_id"
+    t.string "voter_type"
     t.boolean "vote_flag"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -387,6 +385,25 @@ ActiveRecord::Schema.define(version: 2020_02_10_120140) do
     t.index ["votable_id", "votable_type"], name: "index_votes_on_votable_id_and_votable_type"
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
     t.index ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type"
+  end
+
+  create_table "wikipage_versions", id: :serial, force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.string "author_login"
+    t.integer "word_count"
+    t.index ["item_type", "item_id"], name: "index_wikipage_versions_on_item_type_and_item_id"
+  end
+
+  create_table "wikipages", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "addresses", "organizations"

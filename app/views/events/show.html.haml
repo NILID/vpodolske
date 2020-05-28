@@ -8,6 +8,7 @@
   description: @event.content,
   url: request.original_url,
   image: (@event.src? ? asset_url(@event.src.url(:original)) : nil) },
+  canonical: request.original_url,
   index: true
 
 .row

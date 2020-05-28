@@ -1,6 +1,7 @@
 - set_meta_tags title: t('articles.title') + " | #{@article.title}",
   description: t('baseseo.articles.desc', add: @article.title),
   keywords: t('baseseo.articles.words', add: @article.title),
+  canonical: request.original_url,
   index: true
 
 %h2= @article.title

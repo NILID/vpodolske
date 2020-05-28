@@ -1,6 +1,8 @@
 - set_meta_tags title: t('videos.seo.video_of', title: @video.title),
   description: t('videos.seo.video_of', title: @video.title),
-  keywords: t('videos.seo.video_of', title: @video.title)
+  keywords: t('videos.seo.video_of', title: @video.title),
+  canonical: request.original_url
+
 
 .row
   .col-lg-9.col-12
