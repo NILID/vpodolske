@@ -29,6 +29,8 @@ require 'support/devise'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+Capybara.current_driver = :selenium_chrome
+
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, :type => :controller
