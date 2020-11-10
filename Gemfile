@@ -119,7 +119,7 @@ gem 'papercrop'
 gem 'record_tag_helper', '~> 1.0'
 
 group :development, :test do
-  gem 'rspec-rails', github: 'rspec/rspec-rails', branch: '4-0-maintenance'
+  gem 'rspec-rails'#, github: 'rspec/rspec-rails', branch: '4-0-maintenance'
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
   gem 'faker'
