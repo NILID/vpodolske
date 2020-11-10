@@ -12,7 +12,7 @@
           - @category.ancestors.each do |a|
             %li.breadcrumb-item(aria-current='page')= link_to a.title, a
           %li.active.breadcrumb-item(aria-current='page')
-            %h1.h4.d-inline.text-danger= @category.title
+            %h1.h4.d-inline.text-danger.my-0= @category.title
 
       .row
         .col-md-6.mb-3.mb-md-0
