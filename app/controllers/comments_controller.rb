@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
   def index
     @comments = @comments.includes(:user, :commentable).order(created_at: :desc)
   end
-  def edit;  end
+
+  def edit; end
 
   def create
     @comment.commentable = @commentable

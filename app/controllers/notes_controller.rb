@@ -5,8 +5,7 @@ class NotesController < ApplicationController
     @notes = @notes.includes(:user)
   end
 
-  def new
-  end
+  def new; end
 
   def create
     if user_signed_in?

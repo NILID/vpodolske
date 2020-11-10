@@ -2,14 +2,9 @@ class PhotosController < ApplicationController
   load_and_authorize_resource :place
   load_and_authorize_resource :photo, through: :place
 
-  def index
-  end
-
-  def new
-  end
-
-  def edit
-  end
+  def index; end
+  def new;   end
+  def edit;  end
 
   def create
     if user_signed_in?

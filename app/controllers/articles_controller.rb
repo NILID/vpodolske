@@ -17,11 +17,8 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def create
     respond_to do |format|

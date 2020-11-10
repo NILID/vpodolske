@@ -1,17 +1,12 @@
 class PagesController < ApplicationController
   load_and_authorize_resource find_by: :slug
 
-  def index
-  end
+  def index; end
+  def new;   end
+  def edit;  end
 
   def show
     @blocks = @page.blocks.order(position: :desc)
-  end
-
-  def new
-  end
-
-  def edit
   end
 
   def create

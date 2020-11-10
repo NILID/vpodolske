@@ -2,11 +2,8 @@ class BlocksController < ApplicationController
   load_and_authorize_resource :page, find_by: :slug
   load_and_authorize_resource :block, through: :page
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def sort
     params[:block].reverse.each_with_index do |id, index|

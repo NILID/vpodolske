@@ -1,11 +1,8 @@
 class BugsController < ApplicationController
   load_and_authorize_resource
 
-  def index
-  end
-
-  def new
-  end
+  def index; end
+  def new;   end
 
   def create
     respond_to do |format|

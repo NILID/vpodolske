@@ -17,11 +17,8 @@ class VideosController < ApplicationController
     @comments = @video.comments.order('created_at desc').includes(:user)
   end
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def like
     current_user.toggle_like!(@video)
