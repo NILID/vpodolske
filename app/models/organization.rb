@@ -25,7 +25,7 @@ class Organization < ActiveRecord::Base
   validates :title, :category_tokens, :status_mask, presence: true
   validates :email, email: true, allow_blank: true
   validates_attachment :logo, content_type: { content_type: %w[ image/jpg image/jpeg image/gif image/png image/pjpeg image/x-png image/svg+xml ] }
-  validates :url, uniqueness: true, allow_nil: true
+  validates :url, uniqueness: true, allow_blank: true
   validates :site, url: true, allow_blank: true
 
   scope :shown,   -> { with_status(:shown) }
